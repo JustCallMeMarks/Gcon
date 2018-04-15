@@ -8,12 +8,12 @@ Gcon - Aplicativo Web para gerenciamento de condomínios.
 Procuramos desenvolver uma solução para facilitar este processo, que consistirá de uma plataforma online onde será possível cadastrar atas de reuniões e realizar votações de assuntos de interesse de bem comum a qualquer momento e em qualquer lugar, estas votações sendo restritas aos moradores do prédio.
  
 2. OBJETIVOS
-1.   Facilitar a gestão de condomínios
-2.   Facilitar a realização de votações em assuntos de condomínios
-3.   Aumentar a participação de moradores em votações e reuniões
-4.   Facilitar o gerenciamento do resultado de votações
-5.   Permitir o anonimato em votações
-6.   Desenvolver um mural de avisos onde o síndico cadastra avisos para os moradores.
+ - Facilitar a gestão de condomínios
+ - Facilitar a realização de votações em assuntos de condomínios
+ - Aumentar a participação de moradores em votações e reuniões
+ - Facilitar o gerenciamento do resultado de votações
+ - Permitir o anonimato em votações
+ - Desenvolver um mural de avisos onde o síndico cadastra avisos para os moradores.
  
  
 3. TECNOLOGIA
