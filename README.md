@@ -32,7 +32,8 @@ Descrever as tabelas do banco de dados para o sistema e para armazenar dados rel
 7. ETAPAS E CRONOGRAMA
 Neste local devem ser descritas as etapas para a construção do Website, descrevendo as entregas previstas para o mesmo. No caso destas entregas sofrerem alterações, as mesmas devem ser renegociadas com a entidade solicitante do Web Site.
  
- ====================================================================================================================================
+ =========================================
+ 
  Regras de Acesso ao sistema:
  
  Existiram três tipos de regras de Acesso para usuários:
