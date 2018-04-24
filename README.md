@@ -32,4 +32,36 @@ Descrever as tabelas do banco de dados para o sistema e para armazenar dados rel
 7. ETAPAS E CRONOGRAMA
 Neste local devem ser descritas as etapas para a construção do Website, descrevendo as entregas previstas para o mesmo. No caso destas entregas sofrerem alterações, as mesmas devem ser renegociadas com a entidade solicitante do Web Site.
  
+ ====================================================================================================================================
+ Regras de Acesso ao sistema:
  
+ Existiram três tipos de regras de Acesso para usuários:
+
+Administrador; Votador; Morador
+
+Perfis:
+Administrador: Responsável pela administração do sistema, possuirá permissão total a todas páginas do sistema.
+Votador: Poderá votar em votações e visualizar todas páginas públicas, porém sem efetuar alterações no conteúdo. Apenas poderá existir 1 votador por apartamento.
+Morador: Não poderá votar, e apenas poderá visualizar páginas de Mural e Atas de reunião e configuração de cadastro.
+
+Definição de política de permissões:
+Mural:
+Visualização: pública, todos perfis possuem permissão. 
+Edição/ Cadastro: restrita, apenas administradores possuem permissão.
+
+Votações:
+Visualização Simplificada: restrita, administradores e Votadores possuem permissão.
+Visualização Detalhada: restrita apenas administradores possuem permissão.
+Edição:  restrita, apenas administradores possuem permissão.
+
+Novas Votações: Restrita, apenas administradores possuem permissão.
+
+Atas: Visualização:  pública.
+Edição:  restrita, apenas administradores possuem permissão.
+
+Novas Atas: Restrita, apenas administradores possuem permissão de acesso e edição.
+
+Login: Pública.
+Cadastro de novos moradores: pública.
+Moradores: Visualização e Edição restrita, apenas administradores possuem permissão.
+
