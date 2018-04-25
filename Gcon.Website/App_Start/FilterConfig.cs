@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Gcon.Website.Attributes;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Gcon.Website
@@ -8,6 +9,7 @@ namespace Gcon.Website
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new LocalizationAttribute("pt-br"), 0);
         }
     }
 }

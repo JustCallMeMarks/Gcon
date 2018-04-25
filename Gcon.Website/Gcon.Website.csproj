@@ -143,20 +143,29 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\LocalizationAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\MuralController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Locale\recursos.en-US.Designer.cs">
+    <Compile Include="App_LocalResources\recursos.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>recursos.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="Locale\recursos.es-ES.Designer.cs">
+    <Compile Include="App_LocalResources\recursos.es-ES.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>recursos.es-ES.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_LocalResources\recursos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>recursos.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +219,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.easing.compatibility.js" />
+    <Content Include="Scripts\jquery.easing.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -250,10 +262,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Mural\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -267,16 +281,18 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Locale\recursos.en-US.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="App_LocalResources\recursos.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>recursos.en-US.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Locale\recursos.pt-BR.resx">
+    <EmbeddedResource Include="App_LocalResources\recursos.resx">
       <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>recursos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Locale\recursos.es-ES.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="App_LocalResources\recursos.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>recursos.es-ES.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
