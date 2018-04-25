@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Gcon.Website.Locale
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +21,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                     <a class="nav-link" href="index.html">
                         <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
+                        <span class="nav-link-text">@recursos.ProximasRunioes</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
@@ -220,8 +221,15 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+        <footer>            
+            <div id="divIdioma">
+                <label>Selecione o idioma:</label>
+                <select class="custom-select-sm">
+                    <option>@Html.ActionLink("Português", "ChangeLanguage", "Language", new {SelectedLanguage= "pt-BR" }, null)</option>
+                    <option>@Html.ActionLink("Inglês", "ChangeLanguage", "Language", new { SelectedLanguage = "en-US" }, null)</option>
+                    <option>@Html.ActionLink("Espanhol", "ChangeLanguage", "Language", new { SelectedLanguage = "es-ES" }, null)</option>
+                </select>
+            </div>
         </footer>
     </div>
 
