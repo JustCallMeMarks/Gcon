@@ -1,0 +1,1 @@
+https://www.codeproject.com/articles/1064291/working-with-resources-file-in-asp-net-mvc
