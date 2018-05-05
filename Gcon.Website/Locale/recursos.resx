@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -122,8 +123,17 @@
   <data name="AvisosGerais" xml:space="preserve">
     <value>Avisos Gerais</value>
   </data>
+  <data name="CadastroNovosMoradores" xml:space="preserve">
+    <value>Cadastro de novos moradores</value>
+  </data>
   <data name="ConfiguracaoDaConta" xml:space="preserve">
     <value>Configuração da Conta</value>
+  </data>
+  <data name="EsqueciSenha" xml:space="preserve">
+    <value>Esqueci a senha</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Entrar</value>
   </data>
   <data name="Mural" xml:space="preserve">
     <value>Mural</value>
@@ -133,6 +143,12 @@
   </data>
   <data name="ResultadoDeVotacoes" xml:space="preserve">
     <value>Resultado de Votações</value>
+  </data>
+  <data name="Senha" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="Usuario" xml:space="preserve">
+    <value>Usuario</value>
   </data>
   <data name="Votacoes" xml:space="preserve">
     <value>Votações</value>

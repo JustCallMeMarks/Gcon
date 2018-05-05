@@ -79,11 +79,38 @@ namespace Gcon.Website.Locale {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cadastro de novos moradores.
+        /// </summary>
+        public static string CadastroNovosMoradores {
+            get {
+                return ResourceManager.GetString("CadastroNovosMoradores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Configuração da Conta.
         /// </summary>
         public static string ConfiguracaoDaConta {
             get {
                 return ResourceManager.GetString("ConfiguracaoDaConta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Esqueci a senha.
+        /// </summary>
+        public static string EsqueciSenha {
+            get {
+                return ResourceManager.GetString("EsqueciSenha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Entrar.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
@@ -111,6 +138,24 @@ namespace Gcon.Website.Locale {
         public static string ResultadoDeVotacoes {
             get {
                 return ResourceManager.GetString("ResultadoDeVotacoes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha.
+        /// </summary>
+        public static string Senha {
+            get {
+                return ResourceManager.GetString("Senha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Usuario.
+        /// </summary>
+        public static string Usuario {
+            get {
+                return ResourceManager.GetString("Usuario", resourceCulture);
             }
         }
         

@@ -1,0 +1,31 @@
+﻿@using Gcon.Website.Locale
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <form action=@Url.Action("Autenticar","Login") method="post">
+            @recursos.Usuario:
+            <br />
+            <input type="text" name="usuario" />
+            <br />
+            @recursos.Senha:
+            <br />
+            <input type="password" name="senha" />
+            <br />
+            <a href="/Default/Gravar">@recursos.EsqueciSenha</a>
+            <input type="submit"  value="@recursos.Login" />
+            <br />
+            <a href="/Default/Gravar">@recursos.CadastroNovosMoradores</a>
+    </form>
+    </div>
+</body>
+</html>
