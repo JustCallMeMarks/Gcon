@@ -126,8 +126,14 @@
   <data name="CadastroNovosMoradores" xml:space="preserve">
     <value>Registration of new residents</value>
   </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ConfiguracaoDaConta" xml:space="preserve">
     <value>Account Configurations</value>
+  </data>
+  <data name="EsqueceuASenha" xml:space="preserve">
+    <value>Forgot Password?</value>
   </data>
   <data name="EsqueciSenha" xml:space="preserve">
     <value>Forget my password</value>
@@ -141,11 +147,17 @@
   <data name="ProximasRunioes" xml:space="preserve">
     <value>Next Meetings</value>
   </data>
+  <data name="Recuperar" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
   <data name="ResultadoDeVotacoes" xml:space="preserve">
     <value>Polls Resuslts</value>
   </data>
   <data name="Senha" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="TextoSenha" xml:space="preserve">
+    <value>You can reset your password here.</value>
   </data>
   <data name="Usuario" xml:space="preserve">
     <value>User</value>
