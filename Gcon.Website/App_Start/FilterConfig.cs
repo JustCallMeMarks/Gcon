@@ -12,4 +12,18 @@ namespace Gcon.Website
             filters.Add(new LocalizationAttribute("pt-br"), 0);
         }
     }
+
+    public class FiltroAcesso : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            object UsuarioLogado = filterContext.HttpContext.Session["Usuario"];
+            if (UsuarioLogado == null)
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                            new System.Web.Routing.RouteValueDictionary(
+                                new { action = "Index", controller = "Login" }));
+            }
+        }
+    }
 }

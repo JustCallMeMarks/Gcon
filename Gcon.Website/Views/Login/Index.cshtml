@@ -57,7 +57,7 @@
                                 <div class="text-center">
                                     <p>@recursos.TextoSenha</p>
                                     <div class="panel-body">
-                                        <form action=@Url.Action("Autenticar","Login") method="post">
+                                        <form action=@Url.Action("EsqueciSenha","Login") method="post">
                                             <div class="form-group">
                                                 <input class="form-control input-lg" placeholder="E-mail" name="email" type="email">
                                             </div>
@@ -94,10 +94,10 @@
                                 <div class="text-center">
                                     <p>Cadastro de novos moradores</p>
                                     <div class="panel-body">
-                                        <form action=@Url.Action("Autenticar","Login") method="post">
+                                        <form action=@Url.Action("NovosMoradores","Login") method="post">
                                             <div class="row">
                                                 <label class="col-form-label">Nome Completo:</label>
-                                                <input class="form-control input-lg" placeholder="Nome Completo" name="name" type="text">
+                                                <input class="form-control input-lg" placeholder="Nome Completo" name="nome" type="text">
                                             </div>
                                             <div class="row">
                                                 <label class="col-form-label">Email:</label>
@@ -106,11 +106,11 @@
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">Telefone:</label>
-                                                    <input class="form-control input-lg" placeholder="(011) 3000-0000" name="Tel" type="text">
+                                                    <input class="form-control input-lg" placeholder="(011) 3000-0000" name="tel" type="text">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">Celular:</label>
-                                                    <input class="form-control input-lg" placeholder="(011) 99000-0000" name="Cel" type="text">
+                                                    <input class="form-control input-lg" placeholder="(011) 99000-0000" name="cel" type="text">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -127,7 +127,7 @@
                                                 <label class="col-form-label">Condominio:</label>
                                             </div>
                                             <div class="row">
-                                                <select class="form-control-lg input-lg" id="exampleFormControlSelect1">
+                                                <select class="form-control-lg input-lg" id="exampleFormControlSelect1" name="condominio">
                                                     @for (int i = 0; i < 10; i++)
                                                     {
                                                          <option>Teste condominio da praia bela</option>
