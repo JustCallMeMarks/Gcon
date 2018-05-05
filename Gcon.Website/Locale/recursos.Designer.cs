@@ -99,9 +99,9 @@ namespace Gcon.Website.Locale {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Proximas Reuniões.
         /// </summary>
-        public static string ProximasRunioes {
+        public static string ProximasReunioes {
             get {
-                return ResourceManager.GetString("ProximasRunioes", resourceCulture);
+                return ResourceManager.GetString("ProximasReunioes", resourceCulture);
             }
         }
         

@@ -15,7 +15,13 @@ namespace Gcon.Website.Controllers
         {
             if (SelectedLanguage != null)
             {
-                
+                Thread.CurrentThread.CurrentCulture =
+                    CultureInfo.CreateSpecificCulture(SelectedLanguage);
+                Thread.CurrentThread.CurrentUICulture =
+                    new CultureInfo(SelectedLanguage);
+                var cookie = new HttpCookie("Language");
+                cookie.Value = SelectedLanguage;
+                Response.Cookies.Add(cookie);
             }
             return RedirectToAction("Index", "Home");
         }
