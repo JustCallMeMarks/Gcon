@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +16,7 @@ namespace Gcon.Website.Controllers
 
         public ActionResult Autenticar(string usuario, string senha)
         {
-            if (usuario == "juliano" && senha == "321")
+            if (usuario == "Gcon" && senha == "Gcon")
             {
                 Session["usuario"] = usuario;
                 return RedirectToAction("Index", "Home");
