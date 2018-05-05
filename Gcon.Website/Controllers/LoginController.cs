@@ -16,7 +16,7 @@ namespace Gcon.Website.Controllers
 
         public ActionResult Autenticar(string usuario, string senha)
         {
-            if (usuario == "juliano" && senha == "123")
+            if (usuario == "juliano" && senha == "321")
             {
                 Session["usuario"] = usuario;
                 return RedirectToAction("Index", "Home");
