@@ -126,8 +126,14 @@
   <data name="CadastroNovosMoradores" xml:space="preserve">
     <value>Cadastro de novos moradores</value>
   </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="ConfiguracaoDaConta" xml:space="preserve">
     <value>Configuração da Conta</value>
+  </data>
+  <data name="EsqueceuASenha" xml:space="preserve">
+    <value>Esqueceu a senha?</value>
   </data>
   <data name="EsqueciSenha" xml:space="preserve">
     <value>Esqueci a senha</value>
@@ -141,11 +147,17 @@
   <data name="ProximasReunioes" xml:space="preserve">
     <value>Proximas Reuniões</value>
   </data>
+  <data name="Recuperar" xml:space="preserve">
+    <value>Recuperar</value>
+  </data>
   <data name="ResultadoDeVotacoes" xml:space="preserve">
     <value>Resultado de Votações</value>
   </data>
   <data name="Senha" xml:space="preserve">
     <value>Senha</value>
+  </data>
+  <data name="TextoSenha" xml:space="preserve">
+    <value>Se você esqueceu a senha você pode recupera-la aqui.</value>
   </data>
   <data name="Usuario" xml:space="preserve">
     <value>Usuario</value>

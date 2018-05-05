@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -143,7 +144,7 @@
   <data name="Mural" xml:space="preserve">
     <value>Mural</value>
   </data>
-  <data name="ProximasRunioes" xml:space="preserve">
+  <data name="ProximasReunioes" xml:space="preserve">
     <value>Proximas Reuniões</value>
   </data>
   <data name="Recuperar" xml:space="preserve">

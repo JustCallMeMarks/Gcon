@@ -283,9 +283,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="App_LocalResources\recursos.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>recursos.en-US.Designer.cs</LastGenOutput>
@@ -301,9 +298,15 @@
       <LastGenOutput>recursos.es-ES.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Locale\recursos.en-US.resx" />
-    <EmbeddedResource Include="Locale\recursos.es-ES.resx" />
-    <EmbeddedResource Include="Locale\recursos.resx" />
+    <EmbeddedResource Include="Locale\recursos.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locale\recursos.es-ES.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Locale\recursos.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

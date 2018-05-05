@@ -88,11 +88,29 @@ namespace Gcon.Website.App_LocalResources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cancelar.
+        /// </summary>
+        public static string Cancelar {
+            get {
+                return ResourceManager.GetString("Cancelar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Configuração da Conta.
         /// </summary>
         public static string ConfiguracaoDaConta {
             get {
                 return ResourceManager.GetString("ConfiguracaoDaConta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Esqueceu a senha?.
+        /// </summary>
+        public static string EsqueceuASenha {
+            get {
+                return ResourceManager.GetString("EsqueceuASenha", resourceCulture);
             }
         }
         
@@ -133,6 +151,15 @@ namespace Gcon.Website.App_LocalResources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Recuperar.
+        /// </summary>
+        public static string Recuperar {
+            get {
+                return ResourceManager.GetString("Recuperar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Resultado de Votações.
         /// </summary>
         public static string ResultadoDeVotacoes {
@@ -147,6 +174,15 @@ namespace Gcon.Website.App_LocalResources {
         public static string Senha {
             get {
                 return ResourceManager.GetString("Senha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Se você esqueceu a senha você pode recupera-la aqui..
+        /// </summary>
+        public static string TextoSenha {
+            get {
+                return ResourceManager.GetString("TextoSenha", resourceCulture);
             }
         }
         
