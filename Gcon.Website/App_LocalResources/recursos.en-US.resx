@@ -123,8 +123,17 @@
   <data name="AvisosGerais" xml:space="preserve">
     <value>Mural of Regards</value>
   </data>
+  <data name="CadastroNovosMoradores" xml:space="preserve">
+    <value>Registration of new residents</value>
+  </data>
   <data name="ConfiguracaoDaConta" xml:space="preserve">
     <value>Account Configurations</value>
+  </data>
+  <data name="EsqueciSenha" xml:space="preserve">
+    <value>Forget my password</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
   </data>
   <data name="Mural" xml:space="preserve">
     <value>Mural</value>
@@ -134,6 +143,12 @@
   </data>
   <data name="ResultadoDeVotacoes" xml:space="preserve">
     <value>Polls Resuslts</value>
+  </data>
+  <data name="Senha" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Usuario" xml:space="preserve">
+    <value>User</value>
   </data>
   <data name="Votacoes" xml:space="preserve">
     <value>Polls</value>
