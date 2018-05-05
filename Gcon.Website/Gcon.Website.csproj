@@ -167,6 +167,9 @@
       <DependentUpon>recursos.resx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LanguageHelper.cs" />
+    <Compile Include="Locale\recursos.Designer.cs" />
+    <Compile Include="Locale\recursos.en-US.Designer.cs" />
+    <Compile Include="Locale\recursos.es-ES.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +301,9 @@
       <LastGenOutput>recursos.es-ES.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Locale\recursos.en-US.resx" />
+    <EmbeddedResource Include="Locale\recursos.es-ES.resx" />
+    <EmbeddedResource Include="Locale\recursos.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

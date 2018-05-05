@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -126,8 +125,14 @@
   <data name="CadastroNovosMoradores" xml:space="preserve">
     <value>Registro de nuevos residentes</value>
   </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="ConfiguracaoDaConta" xml:space="preserve">
     <value>Account Configurations</value>
+  </data>
+  <data name="EsqueceuASenha" xml:space="preserve">
+    <value>Olvido la contraseña?</value>
   </data>
   <data name="EsqueciSenha" xml:space="preserve">
     <value>Olvidé la contraseña</value>
@@ -141,11 +146,17 @@
   <data name="ProximasRunioes" xml:space="preserve">
     <value>Next Meetings</value>
   </data>
+  <data name="Recuperar" xml:space="preserve">
+    <value>Recuperar</value>
+  </data>
   <data name="ResultadoDeVotacoes" xml:space="preserve">
     <value>Polls Resuslts</value>
   </data>
   <data name="Senha" xml:space="preserve">
     <value>Palavra-chave</value>
+  </data>
+  <data name="TextoSenha" xml:space="preserve">
+    <value>Si usted ha olvidado la contraseña usted puede recuperarla aquí.</value>
   </data>
   <data name="Usuario" xml:space="preserve">
     <value>Utilizador</value>

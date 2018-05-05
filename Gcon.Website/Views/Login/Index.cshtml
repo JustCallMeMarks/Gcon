@@ -5,27 +5,181 @@
 
 <!DOCTYPE html>
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Gcon</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .login-form {
+            width: 340px;
+            margin: 50px auto;
+        }
+
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+
+        .btn {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <!--modal esqueci senha-->
+    <div id="esquecisenha" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center">@recursos.EsqueceuASenha</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="text-center">
+                                    <p>@recursos.TextoSenha</p>
+                                    <div class="panel-body">
+                                        <form action=@Url.Action("Autenticar","Login") method="post">
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" placeholder="E-mail" name="email" type="email">
+                                            </div>
+                                            <input class="btn btn-lg btn-primary btn-block" value="@recursos.Recuperar" type="submit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">@recursos.Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fim modal esqueci senha-->
+
+    <!--modal novos moradores-->
+    <div id="novosmoradores" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center">Novo por aqui?</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="text-center">
+                                    <p>Cadastro de novos moradores</p>
+                                    <div class="panel-body">
+                                        <form action=@Url.Action("Autenticar","Login") method="post">
+                                            <div class="row">
+                                                <label class="col-form-label">Nome Completo:</label>
+                                                <input class="form-control input-lg" placeholder="Nome Completo" name="name" type="text">
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label">Email:</label>
+                                                <input class="form-control input-lg" placeholder="E-mail" name="email" type="email">
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label">Telefone:</label>
+                                                    <input class="form-control input-lg" placeholder="(011) 3000-0000" name="Tel" type="text">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label">Celular:</label>
+                                                    <input class="form-control input-lg" placeholder="(011) 99000-0000" name="Cel" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label">Apartamento:</label>
+                                                    <input class="form-control input-lg" placeholder="Apartamento" name="apartamento" type="text">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="col-form-label">CPF:</label>
+                                                    <input class="form-control input-lg" placeholder="123.456.789-10" name="cpf" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label">Condominio:</label>
+                                            </div>
+                                            <div class="row">
+                                                <select class="form-control-lg input-lg" id="exampleFormControlSelect1">
+                                                    @for (int i = 0; i < 10; i++)
+                                                    {
+                                                         <option>Teste condominio da praia bela</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label">Senha:</label>
+                                                <input class="form-control input-lg" placeholder="Senha" name="senha" type="password">
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label">Confirmar a Senha:</label>
+                                                <input class="form-control input-lg" placeholder="Confirmar a Senha" name="confirmacaoSenha" type="password">
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-form-label"></label>
+                                                <input class="btn btn-lg btn-primary btn-block" value="Cadastrar" type="submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">@recursos.Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fim modal novos moradores-->
+
+    <div class="login-form">
         <form action=@Url.Action("Autenticar","Login") method="post">
-            @recursos.Usuario:
-            <br />
-            <input type="text" name="usuario" />
-            <br />
-            @recursos.Senha:
-            <br />
-            <input type="password" name="senha" />
-            <br />
-            <a href="/Default/Gravar">@recursos.EsqueciSenha</a>
-            <input type="submit"  value="@recursos.Login" />
-            <br />
-            <a href="/Default/Gravar">@recursos.CadastroNovosMoradores</a>
-    </form>
+            <h2 class="text-center">Gcon</h2>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="@recursos.Usuario" required="required" name="usuario">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="@recursos.Senha" required="required" name="senha">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">@recursos.Login</button>
+            </div>
+            <div class="clearfix">
+                <a href="#" data-target="#esquecisenha" data-toggle="modal">@recursos.EsqueciSenha</a>
+            </div>
+        </form>
+        <a href="#" data-target="#novosmoradores" data-toggle="modal">@recursos.CadastroNovosMoradores</a>
     </div>
 </body>
-</html>
+</html>                          
