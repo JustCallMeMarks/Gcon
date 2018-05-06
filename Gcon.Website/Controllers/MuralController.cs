@@ -13,5 +13,10 @@ namespace Gcon.Website.Controllers
         {
             return View();
         }
+        public ActionResult EditarAviso(int id)
+        {
+
+            return View();
+        }
     }
 }
