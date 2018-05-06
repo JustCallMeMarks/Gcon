@@ -3,71 +3,73 @@
     ViewBag.Title = recursos.Mural;
 }
 
-<asp:label>@recursos.AvisosGerais:</asp:label>
-<hr class="mt-2">
-<div class="d-flex flex-column-reverse">
-    <div class=" d-flex flex-column">
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <asp:Label>@recursos.ProximasReunioes:</asp:Label>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, legimus graecis vel no, te sed error volutpat deterruisset,
-                        et eos amet posse oporteat. Ne purto pertinacia incorrupte vix, quo laoreet verterem omittantur cu.
-                        Modo discere minimum usu cu, omnium omittantur in nec. Ne quo probo habemus, elit veri viderer eam cu,
-                        est in nihil cetero. Nonumy delectus vivendum in pro, alia cibo voluptatibus nam ex. Pro oratio blandit
-                        signiferumque no. Te cum clita nominati signiferumque, in ferri pericula sea.
-                    </p>
-                </div>
+<div class="row">
+    <div class="col-md-7 col-sm-7 col-xl-7 col-12">
+        <div id="crdAvisosGerais" class="card">
+            <div id="crdHdAvisosGerais" class="card-header bg-dark">
+                <asp:label class="text-white">@recursos.AvisosGerais:</asp:label>
+                <button id="btnEditarAvisos" class="btn btn-dark btn-sm pull-right" onclick=#>
+                    <i class="fa fa-pencil"></i>
+                </button>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <asp:Label>@recursos.ResultadoDeVotacoes:</asp:Label>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Eu vulputate voluptaria nec, at mea mutat choro putent, ius splendide gloriatur sententiae no.
-                        Noster repudiandae deterruisset an sit, mel in altera aliquip partiendo. Duo an laoreet percipit mnesarchum,
-                        congue posidonium mel ad. Vix dolor deseruisse comprehensam ad, ei ius debitis convenire. An natum postea per,
-                        an his lorem aperiam, qui ea zril detracto rationibus.
-                    </p>
-                </div>
+            <div id="crdBdAvisosGerais" class="card-body">
+                <p>
+                    Lorem ipsum dolor sit amet, legimus graecis vel no, te sed error volutpat deterruisset,
+                    et eos amet posse oporteat. Ne purto pertinacia incorrupte vix, quo laoreet verterem omittantur cu.
+                    Modo discere minimum usu cu, omnium omittantur in nec. Ne quo probo habemus, elit veri viderer eam cu,
+                    est in nihil cetero. Nonumy delectus vivendum in pro, alia cibo voluptatibus nam ex. Pro oratio blandit
+                    signiferumque no. Te cum clita nominati signiferumque, in ferri pericula sea.
+                </p>
             </div>
         </div>
     </div>
-    <div class=" d-flex flex-column">
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <asp:Label>Aviso 1</asp:Label>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, legimus graecis vel no, te sed error volutpat deterruisset,
-                        et eos amet posse oporteat. Ne purto pertinacia incorrupte vix, quo laoreet verterem omittantur cu.
-                        Modo discere minimum usu cu, omnium omittantur in nec. Ne quo probo habemus, elit veri viderer eam cu,
-                        est in nihil cetero. Nonumy delectus vivendum in pro, alia cibo voluptatibus nam ex. Pro oratio blandit
-                        signiferumque no. Te cum clita nominati signiferumque, in ferri pericula sea.
-                    </p>
-                </div>
+    <div class="col-md-5 col-sm-5 col-xl-5 col-12">
+        <div id="crdProximasReunioes" class="card">
+            <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                <asp:Label class="text-white">@recursos.ProximasReunioes:</asp:Label>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <asp:Label>Aviso 2</asp:Label>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Eu vulputate voluptaria nec, at mea mutat choro putent, ius splendide gloriatur sententiae no.
-                        Noster repudiandae deterruisset an sit, mel in altera aliquip partiendo. Duo an laoreet percipit mnesarchum,
-                        congue posidonium mel ad. Vix dolor deseruisse comprehensam ad, ei ius debitis convenire. An natum postea per,
-                        an his lorem aperiam, qui ea zril detracto rationibus.
-                    </p>
-                </div>
+            <div id="crdBdProximasReunioes" class="card-body">
+                <p>
+                    Lorem ipsum dolor sit amet, legimus graecis vel no, te sed error volutpat deterruisset,
+                    et eos amet posse oporteat. Ne purto pertinacia incorrupte vix, quo laoreet verterem omittantur cu.
+                    Modo discere minimum usu cu, omnium omittantur in nec. Ne quo probo habemus, elit veri viderer eam cu,
+                    est in nihil cetero. Nonumy delectus vivendum in pro, alia cibo voluptatibus nam ex. Pro oratio blandit
+                    signiferumque no. Te cum clita nominati signiferumque, in ferri pericula sea.
+                </p>
             </div>
-
+        </div>
+        <div id="crdResultadoDeVotacoes" class="card">
+            <div id="crdHdResultadoDeVotacoes" class="card-header bg-dark">
+                <asp:Label class="text-white">@recursos.ResultadoDeVotacoes:</asp:Label>
+            </div>
+            <div id="crdBdResultadoDeVotacoes" class="card-body">
+                <p>
+                    Eu vulputate voluptaria nec, at mea mutat choro putent, ius splendide gloriatur sententiae no.
+                    Noster repudiandae deterruisset an sit, mel in altera aliquip partiendo. Duo an laoreet percipit mnesarchum,
+                    congue posidonium mel ad. Vix dolor deseruisse comprehensam ad, ei ius debitis convenire. An natum postea per,
+                    an his lorem aperiam, qui ea zril detracto rationibus.
+                </p>
+            </div>
         </div>
     </div>
-
+</div>
+<!-- Modal editar avisos -->
+<div class="modal fade" id="mdEditAvisos" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href=@Url.Action("Index", "login")>Salvar</a>
+            </div>
+        </div>
+    </div>
 </div>
