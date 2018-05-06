@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Gcon.Website.Controllers
 {
+    [FiltroAcesso]
     public class MuralController : Controller
     {
         // GET: Mural

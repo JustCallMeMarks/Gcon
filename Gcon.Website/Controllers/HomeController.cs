@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Gcon.Website.Controllers
 {
+    [FiltroAcesso]
     [Localization("pt-br")]
     public class HomeController : Controller
     {
