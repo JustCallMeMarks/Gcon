@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace Gcon.Website.Controllers
 {
-    [FiltroAcesso]
-    public class MoradoresController : Controller
+    public class ConfiguracoesController : Controller
     {
-        // GET: Moradores
+        // GET: Configuracoes
         public ActionResult Index()
         {
             return View();
