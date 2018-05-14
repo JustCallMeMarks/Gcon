@@ -11,6 +11,8 @@ namespace Gcon.Website.Controllers
         // GET: Filtro
         public ActionResult Index()
         {
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
             return View();
         }
     }

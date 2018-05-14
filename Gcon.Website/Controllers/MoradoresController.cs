@@ -12,6 +12,8 @@ namespace Gcon.Website.Controllers
         // GET: Moradores
         public ActionResult Index()
         {
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
             return View();
         }
     }

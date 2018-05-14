@@ -1,6 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    if (ViewBag.Tipo == "USER")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+    }
 }
 
 <center><h2>Informações Gerais</h2></center><br />

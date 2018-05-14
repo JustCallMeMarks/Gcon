@@ -12,11 +12,14 @@ namespace Gcon.Website.Controllers
         // GET: Mural
         public ActionResult Index()
         {
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
             return View();
         }
         public ActionResult EditarAviso(int id)
         {
-
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
             return View();
         }
     }

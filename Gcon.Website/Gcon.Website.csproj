@@ -144,6 +144,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\MoradoresController.cs" />
+    <Compile Include="Controllers\AtasController.cs" />
+    <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\MuralController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,7 +269,9 @@
     <Content Include="Views\Mural\Index.cshtml" />
     <Content Include="Views\Moradores\Index.cshtml" />
     <Content Include="Views\Filtro\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdm .cshtml" />
+    <Content Include="Views\Shared\_LayoutAdm.cshtml" />
+    <Content Include="Views\Atas\Index.cshtml" />
+    <Content Include="Views\Configuracoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
