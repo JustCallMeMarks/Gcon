@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Gcon.Website.Controllers
 {
-    [FiltroAcesso]
+    [FiltroAcesso(Tipo = "USER ADM")]
     public class MuralController : Controller
     {
         // GET: Mural
