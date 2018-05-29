@@ -21,7 +21,7 @@ namespace Gcon.Website.Controllers
             {
                 Session["usuario"] = usuario;
                 Session["Permission"] = "USER";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Mural");
             }
             else
             {
@@ -29,7 +29,7 @@ namespace Gcon.Website.Controllers
                 {
                     Session["usuario"] = usuario;
                     Session["Permission"] = "ADM";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Mural");
                 }
 
                 return View("Index");
