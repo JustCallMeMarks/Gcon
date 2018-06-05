@@ -5,6 +5,24 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website", "Gcon.Website\Gcon.Website.csproj", "{C04167D2-F509-40A8-838F-726543C8C190}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Apresentacao", "1-Apresentacao", "{B9B75011-7D75-4CC7-B9BF-4B725D9C24EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Servicos", "2-Servicos", "{3F6238D1-A0E7-4554-BEDE-6F3640A2DB6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Aplicacao", "3-Aplicacao", "{3323EBE1-6410-41B1-891E-E2299D993C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Repositorio", "4-Repositorio", "{DDF0AFC5-715B-4768-9122-F414644B7AB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Dominio", "5-Dominio", "{32C99F57-4BBE-497D-8895-C2E815A77B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.servicos", "Gcon.Website.servicos\Gcon.Website.servicos.csproj", "{1CB4DFD8-F94B-4028-B5B7-D494E80F6659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Aplicacao", "Gcon.Website.Aplicacao\Gcon.Website.Aplicacao.csproj", "{FF2EE2AB-3505-4886-8069-DF41D85529DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Repositorio", "Gcon.Website.Repositorio\Gcon.Website.Repositorio.csproj", "{F021B037-5DB8-4542-AA37-1C8E307E2FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Dominio", "Gcon.Website.Dominio\Gcon.Website.Dominio.csproj", "{0120B465-0283-4F64-A17C-854AFC9AC141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +33,32 @@ Global
 		{C04167D2-F509-40A8-838F-726543C8C190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C04167D2-F509-40A8-838F-726543C8C190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C04167D2-F509-40A8-838F-726543C8C190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CB4DFD8-F94B-4028-B5B7-D494E80F6659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB4DFD8-F94B-4028-B5B7-D494E80F6659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB4DFD8-F94B-4028-B5B7-D494E80F6659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB4DFD8-F94B-4028-B5B7-D494E80F6659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2EE2AB-3505-4886-8069-DF41D85529DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2EE2AB-3505-4886-8069-DF41D85529DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2EE2AB-3505-4886-8069-DF41D85529DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2EE2AB-3505-4886-8069-DF41D85529DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F021B037-5DB8-4542-AA37-1C8E307E2FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F021B037-5DB8-4542-AA37-1C8E307E2FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F021B037-5DB8-4542-AA37-1C8E307E2FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F021B037-5DB8-4542-AA37-1C8E307E2FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0120B465-0283-4F64-A17C-854AFC9AC141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0120B465-0283-4F64-A17C-854AFC9AC141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0120B465-0283-4F64-A17C-854AFC9AC141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0120B465-0283-4F64-A17C-854AFC9AC141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C04167D2-F509-40A8-838F-726543C8C190} = {B9B75011-7D75-4CC7-B9BF-4B725D9C24EB}
+		{1CB4DFD8-F94B-4028-B5B7-D494E80F6659} = {3F6238D1-A0E7-4554-BEDE-6F3640A2DB6E}
+		{FF2EE2AB-3505-4886-8069-DF41D85529DC} = {3323EBE1-6410-41B1-891E-E2299D993C7D}
+		{F021B037-5DB8-4542-AA37-1C8E307E2FB3} = {DDF0AFC5-715B-4768-9122-F414644B7AB2}
+		{0120B465-0283-4F64-A17C-854AFC9AC141} = {32C99F57-4BBE-497D-8895-C2E815A77B6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB87E28F-5015-4220-AC12-C1F81EC2B1C2}
