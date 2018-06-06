@@ -84,7 +84,7 @@ CREATE TABLE public."VOTOS"
     "ID_PESSOA" character varying(32) NOT NULL,
     "ID_PERGUNTA" character varying(32) NOT NULL,
     "RESPOSTA" character varying(256) NOT NULL,
-    PRIMARY KEY ("ID_PERGUNTA")
+    PRIMARY KEY ("ID")
 )
 WITH (
     OIDS = FALSE
@@ -120,7 +120,7 @@ ALTER TABLE public."CONDOMINIO"
     "ID_VOTACAO" character varying(32) NOT NULL,
     "PERGUNTA" character varying(255) NOT NULL,
     "TIPO" character varying(255) NOT NULL,
-    PRIMARY KEY ("ID_PERGUNTA")
+    PRIMARY KEY ("ID")
 )
 WITH (
     OIDS = FALSE
