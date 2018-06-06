@@ -90,7 +90,25 @@ WITH (
 ALTER TABLE public."VOTOS"
     OWNER to postgres;
     
-    
+CREATE TABLE public."CONDOMINIO"
+(
+    "ID" character varying(32) NOT NULL,
+    "QTD_AP" integer,
+    "NOME" character varying(255) NOT NULL,
+    "RUA" character varying(255) NOT NULL,
+    "BAIRRO" character varying(100) NOT NULL,
+    "CIDADE" character varying(100) NOT NULL,
+    "ESTADO" character varying(100) NOT NULL,
+    "PAIS" character varying(100) NOT NULL,
+    "NUMERO" integer NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."CONDOMINIO"
+    OWNER to postgres;
     
     
     CREATE TABLE public."PERGUNTAS"
