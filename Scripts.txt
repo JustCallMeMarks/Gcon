@@ -1,3 +1,6 @@
+
+//Scripts para criação de tabelas
+
 CREATE TABLE public."PESSOAS"
 (
     "ID" character varying(32) NOT NULL,
@@ -141,3 +144,16 @@ WITH (
 
 ALTER TABLE public."VOTACOES"
     OWNER to postgres;
+    
+    
+    
+    //---------------------------------------------------------------------------------
+    // Scripts para criação de foreign keys
+    
+    ALTER TABLE public."PESSOAS"
+    ADD CONSTRAINT "CONDOMINIOS_fkey" FOREIGN KEY ("ID_CONDOMINIO")
+    REFERENCES public."CONDOMINIO" ("ID") MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+    
+    
