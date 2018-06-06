@@ -125,3 +125,19 @@ WITH (
 
 ALTER TABLE public."PERGUNTAS"
     OWNER to postgres;
+    
+CREATE TABLE public."VOTACOES"
+(
+    "ID" character varying(32) NOT NULL,
+    "DESCRICAO" character varying(255),
+    "DATA" date NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."VOTACOES"
+    OWNER to postgres;
