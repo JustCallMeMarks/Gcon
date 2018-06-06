@@ -8,18 +8,12 @@
         <div id="crdAvisosGerais" class="card">
             <div id="crdHdAvisosGerais" class="card-header bg-dark">
                 <asp:label class="text-white">@recursos.AvisosGerais:</asp:label>
-                <button id="btnEditarAvisos" class="btn btn-dark btn-sm pull-right" onclick=#>
-                    <i class="fa fa-pencil"></i>
+                <button id="btnEditarAvisos" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditAvisos" onclick="CarregaTextoModal()">
+                    <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title=@recursos.EditarAvisos></i>
                 </button>
             </div>
             <div id="crdBdAvisosGerais" class="card-body">
-                <p>
-                    Lorem ipsum dolor sit amet, legimus graecis vel no, te sed error volutpat deterruisset,
-                    et eos amet posse oporteat. Ne purto pertinacia incorrupte vix, quo laoreet verterem omittantur cu.
-                    Modo discere minimum usu cu, omnium omittantur in nec. Ne quo probo habemus, elit veri viderer eam cu,
-                    est in nihil cetero. Nonumy delectus vivendum in pro, alia cibo voluptatibus nam ex. Pro oratio blandit
-                    signiferumque no. Te cum clita nominati signiferumque, in ferri pericula sea.
-                </p>
+                <textarea typeof="text" id="txtAvisosGerais" class="form-control-lg w-100" readonly>Lorem ipsum...</textarea>
             </div>
         </div>
     </div>
@@ -58,18 +52,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <h5 class="modal-title" id="exampleModalLabel">@recursos.AvisosGerais</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                
+                <textarea id="mdTxtEditarAvisos" name="@ViewBag.Texto" class="form-control"></textarea>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href=@Url.Action("Index", "login")>Salvar</a>
+                <a class="btn btn-primary" href=@Url.Action("EditarAvisos", "mural", @ViewBag.Texto)>Salvar</a>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function CarregaTextoModal() {
+        $("#mdTxtEditarAvisos").html($("#txtAvisosGerais").text());
+    }
+</script>

@@ -1,0 +1,22 @@
+CREATE TABLE public."PESSOAS"
+(
+    "ID" character varying(32) NOT NULL,
+    "CPF_CNPJ" character varying(19) NOT NULL,
+    "NOME" character varying(255) NOT NULL,
+    "APTO" character varying(5),
+    "ID_CONDOMINIO" character varying(32) NOT NULL,
+    "SENHA" character varying(255) NOT NULL,
+    "EMAIL" character varying(255),
+    "TELEFONE" character varying(12),
+    "CELULAR" character varying(13),
+    "PERMISSAO" integer NOT NULL,
+    "STATUS" integer NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."PESSOAS"
+    OWNER to postgres;

@@ -12,12 +12,16 @@ namespace Gcon.Website.Controllers
         // GET: Mural
         public ActionResult Index()
         {
+            ViewBag.Texto = TempData.TryGetValue("vlModal", out object Texto).ToString();
             return View();
         }
-        public ActionResult EditarAviso(int id)
+        public ActionResult EditarAviso(string Texto)
         {
-
-            return View();
+            TempDataDictionary tempData = new TempDataDictionary
+            {
+                { "vlModal", Texto }
+            };
+            return (RedirectToAction("Index"));
         }
     }
 }
