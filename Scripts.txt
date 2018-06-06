@@ -1,0 +1,73 @@
+CREATE TABLE public."PESSOAS"
+(
+    "ID" character varying(32) NOT NULL,
+    "CPF_CNPJ" character varying(19) NOT NULL,
+    "NOME" character varying(255) NOT NULL,
+    "APTO" character varying(5),
+    "ID_CONDOMINIO" character varying(32) NOT NULL,
+    "SENHA" character varying(255) NOT NULL,
+    "EMAIL" character varying(255),
+    "TELEFONE" character varying(12),
+    "CELULAR" character varying(13),
+    "PERMISSAO" integer NOT NULL,
+    "STATUS" integer NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."PESSOAS"
+    OWNER to postgres;
+    
+CREATE TABLE public."ATAS"
+(
+    "ID" character varying(32) NOT NULL,
+    "TEXTO" character varying(10000),
+    "DATA" date NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."ATAS"
+    OWNER to postgres;
+    
+CREATE TABLE public."MURAL"
+(
+    "ID" character varying(32) NOT NULL,
+    "TEXTO" character varying(10000),
+    "DATA" date NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."MURAL"
+    OWNER to postgres;
+    
+    
+    
+    
+    CREATE TABLE public."REUNIOES"
+(
+    "ID" character varying(32) NOT NULL,
+    "DATA" date NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "DATA_ATZ" date NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."REUNIOES"
+    OWNER to postgres;

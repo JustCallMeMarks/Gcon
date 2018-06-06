@@ -12,15 +12,20 @@ namespace Gcon.Website.Controllers
         // GET: Mural
         public ActionResult Index()
         {
+            ViewBag.Texto = TempData.TryGetValue("vlModal", out object Texto).ToString();
             object Permisao = Session["Permission"];
             ViewBag.Tipo = Permisao.ToString();
             return View();
         }
-        public ActionResult EditarAviso(int id)
+        public ActionResult EditarAviso(string Texto)
         {
-            object Permisao = Session["Permission"];
-            ViewBag.Tipo = Permisao.ToString();
-            return View();
+            TempDataDictionary tempData = new TempDataDictionary
+            {
+                { "vlModal", Texto }
+            };
+            //object Permisao = Session["Permission"];
+            //ViewBag.Tipo = Permisao.ToString();
+            return (RedirectToAction("Index"));
         }
     }
 }
