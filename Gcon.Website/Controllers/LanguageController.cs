@@ -23,7 +23,7 @@ namespace Gcon.Website.Controllers
                 cookie.Value = SelectedLanguage;
                 Response.Cookies.Add(cookie);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mural");
         }
     }
 }

@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Index";
+    if (ViewBag.Tipo == "USER")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+    }
+}
+
+<div class="row">
+    <div class="col-md-7 col-sm-7 col-xl-7 col-12">
+        <div id="crdAvisosGerais" class="card">
+            <div id="crdHdAvisosGerais" class="card-header bg-dark">
+                <asp:label class="text-white">Moradores</asp:label>
+            </div>
+            <div id="Moradores" class="card-body">
+                <label class="text">Pesquisar:</label><br />
+                <input type="text" placeholder="Search..">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <dl>
+                        <dt>José Dos Santos </dt>
+                        <dd>Apartamento: @i</dd>
+                        <dd>Telefone: (069) @i@i@i@i-@i@i@i@i</dd>
+                        <dd>Celular:  (069) 9 @i@i@i@i-@i@i@i@i</dd>
+                    </dl>
+                }
+                <nav aria-label="PageNnavigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-5 col-xl-5 col-12">
+        <div id="crdProximasReunioes" class="card">
+            <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                <asp:Label class="text-white">Informação do Morador</asp:Label>
+            </div>
+            <div id="crdBdProximasReunioes" class="card-body">
+                <p>
+                    <dl>
+                        <dt>
+                            José Dos Santos
+                            <button id="btnEditarAvisos" class="btn btn-sm pull-right" data-target="#mdEditAvisos" data-toggle="modal" href="#">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </dt>
+                        <dd>Apartamento: 0</dd>
+                        <dd>Telefone: (069) 3333-3333</dd>
+                        <dd>Celular:  (069) 9 9999-9999</dd>
+                        <dd>Email: Exemplo@Teste.org</dd>
+                        <dd>
+                            <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Excluir</button>
+                            <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Bloquear</button>
+                        </dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+        <div id="crdResultadoDeVotacoes" class="card">
+            <div id="crdHdResultadoDeVotacoes" class="card-header bg-dark">
+                <asp:Label class="text-white">Novos moradores:</asp:Label>
+            </div>
+            <div id="crdBdResultadoDeVotacoes" class="card-body">
+                <p>
+                    @for (int i = 5; i < 7; i++)
+                    {
+                        <dl>
+                            <dt>José Dos Santos </dt>
+                            <dd>Apartamento: @i</dd>
+                            <dd>Telefone: (069) @i@i@i@i-@i@i@i@i</dd>
+                            <dd>Celular:  (069) 9 @i@i@i@i-@i@i@i@i</dd>
+                            <dd>
+                                <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Aceitar</button>
+                                <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Negar</button>
+                            </dd>
+                        </dl>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editar avisos -->
+<div class="modal fade" id="mdEditAvisos" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href=@Url.Action("Index", "login")>Salvar</a>
+            </div>
+        </div>
+    </div>
+</div>

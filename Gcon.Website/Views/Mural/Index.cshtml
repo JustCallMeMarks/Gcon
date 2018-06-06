@@ -1,6 +1,14 @@
 ﻿
 @{
     ViewBag.Title = recursos.Mural;
+    if (ViewBag.Tipo == "USER")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+    }
 }
 
 <div class="row">

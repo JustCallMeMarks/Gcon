@@ -20,10 +20,18 @@ namespace Gcon.Website.Controllers
             if (usuario == "Gcon" && senha == "Gcon")
             {
                 Session["usuario"] = usuario;
-                return RedirectToAction("Index", "Home");
+                Session["Permission"] = "USER";
+                return RedirectToAction("Index", "Mural");
             }
             else
             {
+                if (usuario == "Adm" && senha == "Adm")
+                {
+                    Session["usuario"] = usuario;
+                    Session["Permission"] = "ADM";
+                    return RedirectToAction("Index", "Mural");
+                }
+
                 return View("Index");
             }
         }
