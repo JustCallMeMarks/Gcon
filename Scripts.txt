@@ -52,3 +52,22 @@ WITH (
 
 ALTER TABLE public."MURAL"
     OWNER to postgres;
+    
+    
+    
+    
+    CREATE TABLE public."REUNIOES"
+(
+    "ID" character varying(32) NOT NULL,
+    "DATA" date NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "DATA_ATZ" date NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."REUNIOES"
+    OWNER to postgres;
