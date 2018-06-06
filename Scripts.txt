@@ -71,3 +71,39 @@ WITH (
 
 ALTER TABLE public."REUNIOES"
     OWNER to postgres;
+
+
+
+
+CREATE TABLE public."VOTOS"
+(
+    "ID" character varying(32) NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "ID_PERGUNTA" character varying(32) NOT NULL,
+    "RESPOSTA" character varying(256) NOT NULL,
+    PRIMARY KEY ("ID_PERGUNTA")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."VOTOS"
+    OWNER to postgres;
+    
+    
+    
+    
+    CREATE TABLE public."PERGUNTAS"
+(
+    "ID" character varying(32) NOT NULL,
+    "ID_VOTACAO" character varying(32) NOT NULL,
+    "PERGUNTA" character varying(255) NOT NULL,
+    "TIPO" character varying(255) NOT NULL,
+    PRIMARY KEY ("ID_PERGUNTA")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."PERGUNTAS"
+    OWNER to postgres;
