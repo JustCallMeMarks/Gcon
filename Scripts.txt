@@ -36,3 +36,19 @@ WITH (
 
 ALTER TABLE public."ATAS"
     OWNER to postgres;
+    
+CREATE TABLE public."MURAL"
+(
+    "ID" character varying(32) NOT NULL,
+    "TEXTO" character varying(10000),
+    "DATA" date NOT NULL,
+    "ID_PESSOA" character varying(32) NOT NULL,
+    "TITULO" character varying(255) NOT NULL,
+    PRIMARY KEY ("ID")
+)
+WITH (
+    OIDS = FALSE
+);
+
+ALTER TABLE public."MURAL"
+    OWNER to postgres;
