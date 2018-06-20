@@ -146,6 +146,7 @@
     <Compile Include="Controllers\AtasController.cs" />
     <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\MuralController.cs" />
+    <Compile Include="Controllers\VotacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,6 +270,7 @@
     <Content Include="Views\Atas\Index.cshtml" />
     <Content Include="Views\Configuracoes\Index.cshtml" />
     <Content Include="Views\Atas\teste.cshtml" />
+    <Content Include="Views\Votacao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
