@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>0120b465-0283-4f64-a17c-854afc9ac141</ProjectGuid>
+    <ProjectGuid>{0120B465-0283-4F64-A17C-854AFC9AC141}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gcon.Website.Dominio</RootNamespace>
@@ -30,24 +30,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entidade\Atas\Atas.cs" />
+    <Compile Include="Entidade\Condominio\Condominio.cs" />
+    <Compile Include="Entidade\Mural\Mural.cs" />
+    <Compile Include="Entidade\Pergunta\Pergunta.cs" />
+    <Compile Include="Entidade\Pessoa\Pessoa.cs" />
+    <Compile Include="Entidade\Reunioes\Reunioes.cs" />
+    <Compile Include="Entidade\Votacoes\Votacoes.cs" />
+    <Compile Include="Entidade\Votos\Votos.cs" />
+    <Compile Include="Interface\IAtas.cs" />
+    <Compile Include="Interface\ICondominioRepositorio.cs" />
+    <Compile Include="Interface\IMural.cs" />
+    <Compile Include="Interface\IPerguntas.cs" />
+    <Compile Include="Interface\IPessoasRepositorio.cs" />
+    <Compile Include="Interface\IReunioes.cs" />
+    <Compile Include="Interface\IVotacoes.cs" />
+    <Compile Include="Interface\IVotos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

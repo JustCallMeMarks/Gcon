@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Repositorio", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Dominio", "Gcon.Website.Dominio\Gcon.Website.Dominio.csproj", "{0120B465-0283-4F64-A17C-854AFC9AC141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gcon.Website.Repositorio.Teste", "Gcon.Website.Repositorio.Teste\Gcon.Website.Repositorio.Teste.csproj", "{5FCEC847-FF13-4D08-9B66-3D2E1F339827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{0120B465-0283-4F64-A17C-854AFC9AC141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0120B465-0283-4F64-A17C-854AFC9AC141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0120B465-0283-4F64-A17C-854AFC9AC141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCEC847-FF13-4D08-9B66-3D2E1F339827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCEC847-FF13-4D08-9B66-3D2E1F339827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCEC847-FF13-4D08-9B66-3D2E1F339827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCEC847-FF13-4D08-9B66-3D2E1F339827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{FF2EE2AB-3505-4886-8069-DF41D85529DC} = {3323EBE1-6410-41B1-891E-E2299D993C7D}
 		{F021B037-5DB8-4542-AA37-1C8E307E2FB3} = {DDF0AFC5-715B-4768-9122-F414644B7AB2}
 		{0120B465-0283-4F64-A17C-854AFC9AC141} = {32C99F57-4BBE-497D-8895-C2E815A77B6B}
+		{5FCEC847-FF13-4D08-9B66-3D2E1F339827} = {DDF0AFC5-715B-4768-9122-F414644B7AB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB87E28F-5015-4220-AC12-C1F81EC2B1C2}
