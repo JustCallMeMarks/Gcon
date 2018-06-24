@@ -3,11 +3,11 @@
 
 CREATE TABLE public."PESSOAS"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "CPF_CNPJ" character varying(19) NOT NULL,
     "NOME" character varying(255) NOT NULL,
     "APTO" character varying(5),
-    "ID_CONDOMINIO" character varying(32) NOT NULL,
+    "ID_CONDOMINIO" character varying(36) NOT NULL,
     "SENHA" character varying(255) NOT NULL,
     "EMAIL" character varying(255),
     "TELEFONE" character varying(12),
@@ -26,10 +26,10 @@ ALTER TABLE public."PESSOAS"
     
 CREATE TABLE public."ATAS"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "TEXTO" character varying(10000),
     "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(32) NOT NULL,
+    "ID_PESSOA" character varying(36) NOT NULL,
     "TITULO" character varying(255) NOT NULL,
     PRIMARY KEY ("ID")
 )
@@ -42,10 +42,10 @@ ALTER TABLE public."ATAS"
     
 CREATE TABLE public."MURAL"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "TEXTO" character varying(10000),
     "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(32) NOT NULL,
+    "ID_PESSOA" character varying(36) NOT NULL,
     "TITULO" character varying(255) NOT NULL,
     PRIMARY KEY ("ID")
 )
@@ -61,10 +61,10 @@ ALTER TABLE public."MURAL"
     
     CREATE TABLE public."REUNIOES"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "DATA" date NOT NULL,
     "TITULO" character varying(255) NOT NULL,
-    "ID_PESSOA" character varying(32) NOT NULL,
+    "ID_PESSOA" character varying(36) NOT NULL,
     "DATA_ATZ" date NOT NULL,
     PRIMARY KEY ("ID")
 )
@@ -80,9 +80,9 @@ ALTER TABLE public."REUNIOES"
 
 CREATE TABLE public."VOTOS"
 (
-    "ID" character varying(32) NOT NULL,
-    "ID_PESSOA" character varying(32) NOT NULL,
-    "ID_PERGUNTA" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
+    "ID_PESSOA" character varying(36) NOT NULL,
+    "ID_PERGUNTA" character varying(36) NOT NULL,
     "RESPOSTA" character varying(256) NOT NULL,
     PRIMARY KEY ("ID")
 )
@@ -95,7 +95,7 @@ ALTER TABLE public."VOTOS"
     
 CREATE TABLE public."CONDOMINIO"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "QTD_AP" integer,
     "NOME" character varying(255) NOT NULL,
     "RUA" character varying(255) NOT NULL,
@@ -116,8 +116,8 @@ ALTER TABLE public."CONDOMINIO"
     
     CREATE TABLE public."PERGUNTAS"
 (
-    "ID" character varying(32) NOT NULL,
-    "ID_VOTACAO" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
+    "ID_VOTACAO" character varying(36) NOT NULL,
     "PERGUNTA" character varying(255) NOT NULL,
     "TIPO" character varying(255) NOT NULL,
     PRIMARY KEY ("ID")
@@ -131,10 +131,10 @@ ALTER TABLE public."PERGUNTAS"
     
 CREATE TABLE public."VOTACOES"
 (
-    "ID" character varying(32) NOT NULL,
+    "ID" character varying(36) NOT NULL,
     "DESCRICAO" character varying(255),
     "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(32) NOT NULL,
+    "ID_PESSOA" character varying(36) NOT NULL,
     "TITULO" character varying(255) NOT NULL,
     PRIMARY KEY ("ID")
 )
