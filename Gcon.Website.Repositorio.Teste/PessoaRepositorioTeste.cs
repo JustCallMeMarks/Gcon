@@ -27,7 +27,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
                 pessoaRepositorio.Inserir(pessoa);
                 Assert.IsTrue(true);
             }
@@ -57,7 +57,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
                 pessoaRepositorio.Alterar(pessoa);
                 Assert.IsTrue(true);
             }
@@ -74,7 +74,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
                 pessoaRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -91,7 +91,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
                 Pessoa pessoa = pessoaRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

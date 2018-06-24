@@ -51,6 +51,7 @@
     <Compile Include="PessoaRepositorioTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReunioesRepositorioTeste.cs" />
+    <Compile Include="StringConexao.cs" />
     <Compile Include="VotacoesRepositorioTeste.cs" />
     <Compile Include="VotosRepositorioTeste.cs" />
   </ItemGroup>

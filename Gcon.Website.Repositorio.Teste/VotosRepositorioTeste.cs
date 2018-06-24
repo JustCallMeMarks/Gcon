@@ -21,7 +21,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
                 votosRepositorio.Inserir(Votos);
                 Assert.IsTrue(true);
             }
@@ -44,7 +44,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
                 votosRepositorio.Alterar(Votos);
                 Assert.IsTrue(true);
             }
@@ -61,7 +61,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
                 votosRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +78,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
                 Votos Votos = votosRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

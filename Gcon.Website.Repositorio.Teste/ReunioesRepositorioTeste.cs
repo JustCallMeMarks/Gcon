@@ -21,7 +21,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio(StringConexao.Conexao());
                 reunioesRepositorio.Inserir(Reunioes);
                 Assert.IsTrue(true);
             }
@@ -44,7 +44,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio(StringConexao.Conexao());
                 reunioesRepositorio.Alterar(Reunioes);
                 Assert.IsTrue(true);
             }
@@ -61,7 +61,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio(StringConexao.Conexao());
                 reunioesRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +78,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio(StringConexao.Conexao());
                 Reunioes Reunioes = reunioesRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

@@ -21,7 +21,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
                 muralRepositorio.Inserir(Mural);
                 Assert.IsTrue(true);
             }
@@ -44,7 +44,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
                 muralRepositorio.Alterar(Mural);
                 Assert.IsTrue(true);
             }
@@ -61,7 +61,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
                 muralRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +78,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
                 Mural Mural = muralRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

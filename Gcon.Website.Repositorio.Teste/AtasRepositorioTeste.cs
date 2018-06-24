@@ -2,6 +2,7 @@
 using Gcon.Website.Dominio.Entidade.Atas;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Gcon.Website.Repositorio.Teste;
 
 namespace Gcon.Website.Repositorio.Teste
 {
@@ -21,7 +22,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
                 atasRepositorio.Inserir(Atas);
                 Assert.IsTrue(true);
             }
@@ -44,7 +45,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
                 atasRepositorio.Alterar(Atas);
                 Assert.IsTrue(true);
             }
@@ -61,7 +62,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
                 atasRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +79,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
                 Atas Atas = atasRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

@@ -27,7 +27,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio condominioRepositorio = new CondominioRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                CondominioRepositorio condominioRepositorio = new CondominioRepositorio(StringConexao.Conexao());
                 condominioRepositorio.Inserir(condominio);
                 Assert.IsTrue(true);
             }
@@ -55,7 +55,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
                 produtoRepository.Alterar(condominio);
                 Assert.IsTrue(true);
             }
@@ -72,7 +72,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
                 produtoRepository.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -89,7 +89,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
                 Condominio condominio = produtoRepository.Procurar(Id);
 
                 Assert.IsTrue(true);

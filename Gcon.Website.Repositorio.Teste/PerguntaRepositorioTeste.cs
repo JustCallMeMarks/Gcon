@@ -20,7 +20,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio(StringConexao.Conexao());
                 perguntaRepositorio.Inserir(Pergunta);
                 Assert.IsTrue(true);
             }
@@ -42,7 +42,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio(StringConexao.Conexao());
                 perguntaRepositorio.Alterar(Pergunta);
                 Assert.IsTrue(true);
             }
@@ -59,7 +59,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio(StringConexao.Conexao());
                 perguntaRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -76,7 +76,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio("Server=localhost;Port=5432;Database=Gcon;User Id=postgres;Password=Gcon123;");
+                PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio(StringConexao.Conexao());
                 Pergunta Pergunta = perguntaRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);
