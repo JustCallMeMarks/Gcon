@@ -13,5 +13,6 @@ namespace Gcon.Website.Dominio.Interface
         void Alterar(Reunioes Reunioes);
         void Excluir(Guid id);
         Reunioes Procurar(Guid id);
+        List<Reunioes> ProcurarTodasReunioesDeUmCondominio(Guid id);
     }
 }

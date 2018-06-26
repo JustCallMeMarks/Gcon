@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Gcon.Website.Dominio.Entidade.Pessoa;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -132,6 +129,84 @@ namespace Gcon.Website.Repositorio
 
                  return Pessoa;
              }
+        }
+
+        public List<Pessoa> ProcurarTodasAsPessoasDeUmCondominio(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                            "WHERE \"{1}\" = @ID;", "PESSOAS", "ID_CONDOMINIO");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                List<Pessoa> pessoas = new List<Pessoa>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Pessoa Pessoa = new Pessoa();
+
+                        Pessoa.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Pessoa.CPF_CNPJ = String.Format("{0}", SqlData["CPF_CNPJ"]);
+                        Pessoa.NOME = String.Format("{0}", SqlData["NOME"]);
+                        Pessoa.APTO = String.Format("{0}", SqlData["APTO"]);
+                        Pessoa.ID_CONDOMINIO = Guid.Parse(String.Format("{0}", SqlData["ID_CONDOMINIO"]));
+                        Pessoa.SENHA = String.Format("{0}", SqlData["SENHA"]);
+                        Pessoa.EMAIL = String.Format("{0}", SqlData["EMAIL"]);
+                        Pessoa.TELEFONE = String.Format("{0}", SqlData["TELEFONE"]);
+                        Pessoa.CELULAR = String.Format("{0}", SqlData["CELULAR"]);
+                        Pessoa.PERMISSAO = (int)SqlData["PERMISSAO"];
+                        Pessoa.STATUS = (int)SqlData["STATUS"];
+
+                        pessoas.Add(Pessoa);
+                    }
+                }
+
+                return pessoas;
+            }
+        }
+
+        public List<Pessoa> ProcurarPessoasApartirEmailSenha(string email , string senha)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select \"{4}\", \"{5}\", \"{6}\", \"{7}\", \"{8}\""+
+                                                      "from \"{0}\"" +
+                                                      "WHERE \"{1}\" <> 3" +
+                                                        "AND \"{2}\" = @EMAIL"+
+                                                        "AND \"{3}\" = @SENHA;", "SENHA", "PESSOAS", "EMAIL", "ID", "NOME", "ID_CONDOMINIO", "PERMISSAO", "STATUS");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("EMAIL", email);
+                comando.Parameters.AddWithValue("SENHA", senha);
+
+                List<Pessoa> pessoas = new List<Pessoa>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Pessoa Pessoa = new Pessoa();
+
+                        Pessoa.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Pessoa.NOME = String.Format("{0}", SqlData["NOME"]);
+                        Pessoa.ID_CONDOMINIO = Guid.Parse(String.Format("{0}", SqlData["ID_CONDOMINIO"]));
+                        Pessoa.PERMISSAO = (int)SqlData["PERMISSAO"];
+                        Pessoa.STATUS = (int)SqlData["STATUS"];
+
+                        pessoas.Add(Pessoa);
+                    }
+                }
+
+                return pessoas;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Atas;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -104,6 +105,41 @@ namespace Gcon.Website.Repositorio
 
                  return Atas;
              }
+        }
+
+        public List<Atas> ProcurarTodasAtasDeUmCondominio(Guid id)
+        {
+             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+             {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                             "WHERE \"{1}\" = @ID;", "ATAS", "ID_CONDOMINIO");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                List<Atas> TodasAtas = new List<Atas>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+
+                    while (SqlData.Read())
+                    {
+                        Atas Atas = new Atas();
+
+                        Atas.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Atas.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
+                        Atas.DATA = (DateTime)SqlData["DATA"];
+                        Atas.TITULO = String.Format("{0}", SqlData["TITULO"]);
+                        Atas.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+
+                        TodasAtas.Add(Atas);
+                    }
+                }
+
+                return TodasAtas;
+            }
         }
     }
 }

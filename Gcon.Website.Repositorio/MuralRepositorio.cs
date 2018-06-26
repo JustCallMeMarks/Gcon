@@ -105,5 +105,35 @@ namespace Gcon.Website.Repositorio
                 return Mural;
             }
         }
+
+        public Mural ProcurarMuralDoCondominio(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                            "WHERE \"{1}\" = @ID;", "MURAL", "ID_CONDOMINIO");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                Mural Mural = new Mural();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    if (SqlData.Read())
+                    {
+                        Mural.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Mural.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
+                        Mural.DATA = (DateTime)SqlData["DATA"];
+                        Mural.TITULO = String.Format("{0}", SqlData["TITULO"]);
+                        Mural.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                    }
+                }
+
+                return Mural;
+            }
+        }
     }
 }

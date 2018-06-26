@@ -13,5 +13,6 @@ namespace Gcon.Website.Dominio.Interface
         void Alterar(Atas Atas);
         void Excluir(Guid id);
         Atas Procurar(Guid id);
+        List<Atas> ProcurarTodasAtasDeUmCondominio(Guid id);
     }
 }

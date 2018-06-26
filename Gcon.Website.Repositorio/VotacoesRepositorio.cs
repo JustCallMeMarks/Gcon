@@ -1,7 +1,9 @@
 ﻿using System;
 using Gcon.Website.Dominio.Entidade.Votacoes;
+using Gcon.Website.Dominio.Entidade.Pergunta;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
+using System.Collections.Generic;
 
 namespace Gcon.Website.Repositorio
 {
@@ -103,6 +105,73 @@ namespace Gcon.Website.Repositorio
                 }
 
                 return Votacoes;
+            }
+        }
+
+        public List<Pergunta> TodasPerguntasDeUmaVotação(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                            "WHERE \"{1}\" = @ID;", "PERGUNTAS", "ID_VOTACAO");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                List<Pergunta> Perguntas = new List<Pergunta>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Pergunta Pergunta = new Pergunta();
+
+                        Pergunta.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Pergunta.ID_VOTACAO = Guid.Parse(String.Format("{0}", SqlData["ID_VOTACAO"]));
+                        Pergunta.PERGUNTA = String.Format("{0}", SqlData["PERGUNTA"]);
+                        Pergunta.TIPO = String.Format("{0}", SqlData["TIPO"]);
+
+                        Perguntas.Add(Pergunta);
+                    }
+                }
+
+                return Perguntas;
+            }
+        }
+
+        public List<Votacoes> ProcurarTodasVotacoesDeUmCondominio(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                            "WHERE \"{1}\" = @ID;", "VOTACOES", "ID_CONDOMINIO");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                List<Votacoes> ListVotacoes = new List<Votacoes>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Votacoes Votacoes = new Votacoes();
+
+                        Votacoes.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Votacoes.DESCRICAO = String.Format("{0}", SqlData["DESCRICAO"]);
+                        Votacoes.DATA = (DateTime)SqlData["DATA"];
+                        Votacoes.TITULO = String.Format("{0}", SqlData["TITULO"]);
+                        Votacoes.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+
+                        ListVotacoes.Add(Votacoes);
+                    }
+                }
+
+                return ListVotacoes;
             }
         }
     }

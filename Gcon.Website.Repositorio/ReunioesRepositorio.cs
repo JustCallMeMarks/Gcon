@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Reunioes;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -103,6 +104,40 @@ namespace Gcon.Website.Repositorio
                 }
 
                 return Reunioes;
+            }
+        }
+
+        public List<Reunioes> ProcurarTodasReunioesDeUmCondominio(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = string.Format("Select * from \"{0}\"" +
+                                                            "WHERE \"{1}\" = @ID;", "REUNIOES", "ID_REUNIOES");
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("ID", id.ToString());
+
+                List<Reunioes> ListReunioes = new List<Reunioes>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Reunioes Reunioes = new Reunioes();
+
+                        Reunioes.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
+                        Reunioes.DATA = (DateTime)SqlData["DATA"];
+                        Reunioes.TITULO = String.Format("{0}", SqlData["TITULO"]);
+                        Reunioes.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                        Reunioes.DATA_ATZ = (DateTime)SqlData["DATA_ATZ"];
+
+                        ListReunioes.Add(Reunioes);
+                    }
+                }
+
+                return ListReunioes;
             }
         }
     }
