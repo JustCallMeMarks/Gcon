@@ -3,12 +3,15 @@ using Gcon.Website.Dominio.Entidade.Atas;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gcon.Website.Repositorio.Teste;
+using System.Configuration;
 
 namespace Gcon.Website.Repositorio.Teste
 {
     [TestClass]
     public class AtasRepositorioTeste
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarAtas()
         {
@@ -22,7 +25,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
+                AtasRepositorio atasRepositorio = new AtasRepositorio(str);
                 atasRepositorio.Inserir(Atas);
                 Assert.IsTrue(true);
             }
@@ -45,7 +48,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
+                AtasRepositorio atasRepositorio = new AtasRepositorio(str);
                 atasRepositorio.Alterar(Atas);
                 Assert.IsTrue(true);
             }
@@ -62,7 +65,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
+                AtasRepositorio atasRepositorio = new AtasRepositorio(str);
                 atasRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -79,7 +82,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                AtasRepositorio atasRepositorio = new AtasRepositorio(StringConexao.Conexao());
+                AtasRepositorio atasRepositorio = new AtasRepositorio(str);
                 Atas Atas = atasRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

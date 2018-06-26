@@ -2,12 +2,15 @@
 using Gcon.Website.Dominio.Entidade.Mural;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Configuration;
 
 namespace Gcon.Website.Repositorio.Teste
 {
     [TestClass]
     public class MuralRepositorioTeste
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarMural()
         {
@@ -21,7 +24,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
+                MuralRepositorio muralRepositorio = new MuralRepositorio(str);
                 muralRepositorio.Inserir(Mural);
                 Assert.IsTrue(true);
             }
@@ -44,7 +47,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
+                MuralRepositorio muralRepositorio = new MuralRepositorio(str);
                 muralRepositorio.Alterar(Mural);
                 Assert.IsTrue(true);
             }
@@ -61,7 +64,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
+                MuralRepositorio muralRepositorio = new MuralRepositorio(str);
                 muralRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +81,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                MuralRepositorio muralRepositorio = new MuralRepositorio(StringConexao.Conexao());
+                MuralRepositorio muralRepositorio = new MuralRepositorio(str);
                 Mural Mural = muralRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

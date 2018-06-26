@@ -1,12 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gcon.Website.Dominio.Entidade.Pessoa;
+using System.Configuration;
 
 namespace Gcon.Website.Repositorio.Teste
 {
     [TestClass]
     public class PessoaRepositorioTeste
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarPessoa()
         {
@@ -27,7 +30,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
                 pessoaRepositorio.Inserir(pessoa);
                 Assert.IsTrue(true);
             }
@@ -57,7 +60,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
                 pessoaRepositorio.Alterar(pessoa);
                 Assert.IsTrue(true);
             }
@@ -74,7 +77,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
                 pessoaRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -91,7 +94,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(StringConexao.Conexao());
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
                 Pessoa pessoa = pessoaRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

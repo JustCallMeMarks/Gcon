@@ -2,13 +2,15 @@
 using Gcon.Website.Dominio.Entidade.Condominio;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System.Configuration;
 
 namespace TesteCondominioRepositorio
 {
     [TestClass]
     public class TesteCondominioRepositorio
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarTest()
         {
@@ -27,7 +29,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio condominioRepositorio = new CondominioRepositorio(StringConexao.Conexao());
+                CondominioRepositorio condominioRepositorio = new CondominioRepositorio(str);
                 condominioRepositorio.Inserir(condominio);
                 Assert.IsTrue(true);
             }
@@ -55,7 +57,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(str);
                 produtoRepository.Alterar(condominio);
                 Assert.IsTrue(true);
             }
@@ -72,7 +74,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(str);
                 produtoRepository.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -89,7 +91,7 @@ namespace TesteCondominioRepositorio
 
             try
             {
-                CondominioRepositorio produtoRepository = new CondominioRepositorio(StringConexao.Conexao());
+                CondominioRepositorio produtoRepository = new CondominioRepositorio(str);
                 Condominio condominio = produtoRepository.Procurar(Id);
 
                 Assert.IsTrue(true);

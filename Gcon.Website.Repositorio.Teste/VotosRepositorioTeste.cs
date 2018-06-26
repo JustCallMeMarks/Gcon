@@ -2,12 +2,15 @@
 using Gcon.Website.Dominio.Entidade.Votos;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Configuration;
 
 namespace Gcon.Website.Repositorio.Teste
 {
     [TestClass]
     public class VotosRepositorioTeste
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarVotos()
         {
@@ -21,7 +24,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
+                VotosRepositorio votosRepositorio = new VotosRepositorio(str);
                 votosRepositorio.Inserir(Votos);
                 Assert.IsTrue(true);
             }
@@ -44,7 +47,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
+                VotosRepositorio votosRepositorio = new VotosRepositorio(str);
                 votosRepositorio.Alterar(Votos);
                 Assert.IsTrue(true);
             }
@@ -61,7 +64,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
+                VotosRepositorio votosRepositorio = new VotosRepositorio(str);
                 votosRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +81,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotosRepositorio votosRepositorio = new VotosRepositorio(StringConexao.Conexao());
+                VotosRepositorio votosRepositorio = new VotosRepositorio(str);
                 Votos Votos = votosRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);

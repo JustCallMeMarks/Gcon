@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,7 +52,6 @@
     <Compile Include="PessoaRepositorioTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReunioesRepositorioTeste.cs" />
-    <Compile Include="StringConexao.cs" />
     <Compile Include="VotacoesRepositorioTeste.cs" />
     <Compile Include="VotosRepositorioTeste.cs" />
   </ItemGroup>
@@ -70,6 +70,9 @@
       <Project>{f021b037-5db8-4542-aa37-1c8e307e2fb3}</Project>
       <Name>Gcon.Website.Repositorio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

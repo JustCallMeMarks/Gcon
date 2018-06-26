@@ -2,12 +2,15 @@
 using Gcon.Website.Dominio.Entidade.Votacoes;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Configuration;
 
 namespace Gcon.Website.Repositorio.Teste
 {
     [TestClass]
     public class VotacoesRepositorioTeste
     {
+        string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+
         [TestMethod]
         public void GravarVotacoes()
         {
@@ -21,7 +24,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(StringConexao.Conexao());
+                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
                 votacoesRepositorio.Inserir(Votacoes);
                 Assert.IsTrue(true);
             }
@@ -44,7 +47,7 @@ namespace Gcon.Website.Repositorio.Teste
             };
             try
             {
-                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(StringConexao.Conexao());
+                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
                 votacoesRepositorio.Alterar(Votacoes);
                 Assert.IsTrue(true);
             }
@@ -61,7 +64,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(StringConexao.Conexao());
+                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
                 votacoesRepositorio.Excluir(Id);
                 Assert.IsTrue(true);
             }
@@ -78,7 +81,7 @@ namespace Gcon.Website.Repositorio.Teste
 
             try
             {
-                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(StringConexao.Conexao());
+                VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
                 Votacoes Votacoes = votacoesRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);
