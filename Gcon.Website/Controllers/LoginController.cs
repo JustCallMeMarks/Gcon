@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using Gcon.Website.Aplicacao;
+using Gcon.Website.Repositorio;
+using Gcon.Website.Dominio.Entidade.Pessoa;
+using Gcon.Website.Models;
 
 namespace Gcon.Website.Controllers
 {
@@ -49,6 +54,25 @@ namespace Gcon.Website.Controllers
 
         public ActionResult NovosMoradores(string nome, string email, string tel, string cel, string senha, string condominio, string cpf, string apartamento)
         {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+            PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
+
+
+            Pessoa pessoa = new Pessoa()
+            {
+                NOME = nome,
+                EMAIL = email,
+                TELEFONE = tel,                
+                CELULAR = cel,
+                SENHA = senha,
+                ID_CONDOMINIO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                CPF_CNPJ = cpf,
+                APTO = apartamento
+            };
+
+            pessoaAplicacao.Inserir(pessoa);
+
             return View("Index");
         }
     }

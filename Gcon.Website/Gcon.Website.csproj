@@ -169,6 +169,7 @@
     <Compile Include="Locale\recursos.Designer.cs" />
     <Compile Include="Locale\recursos.en-US.Designer.cs" />
     <Compile Include="Locale\recursos.es-ES.Designer.cs" />
+    <Compile Include="Models\PessoaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\FiltroAcesso\" />
     <Folder Include="Views\Language\" />
   </ItemGroup>
@@ -311,6 +311,20 @@
     <EmbeddedResource Include="Locale\recursos.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gcon.Website.Aplicacao\Gcon.Website.Aplicacao.csproj">
+      <Project>{ff2ee2ab-3505-4886-8069-df41d85529dc}</Project>
+      <Name>Gcon.Website.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gcon.Website.Dominio\Gcon.Website.Dominio.csproj">
+      <Project>{0120b465-0283-4f64-a17c-854afc9ac141}</Project>
+      <Name>Gcon.Website.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gcon.Website.Repositorio\Gcon.Website.Repositorio.csproj">
+      <Project>{f021b037-5db8-4542-aa37-1c8e307e2fb3}</Project>
+      <Name>Gcon.Website.Repositorio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

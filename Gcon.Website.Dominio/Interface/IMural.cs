@@ -9,6 +9,6 @@ namespace Gcon.Website.Dominio.Interface
         void Alterar(Mural Mural);
         void Excluir(Guid id);
         Mural Procurar(Guid id);
-        Mural ProcurarMuralDoCondominio(Guid id)
+        Mural ProcurarMuralDoCondominio(Guid id);
     }
 }

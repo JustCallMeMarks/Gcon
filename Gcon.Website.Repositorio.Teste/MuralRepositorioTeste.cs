@@ -92,5 +92,22 @@ namespace Gcon.Website.Repositorio.Teste
             }
         }
 
+        [TestMethod]
+        public void ProcurarMuralDoCondominio()
+        {
+            Guid Id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6");
+
+            try
+            {
+                MuralRepositorio muralRepositorio = new MuralRepositorio(str);
+                Mural Mural = muralRepositorio.ProcurarMuralDoCondominio(Id);
+
+                Assert.IsTrue(true);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
     }
 }

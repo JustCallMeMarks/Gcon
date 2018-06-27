@@ -4,6 +4,7 @@ using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gcon.Website.Repositorio.Teste;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Gcon.Website.Repositorio.Teste
 {
@@ -84,6 +85,24 @@ namespace Gcon.Website.Repositorio.Teste
             {
                 AtasRepositorio atasRepositorio = new AtasRepositorio(str);
                 Atas Atas = atasRepositorio.Procurar(Id);
+
+                Assert.IsTrue(true);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ProcurarTodasAtasDeUmCondominio()
+        {
+            Guid Id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6");
+
+            try
+            {
+                AtasRepositorio atasRepositorio = new AtasRepositorio(str);
+                List<Atas> Atas = atasRepositorio.ProcurarTodasAtasDeUmCondominio(Id);
 
                 Assert.IsTrue(true);
             }

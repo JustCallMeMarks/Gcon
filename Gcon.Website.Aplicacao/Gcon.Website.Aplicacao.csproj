@@ -41,16 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="PessoaAplicacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gcon.Website.Dominio\Gcon.Website.Dominio.csproj">
       <Project>{0120b465-0283-4f64-a17c-854afc9ac141}</Project>
       <Name>Gcon.Website.Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gcon.Website.Repositorio\Gcon.Website.Repositorio.csproj">
-      <Project>{f021b037-5db8-4542-aa37-1c8e307e2fb3}</Project>
-      <Name>Gcon.Website.Repositorio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
