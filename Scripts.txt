@@ -1,211 +1,230 @@
+/scripts para criação de tabelas
 
-//Scripts para criação de tabelas
-
-CREATE TABLE public."PESSOAS"
+create table public."pessoas"
 (
-    "ID" character varying(36) NOT NULL,
-    "CPF_CNPJ" character varying(19) NOT NULL,
-    "NOME" character varying(255) NOT NULL,
-    "APTO" character varying(5),
-    "ID_CONDOMINIO" character varying(36) NOT NULL,
-    "SENHA" character varying(255) NOT NULL,
-    "EMAIL" character varying(255),
-    "TELEFONE" character varying(12),
-    "CELULAR" character varying(13),
-    "PERMISSAO" integer NOT NULL,
-    "STATUS" integer NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "cpf_cnpj" character varying(19) not null,
+    "nome" character varying(255) not null,
+    "apto" character varying(5),
+    "id_condominio" character varying(36) not null,
+    "senha" character varying(255) not null,
+    "email" character varying(255),
+    "telefone" character varying(12),
+    "celular" character varying(13),
+    "permissao" integer not null,
+    "status" integer not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 )
-TABLESPACE pg_default;
+tablespace pg_default;
 
-ALTER TABLE public."PESSOAS"
-    OWNER to postgres;
+alter table public."pessoas"
+    owner to postgres;
     
-CREATE TABLE public."ATAS"
+create table public."atas"
 (
-    "ID" character varying(36) NOT NULL,
-    "TEXTO" character varying(10000),
-    "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(36) NOT NULL,
-    "TITULO" character varying(255) NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "texto" character varying(10000),
+    "data" date not null,
+    "id_pessoa" character varying(36) not null,
+    "titulo" character varying(255) not null,
+	"id_condominio" character varying(36) not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."ATAS"
-    OWNER to postgres;
+alter table public."atas"
+    owner to postgres;
     
-CREATE TABLE public."MURAL"
+create table public."mural"
 (
-    "ID" character varying(36) NOT NULL,
-    "TEXTO" character varying(10000),
-    "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(36) NOT NULL,
-    "TITULO" character varying(255) NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "texto" character varying(10000),
+    "data" date not null,
+    "id_pessoa" character varying(36) not null,
+    "titulo" character varying(255) not null,
+	"id_condominio" character varying(36) not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."MURAL"
-    OWNER to postgres;
+alter table public."mural"
+    owner to postgres;
     
     
     
     
-    CREATE TABLE public."REUNIOES"
+create table public."reunioes"
 (
-    "ID" character varying(36) NOT NULL,
-    "DATA" date NOT NULL,
-    "TITULO" character varying(255) NOT NULL,
-    "ID_PESSOA" character varying(36) NOT NULL,
-    "DATA_ATZ" date NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "data" date not null,
+    "titulo" character varying(255) not null,
+    "id_pessoa" character varying(36) not null,
+	"id_condominio" character varying(36) not null,
+    "data_atz" date not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."REUNIOES"
-    OWNER to postgres;
+alter table public."reunioes"
+    owner to postgres;
 
 
 
 
-CREATE TABLE public."VOTOS"
+create table public."votos"
 (
-    "ID" character varying(36) NOT NULL,
-    "ID_PESSOA" character varying(36) NOT NULL,
-    "ID_PERGUNTA" character varying(36) NOT NULL,
-    "RESPOSTA" character varying(256) NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "id_pessoa" character varying(36) not null,
+    "id_pergunta" character varying(36) not null,
+    "resposta" character varying(256) not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."VOTOS"
-    OWNER to postgres;
+alter table public."votos"
+    owner to postgres;
     
-CREATE TABLE public."CONDOMINIO"
+create table public."condominio"
 (
-    "ID" character varying(36) NOT NULL,
-    "QTD_AP" integer,
-    "NOME" character varying(255) NOT NULL,
-    "RUA" character varying(255) NOT NULL,
-    "BAIRRO" character varying(100) NOT NULL,
-    "CIDADE" character varying(100) NOT NULL,
-    "ESTADO" character varying(100) NOT NULL,
-    "PAIS" character varying(100) NOT NULL,
-    "NUMERO" integer NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "qtd_ap" integer,
+    "nome" character varying(255) not null,
+    "rua" character varying(255) not null,
+    "bairro" character varying(100) not null,
+    "cidade" character varying(100) not null,
+    "estado" character varying(100) not null,
+    "pais" character varying(100) not null,
+    "numero" integer not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."CONDOMINIO"
-    OWNER to postgres;
+alter table public."condominio"
+    owner to postgres;
     
     
-    CREATE TABLE public."PERGUNTAS"
+create table public."perguntas"
 (
-    "ID" character varying(36) NOT NULL,
-    "ID_VOTACAO" character varying(36) NOT NULL,
-    "PERGUNTA" character varying(255) NOT NULL,
-    "TIPO" character varying(255) NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "id_votacao" character varying(36) not null,
+    "pergunta" character varying(255) not null,
+    "tipo" character varying(255) not null,
+    primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."PERGUNTAS"
-    OWNER to postgres;
+alter table public."perguntas"
+    owner to postgres;
     
-CREATE TABLE public."VOTACOES"
+create table public."votacoes"
 (
-    "ID" character varying(36) NOT NULL,
-    "DESCRICAO" character varying(255),
-    "DATA" date NOT NULL,
-    "ID_PESSOA" character varying(36) NOT NULL,
-    "TITULO" character varying(255) NOT NULL,
-    PRIMARY KEY ("ID")
+    "id" character varying(36) not null,
+    "descricao" character varying(255),
+    "data" date not null,
+    "id_pessoa" character varying(36) not null,
+    "titulo" character varying(255) not null,
+	"id_condominio" character varying(36) not null,
+	primary key ("id")
 )
-WITH (
-    OIDS = FALSE
+with (
+    oids = false
 );
 
-ALTER TABLE public."VOTACOES"
-    OWNER to postgres;
+alter table public."votacoes"
+    owner to postgres;
     
     
     
     //---------------------------------------------------------------------------------
-    // Scripts para criação de foreign keys
+    // scripts para criação de foreign keys
     
-    ALTER TABLE public."PESSOAS"
-    ADD CONSTRAINT "PESSOAS_CONDOMINIOS_fkey" FOREIGN KEY ("ID_CONDOMINIO")
-    REFERENCES public."CONDOMINIO" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+alter table public."pessoas"
+    add constraint "pessoas_condominios_fkey" foreign key ("id_condominio")
+    references public."condominio" ("id") match simple
+    on update no action
+    on delete no action;
     
     
-    ALTER TABLE public."PERGUNTAS"
-    ADD CONSTRAINT "PERGUNTAS_VOTACAO_fkey" FOREIGN KEY ("ID_VOTACAO")
-    REFERENCES public."VOTACOES" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+alter table public."perguntas"
+    add constraint "perguntas_votacao_fkey" foreign key ("id_votacao")
+    references public."votacoes" ("id") match simple
+    on update no action
+    on delete no action;
 
-    ALTER TABLE public."ATAS"
-    ADD CONSTRAINT "ATAS_PESSOAS_fkey" FOREIGN KEY ("ID_PESSOA")
-    REFERENCES public."PESSOAS" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+alter table public."atas"
+    add constraint "atas_pessoas_fkey" foreign key ("id_pessoa")
+    references public."pessoas" ("id") match simple
+    on update no action
+    on delete no action;
     
-    ALTER TABLE public."MURAL"
-    ADD CONSTRAINT "MURAL_PESSOAS_fkey" FOREIGN KEY ("ID_PESSOA")
-    REFERENCES public."PESSOAS" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
-
-
-ALTER TABLE public."REUNIOES"
-    ADD CONSTRAINT "REUNIOES_PESSOAS_fkey" FOREIGN KEY ("ID_PESSOA")
-    REFERENCES public."PESSOAS" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+alter table public."mural"
+    add constraint "mural_pessoas_fkey" foreign key ("id_pessoa")
+    references public."pessoas" ("id") match simple
+    on update no action
+    on delete no action;
 
 
-    
-    ALTER TABLE public."VOTACOES"
-    ADD CONSTRAINT "VOTACOES_PESSOAS_fkey" FOREIGN KEY ("ID_PESSOA")
-    REFERENCES public."VOTACOES" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
-    
-    ALTER TABLE public."VOTOS"
-    ADD CONSTRAINT "VOTOS_PESSOA_fkey" FOREIGN KEY ("ID_PESSOA")
-    REFERENCES public."PESSOAS" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+alter table public."reunioes"
+    add constraint "reunioes_pessoas_fkey" foreign key ("id_pessoa")
+    references public."pessoas" ("id") match simple
+    on update no action
+    on delete no action;
 
-ALTER TABLE public."VOTOS"
-    ADD CONSTRAINT "VOTOS_PERGUNTAS_fkey" FOREIGN KEY ("ID_PERGUNTA")
-    REFERENCES public."PERGUNTAS" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
-    
-ALTER TABLE public."ATAS"
-    ADD COLUMN "ID_CONDOMINIO" character varying(36) COLLATE pg_catalog."default" NOT NULL
 
-    ADD CONSTRAINT "ATAS_CONDOMINIO_fkey" FOREIGN KEY ("ID_CONDOMINIO")
-    REFERENCES public."CONDOMINIO" ("ID") MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION;
+    
+alter table public."votacoes"
+    add constraint "votacoes_pessoas_fkey" foreign key ("id_pessoa")
+    references public."votacoes" ("id") match simple
+    on update no action
+    on delete no action;
+    
+alter table public."votos"
+    add constraint "votos_pessoa_fkey" foreign key ("id_pessoa")
+    references public."pessoas" ("id") match simple
+    on update no action
+    on delete no action;
+
+alter table public."votos"
+    add constraint "votos_perguntas_fkey" foreign key ("id_pergunta")
+    references public."perguntas" ("id") match simple
+    on update no action
+    on delete no action;
+    
+alter table public."atas"
+    add constraint "atas_condominio_fkey" foreign key ("id_condominio")
+    references public."condominio" ("id") match simple
+    on update no action
+    on delete no action;
+	
+alter table public."mural"
+    add constraint "mural_condominio_fkey" foreign key ("id_condominio")
+    references public."condominio" ("id") match simple
+    on update no action
+    on delete no action;
+	
+alter table public."votacoes"
+    add constraint "votacoes_condominio_fkey" foreign key ("id_condominio")
+    references public."condominio" ("id") match simple
+    on update no action
+    on delete no action;
+	
+alter table public."reunioes"
+    add constraint "reunioes_condominio_fkey" foreign key ("id_condominio")
+    references public."condominio" ("id") match simple
+    on update no action
+    on delete no action;
