@@ -10,11 +10,11 @@ namespace Gcon.Website.Dominio.Entidade.Pergunta
     {
         public Pergunta()
         {
-            ID = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid ID { get; set; }
-        public Guid ID_VOTACAO { get; set; }
-        public string PERGUNTA { get; set; }
-        public string TIPO { get; set; }
+        public Guid id { get; set; }
+        public Guid id_votacao { get; set; }
+        public string pergunta { get; set; }
+        public string tipo { get; set; }
     }
 }

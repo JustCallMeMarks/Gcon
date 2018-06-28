@@ -16,11 +16,12 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Mural Mural = new Mural()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PESSOA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                DATA = DateTime.Parse("01/01/2018"),
-                TITULO = "Teste Titulo",
-                TEXTO = "Teste Texto"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pessoa = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                data = DateTime.Parse("01/01/2018"),
+                titulo = "Teste Titulo",
+                texto = "Teste Texto"
             };
             try
             {
@@ -39,11 +40,12 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Mural Mural = new Mural()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PESSOA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                DATA = DateTime.Parse("31/12/2100"),
-                TITULO = "Teste Titulo - Alterado",
-                TEXTO = "Teste Texto - Alterado"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pessoa = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                data = DateTime.Parse("01/01/2118"),
+                titulo = "Teste Titulo - Altera",
+                texto = "Teste Texto - Altera"
             };
             try
             {

@@ -16,10 +16,10 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Pergunta Pergunta = new Pergunta()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_VOTACAO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                PERGUNTA = "Pergunta teste",
-                TIPO = "Teste Tipo"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_votacao = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                pergunta = "Pergunta teste",
+                tipo = "Teste Tipo"
             };
             try
             {
@@ -38,10 +38,10 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Pergunta Pergunta = new Pergunta()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_VOTACAO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                PERGUNTA = "Pergunta teste - Altera",
-                TIPO = "Teste Tipo - Altera"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_votacao = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                pergunta = "Pergunta teste - Altera",
+                tipo = "Teste Tipo - Altera"
             };
             try
             {

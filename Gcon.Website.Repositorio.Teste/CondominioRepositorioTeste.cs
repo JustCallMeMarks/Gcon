@@ -16,15 +16,15 @@ namespace TesteCondominioRepositorio
         {
             Condominio condominio = new Condominio()
             {
-                Id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                QTD_AP = 100,
-                NOME = "Condominio Teste",
-                RUA = "Rua dos Condominios",
-                BAIRRO = "Parque da Pedra",
-                CIDADE = "Caxias do Sul",
-                ESTADO = "Rio Grande do Sul",
-                PAIS = "Brasil",
-                NUMERO = 119
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                qtd_ap  = 100,
+                nome = "Condominio Teste",
+                rua = "Rua dos Condominios",
+                bairro = "Parque da Pedra",
+                cidade = "Caxias do Sul",
+                estado = "Rio Grande do Sul",
+                pais = "Brasil",
+                numero = 119
             };
 
             try
@@ -44,15 +44,15 @@ namespace TesteCondominioRepositorio
         {
             Condominio condominio = new Condominio()
             {
-                Id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                QTD_AP = 1000,
-                NOME = "Condominio Teste - Altera",
-                RUA = "Rua dos Condominios - Altera",
-                BAIRRO = "Parque da Pedra - Altera",
-                CIDADE = "Caxias do Sul - Altera",
-                ESTADO = "Rio Grande do Sul - Altera",
-                PAIS = "Brasil - Altera",
-                NUMERO = 1190
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                qtd_ap = 1000,
+                nome = "Condominio Teste - Altera",
+                rua = "Rua dos Condominios - Altera",
+                bairro = "Parque da Pedra - Altera",
+                cidade = "Caxias do Sul - Altera",
+                estado = "Rio Grande do Sul - Altera",
+                pais = "Brasil - Altera",
+                numero = 1190
             };
 
             try

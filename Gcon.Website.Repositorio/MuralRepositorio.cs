@@ -20,15 +20,16 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("insert into \"{0}\" (\"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\") " +
-                                         " values(@ID, @TEXTO, @DATA, @TITULO, @ID_PESSOA)", "MURAL", "ID", "TEXTO", "DATA", "TITULO", "ID_PESSOA");
+                comando.CommandText = "INSERT INTO mural (id, texto, data, titulo, id_pessoa, id_condominio) " +
+                                                 " VALUES(@id, @texto, @data, @titulo, @id_pessoa, @id_condominio);";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Mural.ID.ToString());
-                comando.Parameters.AddWithValue("TEXTO", Mural.TEXTO);
-                comando.Parameters.AddWithValue("DATA", Mural.DATA);
-                comando.Parameters.AddWithValue("TITULO", Mural.TITULO);
-                comando.Parameters.AddWithValue("ID_PESSOA", Mural.ID_PESSOA);
+                comando.Parameters.AddWithValue("id", Mural.id.ToString());
+                comando.Parameters.AddWithValue("texto", Mural.texto);
+                comando.Parameters.AddWithValue("data", Mural.data);
+                comando.Parameters.AddWithValue("titulo", Mural.titulo);
+                comando.Parameters.AddWithValue("id_pessoa", Mural.id_pessoa);
+                comando.Parameters.AddWithValue("id_condominio", Mural.id_condominio);
 
                 comando.ExecuteNonQuery();
             }
@@ -40,19 +41,21 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("UPDATE \"{0}\" " +
-                                                    "SET \"{2}\" = @TEXTO," +
-                                                        "\"{3}\" = @DATA," +
-                                                        "\"{4}\" = @TITULO," +
-                                                        "\"{5}\" = @ID_PESSOA " +
-                                                    "WHERE \"{1}\" = @ID;", "MURAL", "ID", "TEXTO", "DATA", "TITULO", "ID_PESSOA");
+                comando.CommandText = "UPDATE mural " +
+                                          "SET texto = @texto," +
+                                               "data = @data," +
+                                            "titulo  = @titulo," +
+                                          "id_pessoa = @id_pessoa " +
+                                      "id_condominio = @id_condominio"+
+                                           "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Mural.ID.ToString());
-                comando.Parameters.AddWithValue("TEXTO", Mural.TEXTO);
-                comando.Parameters.AddWithValue("DATA", Mural.DATA);
-                comando.Parameters.AddWithValue("TITULO", Mural.TITULO);
-                comando.Parameters.AddWithValue("ID_PESSOA", Mural.ID_PESSOA);
+                comando.Parameters.AddWithValue("id", Mural.id.ToString());
+                comando.Parameters.AddWithValue("texto", Mural.texto);
+                comando.Parameters.AddWithValue("data", Mural.data);
+                comando.Parameters.AddWithValue("titulo", Mural.titulo);
+                comando.Parameters.AddWithValue("id_pessoa", Mural.id_pessoa);
+                comando.Parameters.AddWithValue("id_condominio", Mural.id_condominio);
 
                 comando.ExecuteNonQuery();
 
@@ -65,11 +68,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("DELETE FROM \"{0}\"" +
-                                                           "WHERE \"{1}\" = @ID;", "MURAL", "ID");
+                comando.CommandText = "DELETE FROM mural" +
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 comando.ExecuteNonQuery();
 
@@ -82,11 +85,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "MURAL", "ID");
+                comando.CommandText = "SELECT * FROM mural" +
+                                              "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 Mural Mural = new Mural();
 
@@ -94,11 +97,12 @@ namespace Gcon.Website.Repositorio
                 {
                     if (SqlData.Read())
                     {
-                        Mural.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Mural.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
-                        Mural.DATA = (DateTime)SqlData["DATA"];
-                        Mural.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                        Mural.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                        Mural.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Mural.texto = String.Format("{0}", SqlData["texto"]);
+                        Mural.data = (DateTime)SqlData["data"];
+                        Mural.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Mural.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Mural.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
                     }
                 }
 
@@ -112,11 +116,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "MURAL", "ID_CONDOMINIO");
+                comando.CommandText = "SELECT * FROM mural" +
+                                               "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 Mural Mural = new Mural();
 
@@ -124,11 +128,12 @@ namespace Gcon.Website.Repositorio
                 {
                     if (SqlData.Read())
                     {
-                        Mural.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Mural.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
-                        Mural.DATA = (DateTime)SqlData["DATA"];
-                        Mural.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                        Mural.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                        Mural.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Mural.texto = String.Format("{0}", SqlData["texto"]);
+                        Mural.data = (DateTime)SqlData["data"];
+                        Mural.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Mural.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Mural.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
                     }
                 }
 

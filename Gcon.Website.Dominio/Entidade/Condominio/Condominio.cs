@@ -10,16 +10,16 @@ namespace Gcon.Website.Dominio.Entidade.Condominio
     {
         public Condominio()
         {
-            Id = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid Id { get; set; }
-        public int QTD_AP { get; set; }
-        public string NOME { get; set; }
-        public string RUA { get; set; }
-        public string BAIRRO { get; set; }
-        public string CIDADE { get; set; }
-        public string ESTADO { get; set; }
-        public string PAIS { get; set; }
-        public int NUMERO { get; set; }
+        public Guid id { get; set; }
+        public int qtd_ap { get; set; }
+        public string nome { get; set; }
+        public string rua { get; set; }
+        public string bairro { get; set; }
+        public string cidade { get; set; }
+        public string estado { get; set; }
+        public string pais { get; set; }
+        public int numero { get; set; }
     }
 }

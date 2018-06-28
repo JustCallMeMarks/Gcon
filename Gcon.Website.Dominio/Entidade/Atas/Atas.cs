@@ -10,12 +10,13 @@ namespace Gcon.Website.Dominio.Entidade.Atas
     {
         public Atas()
         {
-            ID = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid ID { get; set; }
-        public string TEXTO { get; set; }
-        public DateTime DATA { get; set; }
-        public string TITULO { get; set; }
-        public Guid ID_PESSOA { get; set; }
+        public Guid id { get; set; }
+        public string texto { get; set; }
+        public DateTime data { get; set; }
+        public string titulo { get; set; }
+        public Guid id_pessoa { get; set; }
+        public Guid id_condominio { get; set; }
     }
 }

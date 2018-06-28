@@ -21,15 +21,16 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("insert into \"{0}\" (\"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\") " +
-                                         " values(@ID, @TEXTO, @DATA, @TITULO, @ID_PESSOA)", "ATAS", "ID", "TEXTO", "DATA", "TITULO", "ID_PESSOA");
+                comando.CommandText = "INSERT INTO atas (id, texto, data, titulo, id_pessoa, id_condominio) " +
+                                                " VALUES(@id, @texto, @data, @titulo, @id_pessoa, @id_condominio)";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Atas.ID.ToString());
-                comando.Parameters.AddWithValue("TEXTO", Atas.TEXTO);
-                comando.Parameters.AddWithValue("DATA", Atas.DATA);
-                comando.Parameters.AddWithValue("TITULO", Atas.TITULO);
-                comando.Parameters.AddWithValue("ID_PESSOA", Atas.ID_PESSOA);
+                comando.Parameters.AddWithValue("id", Atas.id.ToString());
+                comando.Parameters.AddWithValue("texto", Atas.texto);
+                comando.Parameters.AddWithValue("data", Atas.data);
+                comando.Parameters.AddWithValue("titulo", Atas.titulo);
+                comando.Parameters.AddWithValue("id_pessoa", Atas.id_pessoa);
+                comando.Parameters.AddWithValue("id_condominio", Atas.id_condominio);
 
                 comando.ExecuteNonQuery();
             }
@@ -41,22 +42,24 @@ namespace Gcon.Website.Repositorio
               {
                   conexao.Open();
                   NpgsqlCommand comando = new NpgsqlCommand();
-                  comando.CommandText = string.Format("UPDATE \"{0}\" " +
-                                                      "SET \"{2}\" = @TEXTO," +
-                                                          "\"{3}\" = @DATA," +
-                                                          "\"{4}\" = @TITULO," +
-                                                          "\"{5}\" = @ID_PESSOA " +
-                                                      "WHERE \"{1}\" = @ID;", "ATAS", "ID", "TEXTO", "DATA", "TITULO", "ID_PESSOA");
+                  comando.CommandText = "UPDATE atas" +
+                                           "SET texto          = @texto," +
+                                                "data          = @data," +
+                                                "titulo        = @titulo," +
+                                                "id_pessoa     = @id_pessoa," +
+                                                "id_condominio = @id_condominio" +
+                                         "WHERE id = @id;";
+
                   comando.Connection = conexao;
 
-                  comando.Parameters.AddWithValue("ID", Atas.ID.ToString());
-                  comando.Parameters.AddWithValue("TEXTO", Atas.TEXTO);
-                  comando.Parameters.AddWithValue("DATA", Atas.DATA);
-                  comando.Parameters.AddWithValue("TITULO", Atas.TITULO);
-                  comando.Parameters.AddWithValue("ID_PESSOA", Atas.ID_PESSOA);
+                  comando.Parameters.AddWithValue("id", Atas.id.ToString());
+                  comando.Parameters.AddWithValue("texto", Atas.texto);
+                  comando.Parameters.AddWithValue("data", Atas.data);
+                  comando.Parameters.AddWithValue("titulo", Atas.titulo);
+                  comando.Parameters.AddWithValue("id_pessoa", Atas.id_pessoa);
+                  comando.Parameters.AddWithValue("id_condominio", Atas.id_condominio);
 
                   comando.ExecuteNonQuery();
-
               }
         }
 
@@ -66,11 +69,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("DELETE FROM \"{0}\"" +
-                                                           "WHERE \"{1}\" = @ID;", "ATAS", "ID");
+                comando.CommandText = "DELETE FROM atas" +
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 comando.ExecuteNonQuery();
 
@@ -83,11 +86,12 @@ namespace Gcon.Website.Repositorio
              {
                  conexao.Open();
                  NpgsqlCommand comando = new NpgsqlCommand();
-                 comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                             "WHERE \"{1}\" = @ID;", "ATAS", "ID");
+                comando.CommandText = "SELECT * FROM atas" +
+                                              "WHERE id = @id;";
+
                  comando.Connection = conexao;
 
-                 comando.Parameters.AddWithValue("ID", id.ToString());
+                 comando.Parameters.AddWithValue("id", id.ToString());
 
                 Atas Atas = new Atas();
 
@@ -95,11 +99,12 @@ namespace Gcon.Website.Repositorio
                  {
                      if (SqlData.Read())
                      {
-                         Atas.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                         Atas.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
-                         Atas.DATA = (DateTime) SqlData["DATA"];
-                         Atas.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                         Atas.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                         Atas.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                         Atas.texto = String.Format("{0}", SqlData["texto"]);
+                         Atas.data = (DateTime) SqlData["data"];
+                         Atas.titulo = String.Format("{0}", SqlData["titulo"]);
+                         Atas.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                         Atas.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
                     }
                  }
 
@@ -113,11 +118,11 @@ namespace Gcon.Website.Repositorio
              {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                             "WHERE \"{1}\" = @ID;", "ATAS", "ID_CONDOMINIO");
+                comando.CommandText = "SELECT * FROM atas" +
+                                              "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 List<Atas> TodasAtas = new List<Atas>();
 
@@ -128,11 +133,12 @@ namespace Gcon.Website.Repositorio
                     {
                         Atas Atas = new Atas();
 
-                        Atas.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Atas.TEXTO = String.Format("{0}", SqlData["TEXTO"]);
-                        Atas.DATA = (DateTime)SqlData["DATA"];
-                        Atas.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                        Atas.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
+                        Atas.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Atas.texto = String.Format("{0}", SqlData["texto"]);
+                        Atas.data = (DateTime)SqlData["data"];
+                        Atas.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Atas.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Atas.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
 
                         TodasAtas.Add(Atas);
                     }
