@@ -21,21 +21,21 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("insert into \"{0}\" (\"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\", \"{6}\", \"{7}\", \"{8}\", \"{9}\", \"{10}\", \"{11}\") " +
-                                         " values(@ID, @CPF_CNPJ, @NOME, @APTO, @ID_CONDOMINIO, @SENHA, @EMAIL, @TELEFONE, @CELULAR, @PERMISSAO, @STATUS)", "PESSOAS", "ID", "CPF_CNPJ", "NOME", "APTO", "ID_CONDOMINIO", "SENHA", "EMAIL", "TELEFONE", "CELULAR", "PERMISSAO", "STATUS");
+                comando.CommandText = "INSERT INTO pessoas (id, cpf_cnpj, nome, apto id_condominio senha, email, telefone, celular, permissao, status) " +
+                                         " VAUES(@id, @cpf_cnpj, @nome, @apto, @id_condominio, @senha, @email, @telefone, @celular, @permissao, @status)";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Pessoa.ID);
-                comando.Parameters.AddWithValue("CPF_CNPJ", Pessoa.CPF_CNPJ);
-                comando.Parameters.AddWithValue("NOME", Pessoa.NOME);
-                comando.Parameters.AddWithValue("APTO", Pessoa.APTO);
-                comando.Parameters.AddWithValue("ID_CONDOMINIO", Pessoa.ID_CONDOMINIO);
-                comando.Parameters.AddWithValue("SENHA", Pessoa.SENHA);
-                comando.Parameters.AddWithValue("EMAIL", Pessoa.EMAIL);
-                comando.Parameters.AddWithValue("TELEFONE", Pessoa.TELEFONE);
-                comando.Parameters.AddWithValue("CELULAR", Pessoa.CELULAR);
-                comando.Parameters.AddWithValue("PERMISSAO", Pessoa.PERMISSAO);
-                comando.Parameters.AddWithValue("STATUS", Pessoa.STATUS);
+                comando.Parameters.AddWithValue("id", Pessoa.id);
+                comando.Parameters.AddWithValue("cpf_cnpj", Pessoa.cpf_cnpj);
+                comando.Parameters.AddWithValue("nome", Pessoa.nome);
+                comando.Parameters.AddWithValue("apto", Pessoa.apto);
+                comando.Parameters.AddWithValue("id_condominio", Pessoa.id_condominio);
+                comando.Parameters.AddWithValue("senha", Pessoa.senha);
+                comando.Parameters.AddWithValue("email", Pessoa.email);
+                comando.Parameters.AddWithValue("telefone", Pessoa.telefone);
+                comando.Parameters.AddWithValue("celular", Pessoa.celular);
+                comando.Parameters.AddWithValue("permissao", Pessoa.permissao);
+                comando.Parameters.AddWithValue("status", Pessoa.status);
 
                 comando.ExecuteNonQuery();
             }
@@ -47,31 +47,31 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("UPDATE \"{0}\" " +
-                                                    "SET \"{2}\"  = @CPF_CNPJ," +
-                                                        "\"{3}\"  = @NOME," +
-                                                        "\"{4}\"  = @APTO," +
-                                                        "\"{5}\"  = @ID_CONDOMINIO," +
-                                                        "\"{6}\"  = @SENHA," +
-                                                        "\"{7}\"  = @EMAIL," +
-                                                        "\"{8}\"  = @TELEFONE,"+
-                                                        "\"{9}\"  = @CELULAR, " +
-                                                        "\"{10}\" = @PERMISSAO,"+
-                                                        "\"{11}\" = @STATUS "+
-                                                    "WHERE \"{1}\" = @ID;", "PESSOAS", "ID", "CPF_CNPJ", "NOME", "APTO", "ID_CONDOMINIO", "SENHA", "EMAIL", "TELEFONE", "CELULAR", "PERMISSAO", "STATUS");
+                comando.CommandText = "UPDATE pessoas " +
+                                         "SET cpf_cnpj = @cpf_cnpj," +
+                                                 "nome = @nome," +
+                                                 "apto = @apto," +
+                                        "id_condominio = @id_condominio," +
+                                                "senha = @senha," +
+                                                "email = @email," +
+                                             "telefone = @telefone," +
+                                              "celular = @celular, " +
+                                            "permissao = @permissao," +
+                                               "status = @status " +
+                                             "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Pessoa.ID.ToString());
-                comando.Parameters.AddWithValue("CPF_CNPJ", Pessoa.CPF_CNPJ);
-                comando.Parameters.AddWithValue("NOME", Pessoa.NOME);
-                comando.Parameters.AddWithValue("APTO", Pessoa.APTO);
-                comando.Parameters.AddWithValue("ID_CONDOMINIO", Pessoa.ID_CONDOMINIO);
-                comando.Parameters.AddWithValue("SENHA", Pessoa.SENHA);
-                comando.Parameters.AddWithValue("EMAIL", Pessoa.EMAIL);
-                comando.Parameters.AddWithValue("TELEFONE", Pessoa.TELEFONE);
-                comando.Parameters.AddWithValue("CELULAR", Pessoa.CELULAR);
-                comando.Parameters.AddWithValue("PERMISSAO", Pessoa.PERMISSAO);
-                comando.Parameters.AddWithValue("STATUS", Pessoa.STATUS);
+                comando.Parameters.AddWithValue("id", Pessoa.id);
+                comando.Parameters.AddWithValue("cpf_cnpj", Pessoa.cpf_cnpj);
+                comando.Parameters.AddWithValue("nome", Pessoa.nome);
+                comando.Parameters.AddWithValue("apto", Pessoa.apto);
+                comando.Parameters.AddWithValue("id_condominio", Pessoa.id_condominio);
+                comando.Parameters.AddWithValue("senha", Pessoa.senha);
+                comando.Parameters.AddWithValue("email", Pessoa.email);
+                comando.Parameters.AddWithValue("telefone", Pessoa.telefone);
+                comando.Parameters.AddWithValue("celular", Pessoa.celular);
+                comando.Parameters.AddWithValue("permissao", Pessoa.permissao);
+                comando.Parameters.AddWithValue("status", Pessoa.status);
 
                 comando.ExecuteNonQuery();
 
@@ -84,11 +84,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("DELETE FROM \"{0}\"" +
-                                                           "WHERE \"{1}\" = @ID;", "PESSOAS", "ID");
+                comando.CommandText = "DELETE FROM pessoas " +
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 comando.ExecuteNonQuery();
 
@@ -101,11 +101,11 @@ namespace Gcon.Website.Repositorio
              {
                  conexao.Open();
                  NpgsqlCommand comando = new NpgsqlCommand();
-                 comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                             "WHERE \"{1}\" = @ID;", "PESSOAS", "ID");
+                comando.CommandText = "SELECT * FROM pessoas " +
+                                              "WHERE id = @id;";
                  comando.Connection = conexao;
 
-                 comando.Parameters.AddWithValue("ID", id.ToString());
+                 comando.Parameters.AddWithValue("id", id.ToString());
 
                  Pessoa Pessoa = new Pessoa();
 
@@ -113,17 +113,17 @@ namespace Gcon.Website.Repositorio
                  {
                      if (SqlData.Read())
                      {
-                        Pessoa.ID            = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Pessoa.CPF_CNPJ      = String.Format("{0}", SqlData["CPF_CNPJ"]);
-                        Pessoa.NOME          = String.Format("{0}", SqlData["NOME"]);
-                        Pessoa.APTO          = String.Format("{0}", SqlData["APTO"]);
-                        Pessoa.ID_CONDOMINIO = Guid.Parse(String.Format("{0}", SqlData["ID_CONDOMINIO"]));
-                        Pessoa.SENHA         = String.Format("{0}", SqlData["SENHA"]);
-                        Pessoa.EMAIL         = String.Format("{0}", SqlData["EMAIL"]);
-                        Pessoa.TELEFONE      = String.Format("{0}", SqlData["TELEFONE"]);
-                        Pessoa.CELULAR       = String.Format("{0}", SqlData["CELULAR"]);
-                        Pessoa.PERMISSAO     = (int) SqlData["PERMISSAO"];
-                        Pessoa.STATUS        = (int) SqlData["STATUS"];
+                        Pessoa.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Pessoa.cpf_cnpj = String.Format("{0}", SqlData["cpf_cnpj"]);
+                        Pessoa.nome = String.Format("{0}", SqlData["nome"]);
+                        Pessoa.apto = String.Format("{0}", SqlData["apto"]);
+                        Pessoa.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+                        Pessoa.senha = String.Format("{0}", SqlData["senha"]);
+                        Pessoa.email = String.Format("{0}", SqlData["email"]);
+                        Pessoa.telefone = String.Format("{0}", SqlData["telefone"]);
+                        Pessoa.celular = String.Format("{0}", SqlData["celular"]);
+                        Pessoa.permissao = (int) SqlData["permissao"];
+                        Pessoa.status = (int) SqlData["status"];
                     }
                  }
 
@@ -137,11 +137,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "PESSOAS", "ID_CONDOMINIO");
+                comando.CommandText = "SELECT * FROM pessoas " +
+                                              "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 List<Pessoa> pessoas = new List<Pessoa>();
 
@@ -151,17 +151,18 @@ namespace Gcon.Website.Repositorio
                     {
                         Pessoa Pessoa = new Pessoa();
 
-                        Pessoa.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Pessoa.CPF_CNPJ = String.Format("{0}", SqlData["CPF_CNPJ"]);
-                        Pessoa.NOME = String.Format("{0}", SqlData["NOME"]);
-                        Pessoa.APTO = String.Format("{0}", SqlData["APTO"]);
-                        Pessoa.ID_CONDOMINIO = Guid.Parse(String.Format("{0}", SqlData["ID_CONDOMINIO"]));
-                        Pessoa.SENHA = String.Format("{0}", SqlData["SENHA"]);
-                        Pessoa.EMAIL = String.Format("{0}", SqlData["EMAIL"]);
-                        Pessoa.TELEFONE = String.Format("{0}", SqlData["TELEFONE"]);
-                        Pessoa.CELULAR = String.Format("{0}", SqlData["CELULAR"]);
-                        Pessoa.PERMISSAO = (int)SqlData["PERMISSAO"];
-                        Pessoa.STATUS = (int)SqlData["STATUS"];
+
+                        Pessoa.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Pessoa.cpf_cnpj = String.Format("{0}", SqlData["cpf_cnpj"]);
+                        Pessoa.nome = String.Format("{0}", SqlData["nome"]);
+                        Pessoa.apto = String.Format("{0}", SqlData["apto"]);
+                        Pessoa.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+                        Pessoa.senha = String.Format("{0}", SqlData["senha"]);
+                        Pessoa.email = String.Format("{0}", SqlData["email"]);
+                        Pessoa.telefone = String.Format("{0}", SqlData["telefone"]);
+                        Pessoa.celular = String.Format("{0}", SqlData["celular"]);
+                        Pessoa.permissao = (int)SqlData["permissao"];
+                        Pessoa.status = (int)SqlData["status"];
 
                         pessoas.Add(Pessoa);
                     }
@@ -177,15 +178,15 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select \"{4}\", \"{5}\", \"{6}\", \"{7}\", \"{8}\""+
-                                                      "from \"{0}\"" +
-                                                      "WHERE \"{1}\" <> 3" +
-                                                        "AND \"{2}\" = @EMAIL"+
-                                                        "AND \"{3}\" = @SENHA;", "SENHA", "PESSOAS", "EMAIL", "ID", "NOME", "ID_CONDOMINIO", "PERMISSAO", "STATUS");
+                comando.CommandText = "SELECT id, nome, id_condominio, permissao, status"+
+                                        "FROM pessoas " +
+                                        "WHERE status <> 3" +
+                                        "AND email = @email"+
+                                        "AND senha = @senha;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("EMAIL", email);
-                comando.Parameters.AddWithValue("SENHA", senha);
+                comando.Parameters.AddWithValue("email", email);
+                comando.Parameters.AddWithValue("senha", senha);
 
                 List<Pessoa> pessoas = new List<Pessoa>();
 
@@ -195,11 +196,11 @@ namespace Gcon.Website.Repositorio
                     {
                         Pessoa Pessoa = new Pessoa();
 
-                        Pessoa.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Pessoa.NOME = String.Format("{0}", SqlData["NOME"]);
-                        Pessoa.ID_CONDOMINIO = Guid.Parse(String.Format("{0}", SqlData["ID_CONDOMINIO"]));
-                        Pessoa.PERMISSAO = (int)SqlData["PERMISSAO"];
-                        Pessoa.STATUS = (int)SqlData["STATUS"];
+                        Pessoa.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Pessoa.nome = String.Format("{0}", SqlData["nome"]);
+                        Pessoa.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+                        Pessoa.permissao = (int)SqlData["permissao"];
+                        Pessoa.status = (int)SqlData["status"];
 
                         pessoas.Add(Pessoa);
                     }

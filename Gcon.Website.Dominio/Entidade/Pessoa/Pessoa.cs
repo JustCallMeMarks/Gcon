@@ -10,18 +10,18 @@ namespace Gcon.Website.Dominio.Entidade.Pessoa
     {
         public Pessoa()
         {
-            ID = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid ID { get; set; }
-        public string CPF_CNPJ { get; set; }
-        public string NOME { get; set; }
-        public string APTO { get; set; }
-        public Guid ID_CONDOMINIO { get; set; }
-        public string SENHA { get; set; }
-        public string EMAIL { get; set; }
-        public string TELEFONE { get; set; }
-        public string CELULAR { get; set; }
-        public int PERMISSAO { get; set; }
-        public int STATUS { get; set; }
+        public Guid id { get; set; }
+        public string cpf_cnpj { get; set; }
+        public string nome { get; set; }
+        public string apto { get; set; }
+        public Guid id_condominio { get; set; }
+        public string senha { get; set; }
+        public string email { get; set; }
+        public string telefone { get; set; }
+        public string celular { get; set; }
+        public int permissao { get; set; }
+        public int status { get; set; }
     }
 }
