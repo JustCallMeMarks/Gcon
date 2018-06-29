@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Gcon.Website.Dominio.Entidade.Pessoa;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Gcon.Website.Repositorio.Teste
 {
@@ -96,6 +97,43 @@ namespace Gcon.Website.Repositorio.Teste
             {
                 PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
                 Pessoa pessoa = pessoaRepositorio.Procurar(Id);
+
+                Assert.IsTrue(true);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ProcurarTodasAsPessoasDeUmCondominio()
+        {
+            Guid Id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6");
+
+            try
+            {
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+                List<Pessoa> pessoa = pessoaRepositorio.ProcurarTodasAsPessoasDeUmCondominio(Id);
+
+                Assert.IsTrue(true);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ProcurarPessoasApartirEmailSenha()
+        {
+            String email = "Pessoa@pessoa.com";
+            String senha = "123456";
+
+            try
+            {
+                PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+                Pessoa pessoa = pessoaRepositorio.ProcurarPessoasApartirEmailSenha(email,senha);
 
                 Assert.IsTrue(true);
             }

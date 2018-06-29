@@ -22,23 +22,19 @@ namespace Gcon.Website.Controllers
 
         public ActionResult Autenticar(string usuario, string senha)
         {
-            if (usuario == "Gcon" && senha == "Gcon")
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+            PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
+
+            Pessoa pessoa = pessoaAplicacao.Login(usuario, senha);
+
+            if (pessoa != null)
             {
-                Session["usuario"] = usuario;
-                Session["Permission"] = "USER";
+                Session["usuario"] = pessoa.id;
+                Session["Permission"] = pessoa.permissao == 1 ? "ADM" : "USER";
                 return RedirectToAction("Index", "Mural");
             }
-            else
-            {
-                if (usuario == "Adm" && senha == "Adm")
-                {
-                    Session["usuario"] = usuario;
-                    Session["Permission"] = "ADM";
-                    return RedirectToAction("Index", "Mural");
-                }
-
-                return View("Index");
-            }
+            return View("Index");
         }
 
         public ActionResult Logout()

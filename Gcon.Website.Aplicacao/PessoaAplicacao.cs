@@ -29,5 +29,15 @@ namespace Gcon.Website.Aplicacao
             this.pessoaRepossitorio.Inserir(pessoa);
         }
 
+        public Pessoa Login(string email, string senha)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
+            {
+                throw new ApplicationException("Insira Email e senha");
+            }
+
+            return this.pessoaRepossitorio.ProcurarPessoasApartirEmailSenha(email,senha);
+        }
+
     }
 }

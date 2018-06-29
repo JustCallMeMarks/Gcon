@@ -172,37 +172,38 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public List<Pessoa> ProcurarPessoasApartirEmailSenha(string email , string senha)
+        public Pessoa ProcurarPessoasApartirEmailSenha(string email , string senha)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT id, nome, id_condominio, permissao, status "+
+
+                comando.CommandText = "SELECT id, nome, id_condominio, permissao, status " +
                                         "FROM pessoas " +
-                                        "WHERE status <> 3" +
-                                        "AND email = @email"+
+                                        "WHERE status <> 3 " +
+                                        "AND email = @email "+
                                         "AND senha = @senha;";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("email", email);
                 comando.Parameters.AddWithValue("senha", senha);
 
-                List<Pessoa> pessoas = new List<Pessoa>();
+                Pessoa pessoas = new Pessoa();
 
                 using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                 {
-                    while (SqlData.Read())
+                    if (SqlData.HasRows)
                     {
-                        Pessoa Pessoa = new Pessoa();
-
-                        Pessoa.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
-                        Pessoa.nome = String.Format("{0}", SqlData["nome"]);
-                        Pessoa.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
-                        Pessoa.permissao = (int)SqlData["permissao"];
-                        Pessoa.status = (int)SqlData["status"];
-
-                        pessoas.Add(Pessoa);
+                        pessoas.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        pessoas.nome = String.Format("{0}", SqlData["nome"]);
+                        pessoas.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+                        pessoas.permissao = (int)SqlData["permissao"];
+                        pessoas.status = (int)SqlData["status"];
+                    }
+                    else
+                    {
+                        return null;
                     }
                 }
 

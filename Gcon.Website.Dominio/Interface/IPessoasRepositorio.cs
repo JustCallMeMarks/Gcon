@@ -14,5 +14,6 @@ namespace Gcon.Website.Dominio.Interface
         void Excluir(Guid id);
         Pessoa Procurar(Guid id);
         List<Pessoa> ProcurarTodasAsPessoasDeUmCondominio(Guid id);
+        Pessoa ProcurarPessoasApartirEmailSenha(string email, string senha);
     }
 }
