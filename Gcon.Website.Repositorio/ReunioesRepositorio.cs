@@ -21,15 +21,15 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("insert into \"{0}\" (\"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\") " +
-                                         " values(@ID, @DATA, @TITULO, @ID_PESSOA, @DATA_ATZ)", "REUNIOES", "ID", "DATA", "TITULO", "ID_PESSOA", "DATA_ATZ");
+                comando.CommandText = "INSERT INTO reunioes (id, data, titulo, id_pessoa, data_atz") " +
+                                         " values(@id, @data, @titulo, @id_pessoa, @data_atz)";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Reunioes.ID.ToString());
-                comando.Parameters.AddWithValue("DATA", Reunioes.DATA);
-                comando.Parameters.AddWithValue("TITULO", Reunioes.TITULO);
-                comando.Parameters.AddWithValue("ID_PESSOA", Reunioes.ID_PESSOA);
-                comando.Parameters.AddWithValue("DATA_ATZ", Reunioes.DATA_ATZ);
+                comando.Parameters.AddWithValue("id", Reunioes.id.ToString());
+                comando.Parameters.AddWithValue("data", Reunioes.data);
+                comando.Parameters.AddWithValue("titulo", Reunioes.titulo);
+                comando.Parameters.AddWithValue("id_pessoa", Reunioes.id_pessoa);
+                comando.Parameters.AddWithValue("data_atz", Reunioes.data_atz);
 
                 comando.ExecuteNonQuery();
             }
@@ -41,19 +41,19 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("UPDATE \"{0}\" " +
-                                                    "SET \"{2}\" = @DATA," +
-                                                        "\"{3}\" = @TITULO," +
-                                                        "\"{4}\" = @ID_PESSOA," +
-                                                        "\"{5}\" = @DATA_ATZ " +
-                                                    "WHERE \"{1}\" = @ID;", "REUNIOES", "ID", "DATA", "TITULO", "ID_PESSOA", "DATA_ATZ");
+                comando.CommandText = "UPDATE reunioes " +
+                                        "SET data = @data," +
+                                          "titulo = @titulo," +
+                                       "id_pessoa = @id_pessoa," +
+                                        "data_atz = @data_atz " +
+                                        "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Reunioes.ID.ToString());
-                comando.Parameters.AddWithValue("DATA", Reunioes.DATA);
-                comando.Parameters.AddWithValue("TITULO", Reunioes.TITULO);
-                comando.Parameters.AddWithValue("ID_PESSOA", Reunioes.ID_PESSOA);
-                comando.Parameters.AddWithValue("DATA_ATZ", Reunioes.DATA_ATZ);
+                comando.Parameters.AddWithValue("id", Reunioes.id.ToString());
+                comando.Parameters.AddWithValue("data", Reunioes.data);
+                comando.Parameters.AddWithValue("titulo", Reunioes.titulo);
+                comando.Parameters.AddWithValue("id_pessoa", Reunioes.id_pessoa);
+                comando.Parameters.AddWithValue("data_atz", Reunioes.data_atz);
 
                 comando.ExecuteNonQuery();
 

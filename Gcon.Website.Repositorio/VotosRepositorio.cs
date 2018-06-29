@@ -20,14 +20,14 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("insert into \"{0}\" (\"{1}\", \"{2}\", \"{3}\", \"{4}\") " +
-                                         " values(@ID, @ID_PESSOA, @ID_PERGUNTA, @RESPOSTA)", "VOTOS", "ID", "ID_PESSOA", "ID_PERGUNTA", "RESPOSTA");
+                comando.CommandText = "INSERT INTO votos (id, id_pessoa, id_pergunta, resposta) " +
+                                         " VALUES(@id, @id_pessoa, @id_pergunta, @resposta)";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Votos.ID.ToString());
-                comando.Parameters.AddWithValue("ID_PESSOA", Votos.ID_PESSOA);
-                comando.Parameters.AddWithValue("ID_PERGUNTA", Votos.ID_PERGUNTA);
-                comando.Parameters.AddWithValue("RESPOSTA", Votos.RESPOSTA);
+                comando.Parameters.AddWithValue("id", Votos.id.ToString());
+                comando.Parameters.AddWithValue("id_pessoa", Votos.id_pessoa);
+                comando.Parameters.AddWithValue("id_pergunta", Votos.id_pergunta);
+                comando.Parameters.AddWithValue("resposta", Votos.resposta);
 
                 comando.ExecuteNonQuery();
             }
@@ -39,17 +39,17 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("UPDATE \"{0}\" " +
-                                                    "SET \"{2}\" = @ID_PESSOA," +
-                                                        "\"{3}\" = @ID_PERGUNTA," +
-                                                        "\"{4}\" = @RESPOSTA " +
-                                                    "WHERE \"{1}\" = @ID;", "VOTOS", "ID", "ID_PESSOA", "ID_PERGUNTA", "RESPOSTA");
+                comando.CommandText = "UPDATE votos " +
+                                         "SET id_pessoa = @id_pessoa," +
+                                             "id_pergunta = @id_pergunta," +
+                                             "resposta = @resposta " +
+                                       "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", Votos.ID.ToString());
-                comando.Parameters.AddWithValue("ID_PESSOA", Votos.ID_PESSOA);
-                comando.Parameters.AddWithValue("ID_PERGUNTA", Votos.ID_PERGUNTA);
-                comando.Parameters.AddWithValue("RESPOSTA", Votos.RESPOSTA);
+                comando.Parameters.AddWithValue("id", Votos.id.ToString());
+                comando.Parameters.AddWithValue("id_pessoa", Votos.id_pessoa);
+                comando.Parameters.AddWithValue("id_pergunta", Votos.id_pergunta);
+                comando.Parameters.AddWithValue("resposta", Votos.resposta);
 
                 comando.ExecuteNonQuery();
 
@@ -62,11 +62,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("DELETE FROM \"{0}\"" +
-                                                           "WHERE \"{1}\" = @ID;", "VOTOS", "ID");
+                comando.CommandText = "DELETE FROM votos" +
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 comando.ExecuteNonQuery();
 
@@ -79,11 +79,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "VOTOS", "ID");
+                comando.CommandText = "SELECT * FROM votos" +
+                                              "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 Votos Votos = new Votos();
 
@@ -91,10 +91,10 @@ namespace Gcon.Website.Repositorio
                 {
                     if (SqlData.Read())
                     {
-                        Votos.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Votos.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
-                        Votos.ID_PERGUNTA = Guid.Parse(String.Format("{0}", SqlData["ID_PERGUNTA"]));
-                        Votos.RESPOSTA = String.Format("{0}", SqlData["RESPOSTA"]);
+                        Votos.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Votos.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Votos.id_pergunta = Guid.Parse(String.Format("{0}", SqlData["id_pergunta"]));
+                        Votos.resposta = String.Format("{0}", SqlData["resposta"]);
                     }
                 }
 
