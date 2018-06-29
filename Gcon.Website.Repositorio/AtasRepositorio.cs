@@ -42,12 +42,12 @@ namespace Gcon.Website.Repositorio
               {
                   conexao.Open();
                   NpgsqlCommand comando = new NpgsqlCommand();
-                  comando.CommandText = "UPDATE atas" +
+                  comando.CommandText = "UPDATE atas " +
                                            "SET texto          = @texto," +
                                                 "data          = @data," +
                                                 "titulo        = @titulo," +
                                                 "id_pessoa     = @id_pessoa," +
-                                                "id_condominio = @id_condominio" +
+                                                "id_condominio = @id_condominio " +
                                          "WHERE id = @id;";
 
                   comando.Connection = conexao;
@@ -69,7 +69,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "DELETE FROM atas" +
+                comando.CommandText = "DELETE FROM atas " +
                                             "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -86,7 +86,7 @@ namespace Gcon.Website.Repositorio
              {
                  conexao.Open();
                  NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM atas" +
+                comando.CommandText = "SELECT * FROM atas " +
                                               "WHERE id = @id;";
 
                  comando.Connection = conexao;
@@ -118,7 +118,7 @@ namespace Gcon.Website.Repositorio
              {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM atas" +
+                comando.CommandText = "SELECT * FROM atas " +
                                               "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 

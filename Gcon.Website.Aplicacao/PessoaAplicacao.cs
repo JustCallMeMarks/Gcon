@@ -21,7 +21,7 @@ namespace Gcon.Website.Aplicacao
 
         public void Inserir(Pessoa pessoa)
         {
-            if ( string.IsNullOrEmpty(pessoa.CPF_CNPJ) )
+            if ( string.IsNullOrEmpty(pessoa.cpf_cnpj) )
             {
                 throw new ApplicationException("Cpf invalido");
             }

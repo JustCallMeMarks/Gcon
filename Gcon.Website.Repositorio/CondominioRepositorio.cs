@@ -20,7 +20,7 @@ namespace Gcon.Website.Repositorio
             { 
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "INSERT INTO condomionio (id, qtd_ap, nome, rua, bairro, cidade, estado, pais, numero) " +
+                comando.CommandText = "INSERT INTO condominio (id, qtd_ap, nome, rua, bairro, cidade, estado, pais, numero) " +
                                                     " VALUES(@id, @qtd_ap, @nome, @rua, @bairro, @cidade, @estado, @pais, @numero)";
                 comando.Connection = conexao;
 
@@ -45,7 +45,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "UPDATE condomionio " +
+                comando.CommandText = "UPDATE condominio " +
                                          "SET qtd_ap = @qtd_ap," +
                                                "nome = @nome," +
                                                 "rua = @rua," +
@@ -57,7 +57,7 @@ namespace Gcon.Website.Repositorio
                                        "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("id", Condominio.id);
+                comando.Parameters.AddWithValue("id", Condominio.id.ToString());
                 comando.Parameters.AddWithValue("qtd_ap", Condominio.qtd_ap);
                 comando.Parameters.AddWithValue("nome", Condominio.nome);
                 comando.Parameters.AddWithValue("rua", Condominio.rua);
@@ -78,7 +78,7 @@ namespace Gcon.Website.Repositorio
              {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "DELETE FROM condomionio" +
+                comando.CommandText = "DELETE FROM condominio " +
                                             "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -95,7 +95,7 @@ namespace Gcon.Website.Repositorio
              {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "Select * from condomionio" +
+                comando.CommandText = "Select * from condominio " +
                                               "WHERE id = @id;";
                 comando.Connection = conexao;
 

@@ -21,8 +21,8 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "INSERT INTO pessoas (id, cpf_cnpj, nome, apto id_condominio senha, email, telefone, celular, permissao, status) " +
-                                         " VAUES(@id, @cpf_cnpj, @nome, @apto, @id_condominio, @senha, @email, @telefone, @celular, @permissao, @status)";
+                comando.CommandText = "INSERT INTO pessoas (id, cpf_cnpj, nome, apto, id_condominio, senha, email, telefone, celular, permissao, status) " +
+                                         " VALUES(@id, @cpf_cnpj, @nome, @apto, @id_condominio, @senha, @email, @telefone, @celular, @permissao, @status)";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", Pessoa.id);
@@ -61,11 +61,11 @@ namespace Gcon.Website.Repositorio
                                              "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("id", Pessoa.id);
+                comando.Parameters.AddWithValue("id", Pessoa.id.ToString());
                 comando.Parameters.AddWithValue("cpf_cnpj", Pessoa.cpf_cnpj);
                 comando.Parameters.AddWithValue("nome", Pessoa.nome);
                 comando.Parameters.AddWithValue("apto", Pessoa.apto);
-                comando.Parameters.AddWithValue("id_condominio", Pessoa.id_condominio);
+                comando.Parameters.AddWithValue("id_condominio", Pessoa.id_condominio.ToString());
                 comando.Parameters.AddWithValue("senha", Pessoa.senha);
                 comando.Parameters.AddWithValue("email", Pessoa.email);
                 comando.Parameters.AddWithValue("telefone", Pessoa.telefone);
@@ -178,7 +178,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT id, nome, id_condominio, permissao, status"+
+                comando.CommandText = "SELECT id, nome, id_condominio, permissao, status "+
                                         "FROM pessoas " +
                                         "WHERE status <> 3" +
                                         "AND email = @email"+

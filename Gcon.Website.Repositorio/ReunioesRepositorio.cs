@@ -21,8 +21,8 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "INSERT INTO reunioes (id, data, titulo, id_pessoa, data_atz") " +
-                                         " values(@id, @data, @titulo, @id_pessoa, @data_atz)";
+                comando.CommandText = "INSERT INTO reunioes (id, data, titulo, id_pessoa, data_atz, id_condominio) " +
+                                         " values(@id, @data, @titulo, @id_pessoa, @data_atz, @id_condominio)";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", Reunioes.id.ToString());
@@ -30,6 +30,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("titulo", Reunioes.titulo);
                 comando.Parameters.AddWithValue("id_pessoa", Reunioes.id_pessoa);
                 comando.Parameters.AddWithValue("data_atz", Reunioes.data_atz);
+                comando.Parameters.AddWithValue("id_condominio", Reunioes.id_condominio);
 
                 comando.ExecuteNonQuery();
             }
@@ -45,7 +46,8 @@ namespace Gcon.Website.Repositorio
                                         "SET data = @data," +
                                           "titulo = @titulo," +
                                        "id_pessoa = @id_pessoa," +
-                                        "data_atz = @data_atz " +
+                                        "data_atz = @data_atz, " +
+                                   "id_condominio = @id_condominio " +
                                         "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -54,6 +56,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("titulo", Reunioes.titulo);
                 comando.Parameters.AddWithValue("id_pessoa", Reunioes.id_pessoa);
                 comando.Parameters.AddWithValue("data_atz", Reunioes.data_atz);
+                comando.Parameters.AddWithValue("id_condominio", Reunioes.id_condominio);
 
                 comando.ExecuteNonQuery();
 
@@ -66,11 +69,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("DELETE FROM \"{0}\"" +
-                                                           "WHERE \"{1}\" = @ID;", "REUNIOES", "ID");
+                comando.CommandText = "DELETE FROM reunioes " +
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 comando.ExecuteNonQuery();
 
@@ -83,11 +86,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "REUNIOES", "ID");
+                comando.CommandText = "SELECT * FROM reunioes " +
+                                              "WHERE id = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 Reunioes Reunioes = new Reunioes();
 
@@ -95,11 +98,12 @@ namespace Gcon.Website.Repositorio
                 {
                     if (SqlData.Read())
                     {
-                        Reunioes.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Reunioes.DATA = (DateTime)SqlData["DATA"];
-                        Reunioes.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                        Reunioes.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
-                        Reunioes.DATA_ATZ = (DateTime)SqlData["DATA_ATZ"];
+                        Reunioes.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Reunioes.data = (DateTime)SqlData["data"];
+                        Reunioes.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Reunioes.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Reunioes.data_atz = (DateTime)SqlData["data_atz"];
+                        Reunioes.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
                     }
                 }
 
@@ -113,11 +117,11 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("Select * from \"{0}\"" +
-                                                            "WHERE \"{1}\" = @ID;", "REUNIOES", "ID_REUNIOES");
+                comando.CommandText = "SELECT * FROM reunioes " +
+                                              "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
-                comando.Parameters.AddWithValue("ID", id.ToString());
+                comando.Parameters.AddWithValue("id", id.ToString());
 
                 List<Reunioes> ListReunioes = new List<Reunioes>();
 
@@ -127,11 +131,12 @@ namespace Gcon.Website.Repositorio
                     {
                         Reunioes Reunioes = new Reunioes();
 
-                        Reunioes.ID = Guid.Parse(String.Format("{0}", SqlData["ID"]));
-                        Reunioes.DATA = (DateTime)SqlData["DATA"];
-                        Reunioes.TITULO = String.Format("{0}", SqlData["TITULO"]);
-                        Reunioes.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["ID_PESSOA"]));
-                        Reunioes.DATA_ATZ = (DateTime)SqlData["DATA_ATZ"];
+                        Reunioes.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Reunioes.data = (DateTime)SqlData["data"];
+                        Reunioes.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Reunioes.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Reunioes.data_atz = (DateTime)SqlData["data_atz"];
+                        Reunioes.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
 
                         ListReunioes.Add(Reunioes);
                     }

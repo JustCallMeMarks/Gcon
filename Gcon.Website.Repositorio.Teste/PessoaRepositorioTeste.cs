@@ -15,17 +15,17 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Pessoa pessoa = new Pessoa()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                CPF_CNPJ = "1234567909",
-                NOME = "Pessoa Teste",
-                APTO = "115B",
-                ID_CONDOMINIO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                SENHA = "123456",
-                EMAIL = "Pessoa@pessoa.com",
-                TELEFONE = "5430303030",
-                CELULAR = "54998765432",
-                PERMISSAO = 1,
-                STATUS = 1
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                cpf_cnpj = "1234567909",
+                nome = "Pessoa Teste",
+                apto = "115B",
+                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                senha = "123456",
+                email = "Pessoa@pessoa.com",
+                telefone = "5430303030",
+                celular = "54998765432",
+                permissao = 1,
+                status = 1
             };
 
             try
@@ -45,17 +45,17 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Pessoa pessoa = new Pessoa()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                CPF_CNPJ = "1234567910",
-                NOME = "Pessoa Teste - Altera",
-                APTO = "1150B",
-                ID_CONDOMINIO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                SENHA = "123456 - Altera",
-                EMAIL = "PessoaAltera@pessoa.com",
-                TELEFONE = "1130303030",
-                CELULAR = "11998765432",
-                PERMISSAO = 0,
-                STATUS = 0
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                cpf_cnpj = "1234567910",
+                nome = "Pessoa Teste - Altera",
+                apto = "1150B",
+                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                senha = "123456 - Altera",
+                email = "PessoaAltera@pessoa.com",
+                telefone = "1130303030",
+                celular = "11998765432",
+                permissao = 0,
+                status = 0
             };
 
             try

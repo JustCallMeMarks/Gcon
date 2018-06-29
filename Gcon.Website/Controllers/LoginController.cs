@@ -61,14 +61,14 @@ namespace Gcon.Website.Controllers
 
             Pessoa pessoa = new Pessoa()
             {
-                NOME = nome,
-                EMAIL = email,
-                TELEFONE = tel,                
-                CELULAR = cel,
-                SENHA = senha,
-                ID_CONDOMINIO = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                CPF_CNPJ = cpf,
-                APTO = apartamento
+                nome = nome,
+                email = email,
+                telefone = tel,                
+                celular = cel,
+                senha = senha,
+                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                cpf_cnpj = cpf,
+                apto = apartamento
             };
 
             pessoaAplicacao.Inserir(pessoa);

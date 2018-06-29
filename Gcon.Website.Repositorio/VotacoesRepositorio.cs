@@ -22,8 +22,8 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "INSERT INTO votacoes (id, descricao, data, titulo, id_pessoa) " +
-                                         " VALUES(@id, @descricao, @data, @titulo, @id_pessoa)";
+                comando.CommandText = "INSERT INTO votacoes (id, descricao, data, titulo, id_pessoa, id_condominio) " +
+                                         " VALUES(@id, @descricao, @data, @titulo, @id_pessoa, @id_condominio)";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", Votacoes.id.ToString());
@@ -31,6 +31,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("data", Votacoes.data);
                 comando.Parameters.AddWithValue("titulo", Votacoes.titulo);
                 comando.Parameters.AddWithValue("id_pessoa", Votacoes.id_pessoa);
+                comando.Parameters.AddWithValue("id_condominio", Votacoes.id_condominio);
 
                 comando.ExecuteNonQuery();
             }
@@ -46,7 +47,8 @@ namespace Gcon.Website.Repositorio
                                          "SET descricao = @descricao," +
                                                   "data = @data," +
                                                 "titulo = @titulo," +
-                                             "id_pessoa = @id_pessoa " +
+                                             "id_pessoa = @id_pessoa, " +
+                                         "id_condominio = @id_condominio " +
                                        "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -55,6 +57,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("data", Votacoes.data);
                 comando.Parameters.AddWithValue("titulo", Votacoes.titulo);
                 comando.Parameters.AddWithValue("id_pessoa", Votacoes.id_pessoa);
+                comando.Parameters.AddWithValue("id_condominio", Votacoes.id_condominio);
 
                 comando.ExecuteNonQuery();
 
@@ -68,7 +71,7 @@ namespace Gcon.Website.Repositorio
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.CommandText = "DELETE FROM votacoes " +
-                                            "WHERE id" = @id;";
+                                            "WHERE id = @id;";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", id.ToString());
@@ -101,6 +104,8 @@ namespace Gcon.Website.Repositorio
                         Votacoes.data = (DateTime)SqlData["data"];
                         Votacoes.titulo = String.Format("{0}", SqlData["titulo"]);
                         Votacoes.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Votacoes.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+
                     }
                 }
 
@@ -108,14 +113,14 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public List<Pergunta> TodasPerguntasDeUmaVotação(Guid id)
+        public List<Pergunta> TodasPerguntasDeUmaVotacao(Guid id)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = string.Format("SELECT * FROM perguntas" +
-                                                            "WHERE id = @id;";
+                comando.CommandText = "SELECT * FROM perguntas " +
+                                              "WHERE id_votacao = @id;";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", id.ToString());
@@ -147,8 +152,8 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM votacoes" +
-                                              "WHERE id = @id;";
+                comando.CommandText = "SELECT * FROM votacoes " +
+                                              "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", id.ToString());
@@ -161,11 +166,12 @@ namespace Gcon.Website.Repositorio
                     {
                         Votacoes Votacoes = new Votacoes();
 
-                        Votacoes.ID = Guid.Parse(String.Format("{0}", SqlData["id"]));
-                        Votacoes.DESCRICAO = String.Format("{0}", SqlData["descricao"]);
-                        Votacoes.DATA = (DateTime)SqlData["data"];
-                        Votacoes.TITULO = String.Format("{0}", SqlData["titulo"]);
-                        Votacoes.ID_PESSOA = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Votacoes.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        Votacoes.descricao = String.Format("{0}", SqlData["descricao"]);
+                        Votacoes.data = (DateTime)SqlData["data"];
+                        Votacoes.titulo = String.Format("{0}", SqlData["titulo"]);
+                        Votacoes.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
+                        Votacoes.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
 
                         ListVotacoes.Add(Votacoes);
                     }

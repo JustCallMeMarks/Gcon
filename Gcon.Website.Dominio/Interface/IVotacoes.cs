@@ -14,7 +14,7 @@ namespace Gcon.Website.Dominio.Interface
         void Alterar(Votacoes Votacoes);
         void Excluir(Guid id);
         Votacoes Procurar(Guid id);
-        List<Pergunta> TodasPerguntasDeUmaVotação(Guid id);
+        List<Pergunta> TodasPerguntasDeUmaVotacao(Guid id);
         List<Votacoes> ProcurarTodasVotacoesDeUmCondominio(Guid id);
     }
 }

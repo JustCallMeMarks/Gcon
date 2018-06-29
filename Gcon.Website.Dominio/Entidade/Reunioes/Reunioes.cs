@@ -10,12 +10,13 @@ namespace Gcon.Website.Dominio.Entidade.Reunioes
     {
         public Reunioes()
         {
-            ID = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid ID { get; set; }
-        public DateTime DATA { get; set; }
-        public string TITULO { get; set; }
-        public Guid ID_PESSOA { get; set; }
-        public DateTime DATA_ATZ { get; set; }
+        public Guid id { get; set; }
+        public DateTime data { get; set; }
+        public string titulo { get; set; }
+        public Guid id_pessoa { get; set; }
+        public DateTime data_atz { get; set; }
+        public Guid id_condominio { get; set; }
     }
 }

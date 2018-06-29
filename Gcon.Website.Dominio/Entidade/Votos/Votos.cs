@@ -10,11 +10,11 @@ namespace Gcon.Website.Dominio.Entidade.Votos
     {
         public Votos()
         {
-            ID = Guid.NewGuid();
+            id = Guid.NewGuid();
         }
-        public Guid ID { get; set; }
-        public Guid ID_PESSOA { get; set; }
-        public Guid ID_PERGUNTA { get; set; }
-        public string RESPOSTA { get; set; }
+        public Guid id { get; set; }
+        public Guid id_pessoa { get; set; }
+        public Guid id_pergunta { get; set; }
+        public string resposta { get; set; }
     }
 }

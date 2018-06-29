@@ -16,10 +16,10 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Votos Votos = new Votos()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PESSOA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PERGUNTA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                RESPOSTA ="Teste Resposta"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pessoa = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pergunta = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                resposta ="Teste Resposta"
 
             };
             try
@@ -39,10 +39,10 @@ namespace Gcon.Website.Repositorio.Teste
         {
             Votos Votos = new Votos()
             {
-                ID = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PESSOA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                ID_PERGUNTA = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                RESPOSTA = "Teste Resposta - Altera"
+                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pessoa = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                id_pergunta = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                resposta = "Teste Resposta - Altera"
 
             };
             try

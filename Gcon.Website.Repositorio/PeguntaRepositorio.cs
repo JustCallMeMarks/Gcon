@@ -62,7 +62,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "DELETE FROM perguntas" +
+                comando.CommandText = "DELETE FROM perguntas " +
                                             "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -79,7 +79,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM perguntas" +
+                comando.CommandText = "SELECT * FROM perguntas " +
                                               "WHERE id = @id;";
                 comando.Connection = conexao;
 

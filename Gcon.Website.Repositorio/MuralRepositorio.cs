@@ -42,12 +42,12 @@ namespace Gcon.Website.Repositorio
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.CommandText = "UPDATE mural " +
-                                          "SET texto = @texto," +
-                                               "data = @data," +
-                                            "titulo  = @titulo," +
-                                          "id_pessoa = @id_pessoa " +
-                                      "id_condominio = @id_condominio"+
-                                           "WHERE id = @id;";
+                                         "SET texto = @texto," +
+                                              "data = @data," +
+                                           "titulo  = @titulo," +
+                                         "id_pessoa = @id_pessoa, " +
+                                     "id_condominio = @id_condominio "+
+                                          "WHERE id = @id;";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", Mural.id.ToString());
@@ -68,7 +68,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "DELETE FROM mural" +
+                comando.CommandText = "DELETE FROM mural " +
                                             "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -85,7 +85,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM mural" +
+                comando.CommandText = "SELECT * FROM mural " +
                                               "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -116,7 +116,7 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "SELECT * FROM mural" +
+                comando.CommandText = "SELECT * FROM mural " +
                                                "WHERE id_condominio = @id;";
                 comando.Connection = conexao;
 
