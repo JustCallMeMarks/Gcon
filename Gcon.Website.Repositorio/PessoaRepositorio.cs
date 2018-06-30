@@ -182,7 +182,7 @@ namespace Gcon.Website.Repositorio
                 comando.CommandText = "SELECT id, nome, id_condominio, permissao, status " +
                                         "FROM pessoas " +
                                         "WHERE status <> 3 " +
-                                        "AND email = @email "+
+                                        "AND email = @email " +
                                         "AND senha = @senha;";
                 comando.Connection = conexao;
 
@@ -193,9 +193,9 @@ namespace Gcon.Website.Repositorio
 
                 using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                 {
-                    if (SqlData.HasRows)
+                    if (SqlData.Read())
                     {
-                        pessoas.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        pessoas.id = Guid.Parse(SqlData.GetString(0));
                         pessoas.nome = String.Format("{0}", SqlData["nome"]);
                         pessoas.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
                         pessoas.permissao = (int)SqlData["permissao"];

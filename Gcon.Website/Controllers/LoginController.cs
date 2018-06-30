@@ -34,6 +34,10 @@ namespace Gcon.Website.Controllers
                 Session["Permission"] = pessoa.permissao == 1 ? "ADM" : "USER";
                 return RedirectToAction("Index", "Mural");
             }
+            else
+            {
+                ViewBag.Texto = "Senha ou Email não cadastrado";
+            }
             return View("Index");
         }
 
