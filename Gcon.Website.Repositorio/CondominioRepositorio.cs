@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Condominio;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -121,6 +122,41 @@ namespace Gcon.Website.Repositorio
                
                 return Condominio;
              }
+        }
+
+        public List<Condominio> ProcurarTodosCondominios()
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = "Select * from condominio;";
+                comando.Connection = conexao;
+
+                List<Condominio> condominiosList = new List<Condominio>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Condominio condominio = new Condominio();
+
+                        condominio.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
+                        condominio.nome = String.Format("{0}", SqlData["nome"]);
+                        condominio.pais = String.Format("{0}", SqlData["pais"]);
+                        condominio.rua = String.Format("{0}", SqlData["rua"]);
+                        condominio.bairro = String.Format("{0}", SqlData["bairro"]);
+                        condominio.cidade = String.Format("{0}", SqlData["cidade"]);
+                        condominio.estado = String.Format("{0}", SqlData["estado"]);
+                        condominio.qtd_ap = (int)SqlData["qtd_ap"];
+                        condominio.numero = (int)SqlData["numero"];
+
+                        condominiosList.Add(condominio);
+                    }
+                }
+
+                return condominiosList;
+            }
         }
     }
 }

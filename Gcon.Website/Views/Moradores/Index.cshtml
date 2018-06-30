@@ -20,13 +20,13 @@
                 <label class="text">Pesquisar:</label><br />
                 <input type="text" placeholder="Search..">
                 <button type="submit"><i class="fa fa-search"></i></button>
-                @for (int i = 0; i < 5; i++)
+                @foreach(var pessoas in ViewBag.Pessoas)
                 {
                     <dl>
-                        <dt>José Dos Santos </dt>
-                        <dd>Apartamento: @i</dd>
-                        <dd>Telefone: (069) @i@i@i@i-@i@i@i@i</dd>
-                        <dd>Celular:  (069) 9 @i@i@i@i-@i@i@i@i</dd>
+                        <dt>@pessoas.nome</dt>
+                        <dd>@pessoas.apto</dd>
+                        <dd>Telefone: @pessoas.telefone</dd>
+                        <dd>Celular:  @pessoas.celular</dd>
                     </dl>
                 }
                 <nav aria-label="PageNnavigation">

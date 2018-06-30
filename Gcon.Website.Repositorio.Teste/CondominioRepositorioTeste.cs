@@ -16,15 +16,15 @@ namespace TesteCondominioRepositorio
         {
             Condominio condominio = new Condominio()
             {
-                id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
+                //id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
                 qtd_ap  = 100,
-                nome = "Condominio Teste",
-                rua = "Rua dos Condominios",
-                bairro = "Parque da Pedra",
-                cidade = "Caxias do Sul",
-                estado = "Rio Grande do Sul",
-                pais = "Brasil",
-                numero = 119
+                nome = "Teste de condominio",
+                rua = "Avenida dos Condominios mucho locos",
+                bairro = "Parque do Crack",
+                cidade = "Uberlandia do Sul",
+                estado = "Jubileu",
+                pais = "Esquezito",
+                numero = 999
             };
 
             try

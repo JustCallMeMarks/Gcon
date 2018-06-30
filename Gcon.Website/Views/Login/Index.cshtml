@@ -1,9 +1,8 @@
 ﻿@using Gcon.Website.App_LocalResources
-@using Gcon.Website.Models
 @{
     Layout = null;
 }
-
+@model Gcon.Website.Models.PessoaModel
 
 <!DOCTYPE html>
 
@@ -73,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="col-md-12">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">@recursos.Cancelar</button>
+                       <button class="btn" data-dismiss="modal" aria-hidden="true">@recursos.Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -98,46 +97,46 @@
                                         <form action=@Url.Action("NovosMoradores","Login") method="post">
                                             <div class="row">
                                                 <label class="col-form-label">Nome Completo:</label>
-                                                <input class="form-control input-lg" placeholder="Nome Completo" name="pessoaModel.nome" type="text">
+                                                <input class="form-control input-lg" placeholder="Nome Completo" name="pessoa.nome" type="text">
                                             </div>
                                             <div class="row">
                                                 <label class="col-form-label">Email:</label>
-                                                <input class="form-control input-lg" placeholder="E-mail" name="email" type="email">
+                                                <input class="form-control input-lg" placeholder="E-mail" name="pessoa.email" type="email">
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">Telefone:</label>
-                                                    <input class="form-control input-lg" placeholder="(011) 3000-0000" name="tel" type="text">
+                                                    <input class="form-control input-lg" placeholder="(011) 3000-0000" name="pessoa.telefone" type="text">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">Celular:</label>
-                                                    <input class="form-control input-lg" placeholder="(011) 99000-0000" name="cel" type="text">
+                                                    <input class="form-control input-lg" placeholder="(011) 99000-0000"name="pessoa.celular" type="text">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">Apartamento:</label>
-                                                    <input class="form-control input-lg" placeholder="Apartamento" name="apartamento" type="text">
+                                                    <input class="form-control input-lg" placeholder="Apartamento" name="pessoa.apartamento" type="text">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label class="col-form-label">CPF:</label>
-                                                    <input class="form-control input-lg" placeholder="123.456.789-10" name="cpf" type="text">
+                                                    <input class="form-control input-lg" placeholder="123.456.789-10" name="pessoa.cpf" type="text">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-form-label">Condominio:</label>
                                             </div>
                                             <div class="row">
-                                                <select class="form-control-lg input-lg" id="exampleFormControlSelect1" name="condominio">
-                                                    @for (int i = 0; i < 10; i++)
+                                                <select class="form-control-lg input-lg" id="exampleFormControlSelect1" name="pessoa.id_condominio">
+                                                    @foreach(var condominio in ViewBag.condominios)
                                                     {
-                                                        <option>Teste condominio da praia bela</option>
+                                                        <option value="@condominio.id">@condominio.nome</option>
                                                     }
                                                 </select>
                                             </div>
                                             <div class="row">
                                                 <label class="col-form-label">Senha:</label>
-                                                <input class="form-control input-lg" placeholder="Senha" name="senha" type="password">
+                                                <input class="form-control input-lg" placeholder="Senha" name="pessoa.senha" type="password">
                                             </div>
                                             <div class="row">
                                                 <label class="col-form-label">Confirmar a Senha:</label>

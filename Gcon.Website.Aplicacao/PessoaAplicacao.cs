@@ -39,5 +39,10 @@ namespace Gcon.Website.Aplicacao
             return this.pessoaRepossitorio.ProcurarPessoasApartirEmailSenha(email,senha);
         }
 
+        public List<Pessoa> getMoradores(Guid id)
+        {
+            return this.pessoaRepossitorio.ProcurarTodasAsPessoasDeUmCondominio(id);
+        }
+
     }
 }

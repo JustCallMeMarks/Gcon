@@ -17,6 +17,7 @@ namespace Gcon.Website.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            setViewBag();
             return View();
         }
 
@@ -32,48 +33,62 @@ namespace Gcon.Website.Controllers
             {
                 Session["usuario"] = pessoa.id;
                 Session["Permission"] = pessoa.permissao == 1 ? "ADM" : "USER";
+                Session["Condominio"] = pessoa.id_condominio;
                 return RedirectToAction("Index", "Mural");
             }
             else
             {
                 ViewBag.Texto = "Senha ou Email não cadastrado";
             }
+            setViewBag();
             return View("Index");
         }
 
         public ActionResult Logout()
         {
             Session["usuario"] = null;
+            setViewBag();
             return View("Index");
         }
 
         public ActionResult EsqueciSenha(string email)
         {
+            setViewBag();
             return View("Index");
         }
 
-        public ActionResult NovosMoradores(string nome, string email, string tel, string cel, string senha, string condominio, string cpf, string apartamento)
+        public ActionResult NovosMoradores(PessoaModel pessoa)
         {
             string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
             PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
 
 
-            Pessoa pessoa = new Pessoa()
+            Pessoa pessoaEntidade = new Pessoa()
             {
-                nome = nome,
-                email = email,
-                telefone = tel,                
-                celular = cel,
-                senha = senha,
-                id_condominio = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
-                cpf_cnpj = cpf,
-                apto = apartamento
+                nome = pessoa.nome,
+                email = pessoa.email,
+                telefone = pessoa.telefone,                
+                celular = pessoa.celular,
+                senha = pessoa.senha,
+                id_condominio = pessoa.id_condominio,
+                cpf_cnpj = pessoa.cpf,
+                apto = pessoa.apartamento
             };
 
-            pessoaAplicacao.Inserir(pessoa);
-
+            pessoaAplicacao.Inserir(pessoaEntidade);
+            setViewBag();
             return View("Index");
+        }
+
+        public void setViewBag()
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            CondominioRepositorio condominioRepositorio = new CondominioRepositorio(str);
+            CondominioAplicacao condominioAplicacao = new CondominioAplicacao(condominioRepositorio);
+
+            var condominios = condominioAplicacao.ProcurarTodosCondominios();
+            ViewBag.condominios = condominios;
         }
     }
 }

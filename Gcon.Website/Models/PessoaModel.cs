@@ -7,13 +7,13 @@ namespace Gcon.Website.Models
 {
     public class PessoaModel
     {
-        public string nome;
-        public Guid id_condominio;
-        public string telefone;
-        public string celular;
-        public string senha;
-        public string apartamento;
-        public string email;
-        public string cpf;
+        public string nome { get; set; }
+        public Guid id_condominio { get; set; }
+        public string telefone { get; set; } 
+        public string celular { get; set; }
+        public string senha { get; set; }
+        public string apartamento { get; set; }
+        public string email { get; set; }
+        public string cpf { get; set; }
     }
 }
