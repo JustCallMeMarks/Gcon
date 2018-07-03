@@ -14,7 +14,7 @@ namespace Gcon.Website.Repositorio.Teste
         [TestMethod]
         public void GravarPessoa()
         {
-            Pessoa pessoa = new Pessoa()
+            PessoaEntidade pessoa = new PessoaEntidade()
             {
                 id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
                 cpf_cnpj = "1234567909",
@@ -44,7 +44,7 @@ namespace Gcon.Website.Repositorio.Teste
         [TestMethod]
         public void AlteraPessoa()
         {
-            Pessoa pessoa = new Pessoa()
+            PessoaEntidade pessoa = new PessoaEntidade()
             {
                 id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
                 cpf_cnpj = "1234567910",
@@ -96,7 +96,7 @@ namespace Gcon.Website.Repositorio.Teste
             try
             {
                 PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
-                Pessoa pessoa = pessoaRepositorio.Procurar(Id);
+                PessoaEntidade pessoa = pessoaRepositorio.Procurar(Id);
 
                 Assert.IsTrue(true);
             }
@@ -114,7 +114,7 @@ namespace Gcon.Website.Repositorio.Teste
             try
             {
                 PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
-                List<Pessoa> pessoa = pessoaRepositorio.ProcurarTodasAsPessoasDeUmCondominio(Id);
+                List<PessoaEntidade> pessoa = pessoaRepositorio.ProcurarTodasAsPessoasDeUmCondominio(Id);
 
                 Assert.IsTrue(true);
             }
@@ -133,7 +133,7 @@ namespace Gcon.Website.Repositorio.Teste
             try
             {
                 PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
-                Pessoa pessoa = pessoaRepositorio.ProcurarPessoasApartirEmailSenha(email,senha);
+                PessoaEntidade pessoa = pessoaRepositorio.ProcurarPessoasApartirEmailSenha(email,senha);
 
                 Assert.IsTrue(true);
             }

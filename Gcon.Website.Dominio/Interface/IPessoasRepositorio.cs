@@ -9,11 +9,12 @@ namespace Gcon.Website.Dominio.Interface
 {
     public interface IPessoasRepositorio
     {
-        void Inserir(Pessoa Pessoa);
-        void Alterar(Pessoa Pessoa);
+        void Inserir(PessoaEntidade Pessoa);
+        void Alterar(PessoaEntidade Pessoa);
         void Excluir(Guid id);
-        Pessoa Procurar(Guid id);
-        List<Pessoa> ProcurarTodasAsPessoasDeUmCondominio(Guid id);
-        Pessoa ProcurarPessoasApartirEmailSenha(string email, string senha);
+        PessoaEntidade Procurar(Guid id);
+        List<PessoaEntidade> ProcurarTodasAsPessoasDeUmCondominio(Guid id);
+        PessoaEntidade ProcurarPessoasApartirEmailSenha(string email, string senha);
+        void Bloqueia(Guid id);
     }
 }

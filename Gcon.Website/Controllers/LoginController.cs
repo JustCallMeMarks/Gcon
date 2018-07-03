@@ -27,7 +27,7 @@ namespace Gcon.Website.Controllers
             PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
 
-            Pessoa pessoa = pessoaAplicacao.Login(usuario, senha);
+            Dominio.Entidade.Pessoa.PessoaEntidade pessoa = pessoaAplicacao.Login(usuario, senha);
 
             if (pessoa != null)
             {
@@ -47,24 +47,22 @@ namespace Gcon.Website.Controllers
         public ActionResult Logout()
         {
             Session["usuario"] = null;
-            setViewBag();
-            return View("Index");
+            return (RedirectToAction("Index"));
         }
 
         public ActionResult EsqueciSenha(string email)
         {
-            setViewBag();
-            return View("Index");
+            return (RedirectToAction("Index"));
         }
 
-        public ActionResult NovosMoradores(PessoaModel pessoa)
+        public ActionResult NovosMoradores(Models.PessoaEntidade pessoa)
         {
             string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
             PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
 
 
-            Pessoa pessoaEntidade = new Pessoa()
+            Dominio.Entidade.Pessoa.PessoaEntidade pessoaEntidade = new Dominio.Entidade.Pessoa.PessoaEntidade()
             {
                 nome = pessoa.nome,
                 email = pessoa.email,
@@ -77,8 +75,7 @@ namespace Gcon.Website.Controllers
             };
 
             pessoaAplicacao.Inserir(pessoaEntidade);
-            setViewBag();
-            return View("Index");
+            return (RedirectToAction("Index"));
         }
 
         public void setViewBag()

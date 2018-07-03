@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="CondominioAplicacao.cs" />
+    <Compile Include="MuralAplicacao.cs" />
     <Compile Include="PessoaAplicacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReunioesAplicacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gcon.Website.Dominio\Gcon.Website.Dominio.csproj">

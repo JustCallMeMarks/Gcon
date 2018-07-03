@@ -15,7 +15,7 @@ namespace Gcon.Website.Repositorio
             this.connectionString = connectionString;
         }
 
-        public void Inserir(Pessoa Pessoa)
+        public void Inserir(PessoaEntidade Pessoa)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -41,7 +41,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public void Alterar(Pessoa Pessoa)
+        public void Alterar(PessoaEntidade Pessoa)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -95,7 +95,26 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public Pessoa Procurar(Guid id)
+        public void Bloqueia(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = "UPDATE pessoas " +
+                                         "SET status = 2" +
+                                        "WHERE id = @id; ";
+
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("id", id.ToString());
+
+                comando.ExecuteNonQuery();
+
+            }
+        }
+
+        public PessoaEntidade Procurar(Guid id)
         {
              using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
              {
@@ -107,7 +126,7 @@ namespace Gcon.Website.Repositorio
 
                  comando.Parameters.AddWithValue("id", id.ToString());
 
-                 Pessoa Pessoa = new Pessoa();
+                 PessoaEntidade Pessoa = new PessoaEntidade();
 
                  using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                  {
@@ -131,7 +150,7 @@ namespace Gcon.Website.Repositorio
              }
         }
 
-        public List<Pessoa> ProcurarTodasAsPessoasDeUmCondominio(Guid id)
+        public List<PessoaEntidade> ProcurarTodasAsPessoasDeUmCondominio(Guid id)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -143,13 +162,13 @@ namespace Gcon.Website.Repositorio
 
                 comando.Parameters.AddWithValue("id", id.ToString());
 
-                List<Pessoa> pessoas = new List<Pessoa>();
+                List<PessoaEntidade> pessoas = new List<PessoaEntidade>();
 
                 using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                 {
                     while (SqlData.Read())
                     {
-                        Pessoa Pessoa = new Pessoa();
+                        PessoaEntidade Pessoa = new PessoaEntidade();
 
 
                         Pessoa.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
@@ -172,7 +191,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public Pessoa ProcurarPessoasApartirEmailSenha(string email , string senha)
+        public PessoaEntidade ProcurarPessoasApartirEmailSenha(string email , string senha)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -189,7 +208,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("email", email);
                 comando.Parameters.AddWithValue("senha", senha);
 
-                Pessoa pessoas = new Pessoa();
+                PessoaEntidade pessoas = new PessoaEntidade();
 
                 using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                 {

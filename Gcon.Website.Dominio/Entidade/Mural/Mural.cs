@@ -18,5 +18,10 @@ namespace Gcon.Website.Dominio.Entidade.Mural
         public string titulo { get; set; }
         public Guid id_pessoa { get; set; }
         public Guid id_condominio { get; set; }
+
+        public static implicit operator List<object>(Mural v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Mural;
 
 namespace Gcon.Website.Dominio.Interface
@@ -6,9 +7,9 @@ namespace Gcon.Website.Dominio.Interface
     public interface IMural
     {
         void Inserir(Mural Mural);
-        void Alterar(Mural Mural);
+        bool Alterar(Mural Mural);
         void Excluir(Guid id);
         Mural Procurar(Guid id);
-        Mural ProcurarMuralDoCondominio(Guid id);
+        List<Mural> ProcurarMuralDoCondominio(Guid id);
     }
 }

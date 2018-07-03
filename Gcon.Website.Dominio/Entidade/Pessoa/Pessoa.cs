@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gcon.Website.Dominio.Entidade.Pessoa
 {
-    public class Pessoa
+    public class PessoaEntidade
     {
-        public Pessoa()
+        public PessoaEntidade()
         {
             id = Guid.NewGuid();
         }

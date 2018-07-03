@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Mural;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -35,7 +36,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public void Alterar(Mural Mural)
+        public bool Alterar(Mural Mural)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -57,8 +58,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("id_pessoa", Mural.id_pessoa);
                 comando.Parameters.AddWithValue("id_condominio", Mural.id_condominio);
 
-                comando.ExecuteNonQuery();
-
+                return comando.ExecuteNonQuery() > 0;
             }
         }
 
@@ -110,7 +110,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public Mural ProcurarMuralDoCondominio(Guid id)
+        public List<Mural> ProcurarMuralDoCondominio(Guid id)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -122,22 +122,25 @@ namespace Gcon.Website.Repositorio
 
                 comando.Parameters.AddWithValue("id", id.ToString());
 
-                Mural Mural = new Mural();
+                List<Mural> Muralist = new List<Mural>();
 
                 using (NpgsqlDataReader SqlData = comando.ExecuteReader())
                 {
-                    if (SqlData.Read())
+                    while (SqlData.Read())
                     {
+                        Mural Mural = new Mural();
+
                         Mural.id = Guid.Parse(String.Format("{0}", SqlData["id"]));
                         Mural.texto = String.Format("{0}", SqlData["texto"]);
                         Mural.data = (DateTime)SqlData["data"];
                         Mural.titulo = String.Format("{0}", SqlData["titulo"]);
                         Mural.id_pessoa = Guid.Parse(String.Format("{0}", SqlData["id_pessoa"]));
                         Mural.id_condominio = Guid.Parse(String.Format("{0}", SqlData["id_condominio"]));
+                        Muralist.Add(Mural);
                     }
                 }
 
-                return Mural;
+                return Muralist;
             }
         }
     }

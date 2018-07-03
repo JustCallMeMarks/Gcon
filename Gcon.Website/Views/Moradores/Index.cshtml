@@ -17,13 +17,15 @@
                 <asp:label class="text-white">Moradores</asp:label>
             </div>
             <div id="Moradores" class="card-body">
-                <label class="text">Pesquisar:</label><br />
-                <input type="text" placeholder="Search..">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <form action=@Url.Action("Pesquisa","Moradores", new { i = 0 }) method="post">
+                    <label class="text">Pesquisar:</label><br />
+                    <input type="text" name="nome" value="@ViewBag.pesquisa" placeholder="Search..">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 @foreach(var pessoas in ViewBag.Pessoas)
                 {
                     <dl>
-                        <dt>@pessoas.nome</dt>
+                        <dt><a href=@Url.Action("MostraPessoa","Moradores", new { id = @pessoas.id })>@pessoas.nome</a></dt>
                         <dd>@pessoas.apto</dd>
                         <dd>Telefone: @pessoas.telefone</dd>
                         <dd>Celular:  @pessoas.celular</dd>
@@ -31,11 +33,12 @@
                 }
                 <nav aria-label="PageNnavigation">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual - 5) })">Previous</a></li>
+                        @for(int i = 0; i < ViewBag.QtdPessoa; i += 5)
+                        {
+                            <li class="page-item"><a class="page-link" href=@Url.Action(ViewBag.Action,"Moradores", new { i = @i })>@(i/5)</a></li>
+                        }
+                        <li class="page-item"><a class="page-link" onclick="if(@ViewBag.QtdPessoa < @ViewBag.PagAtual + 5){return false;}" href=@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual + 5) > ViewBag.QtdPessoa ? (ViewBag.PagAtual + 5) : (ViewBag.QtdPessoa - ViewBag.PagAtual*5)%5})>Next</a></li>
                     </ul>
                 </nav>
             </div>
@@ -48,22 +51,25 @@
             </div>
             <div id="crdBdProximasReunioes" class="card-body">
                 <p>
-                    <dl>
-                        <dt>
-                            José Dos Santos
-                            <button id="btnEditarAvisos" class="btn btn-sm pull-right" data-target="#mdEditAvisos" data-toggle="modal" href="#">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </dt>
-                        <dd>Apartamento: 0</dd>
-                        <dd>Telefone: (069) 3333-3333</dd>
-                        <dd>Celular:  (069) 9 9999-9999</dd>
-                        <dd>Email: Exemplo@Teste.org</dd>
-                        <dd>
-                            <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Excluir</button>
-                            <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Bloquear</button>
-                        </dd>
-                    </dl>
+                    @if (ViewBag.pessoaSelecionada != null)
+                    {
+                        <dl>
+                            <dt>
+                                @ViewBag.pessoaSelecionada.nome
+                                <button id="btnEditarAvisos" class="btn btn-sm pull-right" data-target="#mdEditAvisos" data-toggle="modal" href="#">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </dt>
+                            <dd>Apartamento: @ViewBag.pessoaSelecionada.apto</dd>
+                            <dd>Telefone:  @ViewBag.pessoaSelecionada.telefone</dd>
+                            <dd>Celular:   @ViewBag.pessoaSelecionada.celular</dd>
+                            <dd>Email:  @ViewBag.pessoaSelecionada.email</dd>
+                            <dd>
+                                <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Excluir/@ViewBag.pessoaSelecionada.id">Excluir</a>
+                                <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Bloquear/@ViewBag.pessoaSelecionada.id">Bloquear</a>
+                            </dd>
+                        </dl>
+                    }
                 </p>
             </div>
         </div>
