@@ -27,5 +27,10 @@ namespace Gcon.Website.Aplicacao
                 this.muralRepositorio.Inserir(mural);
             }
         }
+
+        public void Apagar(Guid id)
+        {
+            this.muralRepositorio.Excluir(id);
+        }
     }
 }

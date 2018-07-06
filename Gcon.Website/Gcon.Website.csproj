@@ -170,6 +170,7 @@
     <Compile Include="Locale\recursos.en-US.Designer.cs" />
     <Compile Include="Locale\recursos.es-ES.Designer.cs" />
     <Compile Include="Models\PessoaModel.cs" />
+    <Compile Include="Models\ReuniaoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

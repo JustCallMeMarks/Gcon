@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using Gcon.Website.Aplicacao;
 using Gcon.Website.Dominio.Entidade.Mural;
+using Gcon.Website.Models;
+using Gcon.Website.Dominio.Entidade.Reunioes;
 
 namespace Gcon.Website.Controllers
 {
@@ -33,28 +35,68 @@ namespace Gcon.Website.Controllers
 
             return View();
         }
-        public ActionResult EditarAvisos(string Texto, Guid id)
+        public ActionResult EditarAvisos(string Texto, string id, string titulo)
         {
             string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
             MuralRepositorio muralRepositorio = new MuralRepositorio(str);
             MuralAplicacao muralApicacao = new MuralAplicacao(muralRepositorio);
 
-            DateTime today = default(DateTime);
+            DateTime today = DateTime.Now;
+
+            if (id.Equals("Novo"))
+            {
+                id = Guid.NewGuid().ToString();
+            }
 
             Mural mural = new Mural
             {
-                id = id,
+                id = Guid.Parse(id),
                 id_condominio = (Guid)Session["Condominio"],
                 id_pessoa = (Guid)Session["usuario"],
                 texto = Texto,
                 data = today,
-                titulo = "Titulo"
+                titulo = titulo
             };
 
             muralApicacao.setMural(mural);
 
             //object Permisao = Session["Permission"];
             //ViewBag.Tipo = Permisao.ToString();
+            return (RedirectToAction("Index"));
+        }
+        public ActionResult Apagar(string id)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            MuralRepositorio muralRepositorio = new MuralRepositorio(str);
+            MuralAplicacao muralApicacao = new MuralAplicacao(muralRepositorio);
+
+            muralApicacao.Apagar(Guid.Parse(id));
+                
+            return (RedirectToAction("Index"));
+        }
+        
+        public ActionResult EditarReunioes(DateTime dataReunioes, string id, string titulo)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            ReunioesRepositorio reunioesRepositorio  = new ReunioesRepositorio(str);
+            ReunioesAplicacao reunioesApicacao = new ReunioesAplicacao(reunioesRepositorio);
+
+            if (id.Equals("Novo"))
+            {
+                id = Guid.NewGuid().ToString();
+            }
+
+            Reunioes reuniao = new Reunioes()
+            {
+                id = Guid.Parse(id),
+                id_condominio = (Guid)Session["Condominio"],
+                id_pessoa = (Guid)Session["usuario"],
+                data = dataReunioes,
+                titulo = titulo
+            };
+
+            reunioesApicacao.setReunioes(reuniao);
+
             return (RedirectToAction("Index"));
         }
     }

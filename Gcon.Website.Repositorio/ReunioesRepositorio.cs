@@ -36,7 +36,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public void Alterar(Reunioes Reunioes)
+        public bool Alterar(Reunioes Reunioes)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
@@ -58,8 +58,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("data_atz", Reunioes.data_atz);
                 comando.Parameters.AddWithValue("id_condominio", Reunioes.id_condominio);
 
-                comando.ExecuteNonQuery();
-
+                return comando.ExecuteNonQuery() > 0;
             }
         }
 

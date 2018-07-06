@@ -1,14 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = recursos.Mural;
-    if (ViewBag.Tipo == "USER")
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_LayoutAdm.cshtml";
-    }
+                /**/
+
+                ViewBag.Title = recursos.Mural;
+                if (ViewBag.Tipo == "USER")
+                {
+                    Layout = "~/Views/Shared/_Layout.cshtml";
+                }
+                else
+                {
+                    Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+                }
 }
 
 <div class="row">
@@ -16,33 +18,54 @@
         <div id="crdAvisosGerais" class="card">
             <div id="crdHdAvisosGerais" class="card-header bg-dark">
                 <asp:label class="text-white">@recursos.AvisosGerais:</asp:label>
-                <button id="btnEditarAvisos" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditAvisos" onclick="CarregaTextoModal()">
-                    <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title="EditarAvisos"></i>
-                </button>
+                @if (ViewBag.Tipo == "ADM")
+                {
+                    <button id="btnEditarAvisos" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditAvisos" onclick="novo()">
+                        <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="EditarAvisos"></i>
+                    </button>
+                }
             </div>
             <div id="crdBdAvisosGerais" class="card-body">
                 @foreach (var mural in ViewBag.Mural)
                 {
-                    <h5>@mural.titulo</h5>
-                    <p>@mural.texto</p>
+                    <h5 id="Titulo @mural.id">@mural.titulo</h5>
+                    if (ViewBag.Tipo == "ADM")
+                    {
+                        <button class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditAvisos" onclick="CarregaTextoModal('@mural.id')">
+                            <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title="EditarAvisos"></i>
+                        </button>
+                    }
+                    <p id="@mural.id">@mural.texto</p>
                     <h9>@mural.data</h9>
                 }
-                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-5 col-sm-5 col-xl-5 col-12">
         <div id="crdProximasReunioes" class="card">
             <div id="crdHdProximasReunioes" class="card-header bg-dark">
                 <asp:Label class="text-white">@recursos.ProximasReunioes:</asp:Label>
+                @if (ViewBag.Tipo == "ADM")
+                {
+                    <button id="btnAdicionarReunioes" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditReunioes"  onclick="novoReuniao()">
+                        <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="Adicionar Reunioes"></i>
+                    </button>
+                }
             </div>
             <div id="crdBdProximasReunioes" class="card-body">
-                    @foreach (var reuniao in ViewBag.Reunioes)
-                    {
-                        <dl>
-                            <dt>@reuniao.titulo</dt>
-                            <dd>@reuniao.data</dd>
-                        </dl>
-                    }
+                @foreach (var reuniao in ViewBag.Reunioes)
+    {
+            if (ViewBag.Tipo == "ADM")
+{
+            <button id="btnAdicionarReunioes" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditReunioes" onclick="CarregaReuniaoModal('@reuniao.id')">
+                <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title="Editar Reunioes"></i>
+            </button>
+}
+            <dl>
+                <dt id="tituloReuniao @reuniao.id">@reuniao.titulo</dt>
+                <dd id="@reuniao.id">@reuniao.data</dd>
+            </dl>
+}
             </div>
         </div>
         <div id="crdResultadoDeVotacoes" class="card">
@@ -60,32 +83,81 @@
         </div>
     </div>
 </div>
-<!-- Modal editar avisos -->
-<div class="modal fade" id="mdEditAvisos" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@recursos.AvisosGerais</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+@if (ViewBag.Tipo == "ADM")
+{
+    <!-- Modal editar avisos -->
+    <div class="modal fade" id="mdEditAvisos" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@recursos.AvisosGerais</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action=@Url.Action("EditarAvisos", "mural")>
+                    <div class="modal-body">
+                        Titulo:<br />
+                        <input hidden name="id" id="id" value="id" />
+                        <input type="text" id="titulo" name="titulo" class="form-control" />
+                        Texto:<br />
+                        <textarea id="mdTxtEditarAvisos" name="Texto" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <a class="btn btn-secondary" type="button" name="idApagar" href=@Url.Action("Apagar", "Mural")>Apagar</a>
+                    </div>
+                </form>
             </div>
-            <form action=@Url.Action("EditarAvisos", "mural")>
-                <div class="modal-body">
-                    <input hidden name="id" value="id" />
-                    <textarea id="mdTxtEditarAvisos" name="Texto" class="form-control"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" type="submit">Salvar</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+
+    <!-- Modal editar reunioes -->
+    <div class="modal fade" id="mdEditReunioes" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reuniões</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action=@Url.Action("EditarReunioes", "mural")>
+                    <div class="modal-body">
+                        Titulo:<br />
+                        <input hidden name="id" id="idReunioes" value="id" />
+                        <input type="text" id="tituloReunioes" name="titulo" class="form-control" />
+                        Data e Hora:<br />
+                        <input type="datetime-local" id="dataReunioes" name="dataReunioes" class="form-control"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <a class="btn btn-secondary" type="button" name="idApagar" href=@Url.Action("ApagarReunioes", "Mural")>Apagar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
 
 <script type="text/javascript">
-    function CarregaTextoModal() {
-        $("#mdTxtEditarAvisos").html($("#txtAvisosGerais").text());
+    function CarregaTextoModal(id) {
+        $("#mdTxtEditarAvisos").html($("#" + id).text());
+        $("#id").val(id);
+        document.getElementById("titulo").value = document.getElementById("Titulo " + id).innerText;
     }
+    function novo() {
+        $("#id").val("Novo");
+    }
+    function CarregaReuniaoModal(id) {
+        $("#dataReunioes").html($("#" + id).text());
+        $("#idReunioes").val(id);
+        document.getElementById("tituloReunioes").value = document.getElementById("tituloReunioes " + id).innerText;
+    }
+    function novoReuniao() {
+        $("#idReunioes").val("Novo");
+    }
+
 </script>

@@ -18,5 +18,13 @@ namespace Gcon.Website.Aplicacao
         {
             return this.reunioes.ProcurarTodasReunioesDeUmCondominio(id);
         }
+
+        public void setReunioes(Reunioes reuniao)
+        {
+            if(!this.reunioes.Alterar(reuniao))
+            {
+                this.reunioes.Inserir(reuniao);
+            }
+        }
     }
 }
