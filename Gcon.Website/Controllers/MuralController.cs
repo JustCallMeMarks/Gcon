@@ -99,5 +99,14 @@ namespace Gcon.Website.Controllers
 
             return (RedirectToAction("Index"));
         }
+
+        public ActionResult ApagarReunioes(string id)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            ReunioesRepositorio reunioesRepositorio = new ReunioesRepositorio(str);
+            ReunioesAplicacao reunioesApicacao = new ReunioesAplicacao(reunioesRepositorio);
+            reunioesApicacao.Apagar(Guid.Parse(id));
+            return (RedirectToAction("Index"));
+        }
     }
 }

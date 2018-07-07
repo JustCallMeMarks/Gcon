@@ -95,19 +95,20 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public void Bloqueia(Guid id)
+        public void Bloqueia(Guid id,string status)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.CommandText = "UPDATE pessoas " +
-                                         "SET status = 2" +
+                                         "SET status = @status " +
                                         "WHERE id = @id; ";
 
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", id.ToString());
+                comando.Parameters.AddWithValue("status", Int32.Parse(status));
 
                 comando.ExecuteNonQuery();
 

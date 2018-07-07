@@ -1,4 +1,5 @@
 ﻿using Gcon.Website.Aplicacao;
+using Gcon.Website.Dominio.Entidade.Pessoa;
 using Gcon.Website.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace Gcon.Website.Controllers
                 i = Int32.Parse(Request.QueryString["i"]);
             }
             var pessoas = procuraPessoas();
+            ViewBag.pessoasNAprovadas = pessoas.FindAll(pessoa => pessoa.status == 0);
+            pessoas.RemoveAll(pessoa => pessoa.status == 0);
+            ViewBag.QtdPessoa = pessoas.Count;
+
             if (i < 0)
                 i = 0;
             if (pessoas.Count < i)
@@ -42,7 +47,6 @@ namespace Gcon.Website.Controllers
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
 
             var pessoas = pessoaAplicacao.getMoradores((Guid)Session["Condominio"]);
-            ViewBag.QtdPessoa = pessoas.Count;
             return pessoas;
         }
 
@@ -54,7 +58,11 @@ namespace Gcon.Website.Controllers
                 i = Int32.Parse(Request.QueryString["i"]);
             }
             var pessoas = procuraPessoas();
+            ViewBag.pessoasNAprovadas = pessoas.FindAll(pessoa => pessoa.status == 0);
+            pessoas.RemoveAll(pessoa => pessoa.status == 0);
+
             pessoas = pessoas.FindAll(x => x.nome.Contains(nome));
+            ViewBag.QtdPessoa = pessoas.Count;
             if (i < 0)
                 i = 0;
             if (pessoas.Count < i)
@@ -90,11 +98,37 @@ namespace Gcon.Website.Controllers
 
         public ActionResult Bloquear(Guid id)
         {
+            mudaStatus(id,"2");
+
+            Index();
+            return View("Index");
+        }
+
+        public ActionResult Desbloquear(Guid id)
+        {
+            mudaStatus(id, "1");
+
+            Index();
+            return View("Index");
+        }
+
+        public void mudaStatus(Guid id, string status)
+        {
             string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
             PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
 
-            pessoaAplicacao.bloqueia(id);
+            pessoaAplicacao.bloqueia(id,status);
+        }
+
+        public ActionResult EditarApto(Guid id, string apto)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+            PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
+            PessoaEntidade pessoa = pessoaAplicacao.Procura(id);
+            pessoa.apto = apto;
+            pessoaAplicacao.Altera(pessoa);
 
             Index();
             return View("Index");

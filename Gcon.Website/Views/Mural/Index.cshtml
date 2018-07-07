@@ -54,18 +54,18 @@
             </div>
             <div id="crdBdProximasReunioes" class="card-body">
                 @foreach (var reuniao in ViewBag.Reunioes)
-    {
-            if (ViewBag.Tipo == "ADM")
-{
-            <button id="btnAdicionarReunioes" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditReunioes" onclick="CarregaReuniaoModal('@reuniao.id')">
-                <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title="Editar Reunioes"></i>
-            </button>
-}
-            <dl>
-                <dt id="tituloReuniao @reuniao.id">@reuniao.titulo</dt>
-                <dd id="@reuniao.id">@reuniao.data</dd>
-            </dl>
-}
+                {
+                    if (ViewBag.Tipo == "ADM")
+                    {
+                        <button id="btnAdicionarReunioes" class="btn btn-dark btn-sm pull-right" data-toggle="modal" data-target="#mdEditReunioes" onclick="CarregaReuniaoModal('@reuniao.id')">
+                            <i class="fa fa-pencil" data-toggle="tooltip" data-placement="right" title="Editar Reunioes"></i>
+                        </button>
+                    }
+                    <dl>
+                        <dt id="tituloReuniao @reuniao.id">@reuniao.titulo</dt>
+                        <dd id="@reuniao.id">@reuniao.data</dd>
+                    </dl>
+                }
             </div>
         </div>
         <div id="crdResultadoDeVotacoes" class="card">
@@ -106,7 +106,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                         <button class="btn btn-primary" type="submit">Salvar</button>
-                        <a class="btn btn-secondary" type="button" name="idApagar" href=@Url.Action("Apagar", "Mural")>Apagar</a>
+                        <a class="btn btn-secondary" type="button" id="ApagarMural" name="id" href=@Url.Action("Apagar", "Mural")>Apagar</a>
                     </div>
                 </form>
             </div>
@@ -114,7 +114,7 @@
     </div>
 
     <!-- Modal editar reunioes -->
-    <div class="modal fade" id="mdEditReunioes" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
+    <div class="modal fade" id="mdEditReunioes" tabindex="-1" role="dialog" aria-labelledby="Editar Reuniões" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,7 +134,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                         <button class="btn btn-primary" type="submit">Salvar</button>
-                        <a class="btn btn-secondary" type="button" name="idApagar" href=@Url.Action("ApagarReunioes", "Mural")>Apagar</a>
+                        <a class="btn btn-secondary" type="button" name="id" id="idApagar" href=@Url.Action("ApagarReunioes", "Mural")>Apagar</a>
                     </div>
                 </form>
             </div>
@@ -147,14 +147,26 @@
         $("#mdTxtEditarAvisos").html($("#" + id).text());
         $("#id").val(id);
         document.getElementById("titulo").value = document.getElementById("Titulo " + id).innerText;
+        document.getElementById("ApagarMural").href += "/" + id;
     }
     function novo() {
         $("#id").val("Novo");
     }
     function CarregaReuniaoModal(id) {
-        $("#dataReunioes").html($("#" + id).text());
+        dia = $("#" + id).text().substring(0, 2);
+        mes = $("#" + id).text().substring(3, 5) - 1;
+        ano = $("#" + id).text().substring(6, 10);
+        hora = $("#" + id).text().substring(11, 13) - 2;
+        minutos = $("#" + id).text().substring(14, 16);
+        segundos = $("#" + id).text().substring(17, 19);
+
+        today = new Date(ano, mes, dia, hora, minutos, segundos);
+
+        $("#dataReunioes").prop('valueAsNumber', today);
+
         $("#idReunioes").val(id);
-        document.getElementById("tituloReunioes").value = document.getElementById("tituloReunioes " + id).innerText;
+        document.getElementById("tituloReunioes").value = document.getElementById("tituloReuniao " + id).innerText;
+        document.getElementById("idApagar").href += "/" + id;
     }
     function novoReuniao() {
         $("#idReunioes").val("Novo");

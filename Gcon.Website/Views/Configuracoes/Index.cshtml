@@ -33,22 +33,13 @@
 
         document.getElementById(id).value = strValor;
     }
-    Window.onload = function FG_FormatarCPF() {
-        strValor = document.getElementsByName("pessoa.cpf")[0].value;
-
-        if (strValor.length > 9) {
-            strValor = strValor.substr(0, 2) + '.' + strValor.substr(3, 3) + '.' + strValor.substr(6, 3) + '-' + strValor.substr(9, 2);
-        }
-
-        document.getElementsByName("pessoa.cpf")[0].value = strValor;
-    }
     function TestaSenha() {
         bool = true;
-        if (document.getElementById("pessoa.senha").value != document.getElementById("confirmacaoSenha").value) {
+        if (document.getElementById("newPass").value != document.getElementById("confirmPass").value) {
             $('span[data-valmsg-for="confirmacaoSenha"]')[0].hidden = false;
             bool = false;
         }
-        if (document.getElementById("pessoa.senha").value.length < 8) {
+        if (document.getElementById("newPass").value.length < 8) {
             $('span[data-valmsg-for="pessoa.senha"]')[0].hidden = false;
             bool = false;
         }
@@ -69,7 +60,7 @@
 
 
 <div class="col-sm-12 offset-2">
-    <form action=@Url.Action("Alterar","Configuracoes")>
+    <form action=@Url.Action("Alterar","Configuracoes") onsubmit="return TestaSenha()";>
         <div class="form-group row">
             <label for="inputNome" class="col-sm-2 col-form-label">Nome Completo:</label>
             <div class="col-sm-4">
@@ -80,7 +71,7 @@
         <div class="form-group row">
             <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="pessoa.telefone"" placeholder="Telefone" name="pessoa.telefone" value="@ViewBag.pessoa.telefone"  onkeydown="FG_FormatarTelfone(this.value, this.id)" pattern="\([0-9]{3}\) [0-9]{4}-[0-9]{4}">
+                <input type="text" class="form-control" id="pessoa.telefone" placeholder="Telefone" name="pessoa.telefone" value="@ViewBag.pessoa.telefone"  onkeydown="FG_FormatarTelfone(this.value, this.id)" pattern="\([0-9]{3}\) [0-9]{4}-[0-9]{4}">
             </div>
         </div>
 
@@ -101,7 +92,7 @@
         <div class="form-group row">
             <label for="apto" class="col-sm-2 col-form-label">Apartamento</label>
             <div class="col-sm-4">
-                <input type="text" class="col-sm-2 col-form-label" id="apto" value="@ViewBag.pessoa.apto" name="pessoa.apto" placeholder="APTO" disabled>
+                <input type="text" class="col-sm-2 col-form-label" id="apto" value="@ViewBag.pessoa.apto" name="pessoa.apto" placeholder="APTO" readonly>
             </div>
         </div>
 
@@ -118,6 +109,7 @@
             <label for="newPass" class="col-sm-2 col-form-label">Nova senha</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" id="newPass" placeholder="Nova senha" name="pessoa.senha">
+                <span class="field-validation-valid text-danger" data-valmsg-for="pessoa.senha" data-valmsg-replace="false" hidden>Senha muito curta!</span>
             </div>
         </div>
 
@@ -125,6 +117,7 @@
             <label for="confirmPass" class="col-sm-2 col-form-label">Corfirmar a senha</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" id="confirmPass" placeholder="Confirmar senha">
+                <span class="field-validation-valid text-danger" data-valmsg-for="confirmacaoSenha" data-valmsg-replace="false" hidden>Senha não confere!</span>
             </div>
         </div>
 
@@ -137,13 +130,13 @@
 
         <div class="form-group row">
             <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary" >Salvar</button>
             </div>
 
 
             <div class="form-group row">
                 <div class="col-sm-1">
-                    <button type="reset" class="btn btn-outline-danger">Apagar</button>
+                    <a type="button" class="btn btn-outline-danger" href="~/Configuracoes/Excluir/@ViewBag.pessoa.id">Apagar</a>
                 </div>
             </div>
         </div>

@@ -22,23 +22,32 @@
                     <input type="text" name="nome" value="@ViewBag.pesquisa" placeholder="Search..">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
-                @foreach(var pessoas in ViewBag.Pessoas)
+                @foreach (var pessoas in ViewBag.Pessoas)
                 {
                     <dl>
-                        <dt><a href=@Url.Action("MostraPessoa","Moradores", new { id = @pessoas.id })>@pessoas.nome</a></dt>
-                        <dd>@pessoas.apto</dd>
+                        <dt>
+                            @if (pessoas.status == 2)
+                            {
+                                <a style='color:red' href=@Url.Action("MostraPessoa", "Moradores", new { id = pessoas.id })>@pessoas.nome</a>
+                            }
+                            else
+                            {
+                                <a href=@Url.Action("MostraPessoa", "Moradores", new { id = pessoas.id })>@pessoas.nome</a>
+                            }
+                        </dt>
+                        <dd>Apartamento: @pessoas.apto</dd>
                         <dd>Telefone: @pessoas.telefone</dd>
                         <dd>Celular:  @pessoas.celular</dd>
                     </dl>
                 }
                 <nav aria-label="PageNnavigation">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual - 5) })">Previous</a></li>
-                        @for(int i = 0; i < ViewBag.QtdPessoa; i += 5)
+                        <li class="page-item"><a class="page-link" href="@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual - 5) , nome = @ViewBag.pesquisa})">Previous</a></li>
+                        @for (int i = 0; i < ViewBag.QtdPessoa; i += 5)
                         {
-                            <li class="page-item"><a class="page-link" href=@Url.Action(ViewBag.Action,"Moradores", new { i = @i })>@(i/5)</a></li>
+                            <li class="page-item"><a class="page-link" href=@Url.Action(ViewBag.Action,"Moradores", new { i = @i , nome = @ViewBag.pesquisa})>@(i / 5)</a></li>
                         }
-                        <li class="page-item"><a class="page-link" onclick="if(@ViewBag.QtdPessoa < @ViewBag.PagAtual + 5){return false;}" href=@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual + 5) > ViewBag.QtdPessoa ? (ViewBag.PagAtual + 5) : (ViewBag.QtdPessoa - ViewBag.PagAtual*5)%5})>Next</a></li>
+                        <li class="page-item"><a class="page-link" onclick="if(@ViewBag.QtdPessoa < @ViewBag.PagAtual + 5){return false;}" href=@Url.Action(ViewBag.Action,"Moradores", new { i = (ViewBag.PagAtual + 5) < ViewBag.QtdPessoa ? (ViewBag.PagAtual + 5) : (ViewBag.QtdPessoa - ViewBag.PagAtual*5)%5 , nome = @ViewBag.pesquisa})>Next</a></li>
                     </ul>
                 </nav>
             </div>
@@ -56,7 +65,7 @@
                         <dl>
                             <dt>
                                 @ViewBag.pessoaSelecionada.nome
-                                <button id="btnEditarAvisos" class="btn btn-sm pull-right" data-target="#mdEditAvisos" data-toggle="modal" href="#">
+                                <button id="btnEditarAvisos" class="btn btn-sm pull-right" data-target="#mdEditPessoa" data-toggle="modal">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                             </dt>
@@ -66,7 +75,15 @@
                             <dd>Email:  @ViewBag.pessoaSelecionada.email</dd>
                             <dd>
                                 <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Excluir/@ViewBag.pessoaSelecionada.id">Excluir</a>
-                                <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Bloquear/@ViewBag.pessoaSelecionada.id">Bloquear</a>
+                                @if (ViewBag.pessoaSelecionada.status == 2)
+                                {
+                                    <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Desbloquear/@ViewBag.pessoaSelecionada.id">Desbloquear</a>
+                                }
+                                else
+                                {
+                                    <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Bloquear/@ViewBag.pessoaSelecionada.id">Bloquear</a>
+                                }
+
                             </dd>
                         </dl>
                     }
@@ -79,16 +96,18 @@
             </div>
             <div id="crdBdResultadoDeVotacoes" class="card-body">
                 <p>
-                    @for (int i = 5; i < 7; i++)
+                    @foreach (var pessoa in ViewBag.pessoasNAprovadas)
                     {
                         <dl>
-                            <dt>José Dos Santos </dt>
-                            <dd>Apartamento: @i</dd>
-                            <dd>Telefone: (069) @i@i@i@i-@i@i@i@i</dd>
-                            <dd>Celular:  (069) 9 @i@i@i@i-@i@i@i@i</dd>
+                            <dt>
+                                <a href=@Url.Action("MostraPessoa", "Moradores", new { id = pessoa.id })>@pessoa.nome</a>
+                            </dt>
+                            <dd>Apartamento: @pessoa.apto</dd>
+                            <dd>Telefone: @pessoa.telefone</dd>
+                            <dd>Celular:  @pessoa.celular</dd>
                             <dd>
-                                <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Aceitar</button>
-                                <button id="btnEditarAvisos" class="btn btn-dark" onclick=#>Negar</button>
+                                <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Desbloquear/@pessoa.id">Aceitar</a>
+                                <a type="button" id="btnEditarAvisos" class="btn btn-dark" href="~/Moradores/Excluir/@pessoa.id">Negar</a>
                             </dd>
                         </dl>
                     }
@@ -97,24 +116,30 @@
         </div>
     </div>
 </div>
-
-<!-- Modal editar avisos -->
-<div class="modal fade" id="mdEditAvisos" tabindex="-1" role="dialog" aria-labelledby="Editar Aviso" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href=@Url.Action("Index", "login")>Salvar</a>
+@if (ViewBag.pessoaSelecionada != null)
+{
+    <!-- Modal editar pessoas -->
+    <div class="modal fade" id="mdEditPessoa" tabindex="-1" role="dialog" aria-labelledby="Editar Apartamento" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reuniões</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action=@Url.Action("EditarApto", "Moradores")>
+                    <div class="modal-body">
+                        Apartamento:<br />
+                        <input hidden name="id" value="@ViewBag.pessoaSelecionada.id" />
+                        <input type="text" name="apto" class="form-control" value="@ViewBag.pessoaSelecionada.apto" />
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+}

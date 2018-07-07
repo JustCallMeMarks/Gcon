@@ -31,9 +31,29 @@ namespace Gcon.Website.Controllers
             string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
             PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
             PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
-            pessoaAplicacao.Altera(pessoa);
+            if (pessoaAplicacao.Login(pessoa.email, senha) != null)
+            {
+                if(pessoa.senha == null)
+                {
+                    pessoa.senha = senha;
+                }
+                object Permisao = Session["Permission"];
+                pessoa.permissao = Permisao.ToString() == "ADM" ? 1:0;
+                pessoa.status = 1;
+                pessoaAplicacao.Altera(pessoa);
+            }
+            Index();
+            return View("Index");
+        }
 
-            return View(Index());
+        public ActionResult Excluir(Guid id)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            PessoaRepositorio pessoaRepositorio = new PessoaRepositorio(str);
+            PessoaAplicacao pessoaAplicacao = new PessoaAplicacao(pessoaRepositorio);
+            pessoaAplicacao.ExcluirMorador(id);
+            Index();
+            return View("Index");
         }
     }
 }

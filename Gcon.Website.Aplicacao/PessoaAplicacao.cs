@@ -68,12 +68,23 @@ namespace Gcon.Website.Aplicacao
 
         public List<PessoaEntidade> getMoradores(Guid id)
         {
-            return this.pessoaRepossitorio.ProcurarTodasAsPessoasDeUmCondominio(id);
+            List<PessoaEntidade> pessoas = this.pessoaRepossitorio.ProcurarTodasAsPessoasDeUmCondominio(id);
+            foreach (var pessoa in pessoas)
+            {
+                pessoa.telefone = "(" + pessoa.telefone.Substring(0, 3) + ") " + pessoa.telefone.Substring(3, 4) + "-" + pessoa.telefone.Substring(7, 4);
+                pessoa.celular = "(" + pessoa.celular.Substring(0, 3) + ") " + pessoa.celular.Substring(3, 5) + "-" + pessoa.celular.Substring(8, 4);
+                pessoa.cpf_cnpj = pessoa.cpf_cnpj.Substring(0, 3) + '.' + pessoa.cpf_cnpj.Substring(3, 3) + '.' + pessoa.cpf_cnpj.Substring(6, 3) + '-' + pessoa.cpf_cnpj.Substring(9, 2);
+            }
+            return pessoas;
         }
 
         public PessoaEntidade Procura(Guid id)
         {
-            return this.pessoaRepossitorio.Procurar(id);
+            PessoaEntidade pessoa = this.pessoaRepossitorio.Procurar(id);
+            pessoa.telefone = "(" + pessoa.telefone.Substring(0, 3) + ") " + pessoa.telefone.Substring(3, 4) + "-" + pessoa.telefone.Substring(7, 4);
+            pessoa.celular = "(" + pessoa.celular.Substring(0, 3) + ") " + pessoa.celular.Substring(3, 5) + "-" + pessoa.celular.Substring(8, 4);
+            pessoa.cpf_cnpj = pessoa.cpf_cnpj.Substring(0, 3) + '.' + pessoa.cpf_cnpj.Substring(3, 3) + '.' + pessoa.cpf_cnpj.Substring(6, 3) + '-' + pessoa.cpf_cnpj.Substring(9, 2);
+            return pessoa;
         }
 
         public Boolean ValidarCpf(String CPF)
@@ -111,13 +122,47 @@ namespace Gcon.Website.Aplicacao
             this.pessoaRepossitorio.Excluir(id);
         }
 
-        public void bloqueia(Guid id)
+        public void bloqueia(Guid id,string status)
         {
-            this.pessoaRepossitorio.Bloqueia(id);
+            this.pessoaRepossitorio.Bloqueia(id, status);
         }
 
         public void Altera(PessoaEntidade pessoa)
         {
+            if (string.IsNullOrEmpty(pessoa.nome))
+            {
+                throw new ApplicationException("Nome invalido");
+            }
+            if (string.IsNullOrEmpty(pessoa.cpf_cnpj))
+            {
+                throw new ApplicationException("CPF invalido");
+            }
+            else
+            {
+                pessoa.cpf_cnpj = SemFormatacao(pessoa.cpf_cnpj);
+                if (!ValidarCpf(pessoa.cpf_cnpj))
+                {
+                    throw new ApplicationException("CPF invalido");
+                }
+            }
+            if (string.IsNullOrEmpty(pessoa.apto))
+            {
+                throw new ApplicationException("Apartamento invalido");
+            }
+            if (string.IsNullOrEmpty(pessoa.email) || !pessoa.email.Contains("@") || !pessoa.email.Contains("."))
+            {
+                throw new ApplicationException("Email invalido");
+            }
+            if (string.IsNullOrEmpty(pessoa.id_condominio.ToString()))
+            {
+                throw new ApplicationException("Apartamento invalido");
+            }
+            if (string.IsNullOrEmpty(pessoa.senha) || pessoa.senha.Length < 8)
+            {
+                throw new ApplicationException("Senha invalido");
+            }
+            pessoa.telefone = SemFormatacao(pessoa.telefone);
+            pessoa.celular = SemFormatacao(pessoa.celular);
             this.pessoaRepossitorio.Alterar(pessoa);
         }
     }

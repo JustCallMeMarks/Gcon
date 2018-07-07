@@ -15,6 +15,6 @@ namespace Gcon.Website.Dominio.Interface
         PessoaEntidade Procurar(Guid id);
         List<PessoaEntidade> ProcurarTodasAsPessoasDeUmCondominio(Guid id);
         PessoaEntidade ProcurarPessoasApartirEmailSenha(string email, string senha);
-        void Bloqueia(Guid id);
+        void Bloqueia(Guid id,string status);
     }
 }

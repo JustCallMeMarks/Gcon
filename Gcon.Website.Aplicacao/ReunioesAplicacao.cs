@@ -26,5 +26,10 @@ namespace Gcon.Website.Aplicacao
                 this.reunioes.Inserir(reuniao);
             }
         }
+
+        public void Apagar(Guid id)
+        {
+            this.reunioes.Excluir(id);
+        }
     }
 }
