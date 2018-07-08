@@ -16,5 +16,6 @@ namespace Gcon.Website.Dominio.Entidade.Pergunta
         public Guid id_votacao { get; set; }
         public string pergunta { get; set; }
         public string tipo { get; set; }
+        public List<string> resposta { get; set; }
     }
 }

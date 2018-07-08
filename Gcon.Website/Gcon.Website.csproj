@@ -169,8 +169,11 @@
     <Compile Include="Locale\recursos.Designer.cs" />
     <Compile Include="Locale\recursos.en-US.Designer.cs" />
     <Compile Include="Locale\recursos.es-ES.Designer.cs" />
+    <Compile Include="Models\AtasModel.cs" />
+    <Compile Include="Models\PerguntaModel.cs" />
     <Compile Include="Models\PessoaModel.cs" />
     <Compile Include="Models\ReuniaoModel.cs" />
+    <Compile Include="Models\VotacaoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +275,7 @@
     <Content Include="Views\Atas\Index.cshtml" />
     <Content Include="Views\Configuracoes\Index.cshtml" />
     <Content Include="Views\Votacao\Index.cshtml" />
+    <Content Include="Views\Votacao\NovaVotacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

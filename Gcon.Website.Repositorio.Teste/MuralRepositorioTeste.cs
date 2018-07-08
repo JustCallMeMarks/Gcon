@@ -3,6 +3,7 @@ using Gcon.Website.Dominio.Entidade.Mural;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Gcon.Website.Repositorio.Teste
 {
@@ -102,7 +103,7 @@ namespace Gcon.Website.Repositorio.Teste
             try
             {
                 MuralRepositorio muralRepositorio = new MuralRepositorio(str);
-                Mural Mural = muralRepositorio.ProcurarMuralDoCondominio(Id);
+                List<Mural> Mural = muralRepositorio.ProcurarMuralDoCondominio(Id);
 
                 Assert.IsTrue(true);
             }

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    if (ViewBag.Tipo == "USER")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+    }
+}
+
+
+
+<form action="@Url.Action("AdicionarVotcao", "Votacao")">
+<div class="row">
+
+    <div class="col-md-6">
+        <div id="crdAvisosGerais" class="card">
+            <div id="crdHdAvisosGerais" class="card-header bg-dark">
+                <asp:label class="text-white">Objetivos da votação</></asp:label>
+            </div>
+            <div id="crdBdAvisosGerais" class="card-body">
+                Titulo:
+                <input type="text" name="votacao.titulo" class="form-control col-lg-8" />
+                Objetivo:
+                <textarea name="votacao.objetivo" class="form-control"></textarea>
+                Data Limite Para a Resposta:
+                <input type="datetime-local" name="votacao.data" class="form-control" /><br>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="reset" fclass="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+        <br />
+        <div class="col-lg-12 container align-right">
+            <div id="crdProximasReunioes" class="card">
+                <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                    <asp:Label class="text-white">Votação Abertas:</asp:Label>
+                </div>
+                <div id="crdBdProximasReunioes" class="card-body">
+
+                    <p>
+                        <a href="#">Votação 1: </a><br />
+                        Descrição/tema <br />
+                        A votação se encerra no dia 31/12/9999 as 23:60 <br /><br />
+                    </p>
+
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div id="perguntas" class="col-sm-6 container">
+
+        <div id="crdProximasReunioes" class="card">
+            <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                <asp:Label class="text-white">Pergunta</asp:Label>
+                <button class="btn btn-dark btn-sm pull-right" type="button" onclick="adicionaPergunta()">
+                    <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="EditarAvisos"></i>
+                </button>
+            </div>
+            <div id="Perguntas0" class="card-body">
+
+                <p>
+                    Pergunta:
+                    <input type="text" name="votacao.perguntas[0].pergunta" class="form-control col-lg-8" />
+                    Tipo de Resposta:
+                    <select class="form-control-md input-md" id="exampleFormControlSelect1" name="votacao.perguntas[0].tipo" onchange="habilitaRespostas(this.value, 0)">
+                        <option value="CheckBox">Multipla Escolha</option>
+                        <option value="ComboBox">Lista</option>
+                        <option value="TextArea">Texto</option>
+                        <option value="Data">Data</option>
+                        <option value="Hora">Hora</option>
+                    </select>
+                    <button class="btn btn-dark btn-sm pull-right" type="button" id="+Resposta0" onclick="adicionaResposta(0)" hidden>
+                        <i class="fa fa-plus" data-toggle="tooltip" data-placement="right" title="EditarAvisos"></i>
+                    </button>
+                    <div id="Resposta0" hidden>
+                        <div id="cardResposta0" class="card">
+                            <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                                <asp:Label class="text-white">Resposta</asp:Label>
+                            </div>
+                            <div id="crdBdProximasReunioes" class="card-body">
+                                <input type="text" name="votacao.perguntas[0].Respostas[0]" class="form-control col-lg-8" />
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+    var id = 1;
+    var idRespostas = [1];
+    function adicionaPergunta()
+    {
+        document.getElementById("perguntas").innerHTML += " <div id='crdProximasReunioes' class='card'><div id = 'crdHdProximasReunioes' class='card-header bg-dark' ><asp:Label class='text-white'>Pergunta</asp:Label></div><div id='Perguntas"+id+"' class='card-body'><p>Pergunta:<input type='text' name='votacao.perguntas[" + id + "].pergunta' class='form-control col-lg-8' />Tipo de Resposta:<select class='form-control-md input-md' id='exampleFormControlSelect1' name='votacao.perguntas[" + id + "].tipo' onchange='habilitaRespostas(this.value, "+id+")'><option value='CheckBox'>Multipla Escolha</option><option value='ComboBox'>Lista</option><option value='TextArea'>Texto</option><option value='Data'>Data</option><option value='Hora'>Hora</option></select><button class='btn btn-dark btn-sm pull-right' type='button' id='+Resposta"+id+"' onclick='adicionaResposta("+id+")' hidden><i class='fa fa-plus' data-toggle='tooltip' data-placement='right' title='EditarAvisos'></i></button><div id='Resposta"+id+"' hidden><div id='bv' class='card'><div id='crdHdProximasReunioes' class='card-header bg-dark'><asp: Label class='text-white'>Resposta</asp: Label></div><div id='crdBdProximasReunioes' class='card-body'><input type='text' name='votacao.perguntas[" + id +"].Respostas' class='form-control col-lg-8' /></div></div></div></p></div ></div >";
+        idRespostas[id] = 1;
+        id++;
+    }
+    function habilitaRespostas(value , id)
+    {
+        if (value == "ComboBox" || value == "CheckBox") {
+            document.getElementById("Resposta" + id).hidden = false;
+            document.getElementById("+Resposta" + id).hidden = false;
+        } else {
+            document.getElementById("Resposta" + id).hidden = true;
+            document.getElementById("+Resposta" + id).hidden = true;
+        }
+    }
+    function adicionaResposta(id) {
+        document.getElementById("Resposta" + id).innerHTML += "<div id='cardResposta" + idRespostas[id] + "' class='card'><div id = 'crdHdProximasReunioes' class='card-header bg-dark' ><asp: Label class='text-white'>Resposta</asp: Label ></div ><div id='crdBdProximasReunioes' class='card-body'><input type='text' name='votacao.perguntas[" + id + "].Respostas[" + idRespostas[id] + "]' class='form-control col-lg-8' /></div></div >";
+        idRespostas[id] = idRespostas[id] + 1;
+    }
+</script>

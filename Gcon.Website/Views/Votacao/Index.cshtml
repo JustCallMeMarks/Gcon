@@ -39,12 +39,12 @@
                 <div id="crdBdProximasReunioes" class="card-body">
 
                     <p>
-                        <a href="#">Votação 1: </a><br />
-                        Descrição/tema <br />
-                        A votação se encerra no dia 31/12/9999 as 23:60 <br /><br />
-
-
-
+                        @foreach (var votacao in ViewBag.VotacoesCondominio)
+                        {
+                            <a href="#">@votacao.titulo</a><br />
+                            @votacao.descricao 
+                            <p>A votação se encerra no dia @votacao.data</p><br />
+                        }
                     </p>
 
                 </div>

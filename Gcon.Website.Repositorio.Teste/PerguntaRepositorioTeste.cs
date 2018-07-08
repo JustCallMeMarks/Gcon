@@ -3,6 +3,7 @@ using Gcon.Website.Dominio.Entidade.Pergunta;
 using Gcon.Website.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Gcon.Website.Repositorio.Teste
 {
@@ -41,7 +42,8 @@ namespace Gcon.Website.Repositorio.Teste
                 id = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
                 id_votacao = Guid.Parse("7edafe64-f996-4ba9-8f8c-2eb1367a6ca6"),
                 pergunta = "Pergunta teste - Altera",
-                tipo = "Teste Tipo - Altera"
+                tipo = "Teste Tipo - Altera",
+                resposta = new List<string> {"Teste1" , "Teste2" }
             };
             try
             {

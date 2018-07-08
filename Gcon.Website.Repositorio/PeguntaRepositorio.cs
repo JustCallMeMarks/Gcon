@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Pergunta;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
@@ -20,14 +21,15 @@ namespace Gcon.Website.Repositorio
             {
                 conexao.Open();
                 NpgsqlCommand comando = new NpgsqlCommand();
-                comando.CommandText = "INSERT INTO perguntas (id, id_votacao, pergunta, tipo) " +
-                                         " VALUES(@id, @id_votacao, @pergunta, @tipo)";
+                comando.CommandText = "INSERT INTO perguntas (id, id_votacao, pergunta, tipo, resposta) " +
+                                         " VALUES(@id, @id_votacao, @pergunta, @tipo, @resposta)";
                 comando.Connection = conexao;
 
                 comando.Parameters.AddWithValue("id", Pergunta.id.ToString());
                 comando.Parameters.AddWithValue("id_votacao", Pergunta.id_votacao);
                 comando.Parameters.AddWithValue("pergunta", Pergunta.pergunta);
                 comando.Parameters.AddWithValue("tipo", Pergunta.tipo);
+                comando.Parameters.AddWithValue("resposta", Pergunta.resposta);
 
                 comando.ExecuteNonQuery();
             }
@@ -42,7 +44,8 @@ namespace Gcon.Website.Repositorio
                 comando.CommandText = "UPDATE perguntas " +
                                         "SET id_votacao = @id_votacao," +
                                               "pergunta = @pergunta," +
-                                                  "tipo = @tipo " +
+                                                  "tipo = @tipo," +
+                                              "resposta = @resposta " +
                                               "WHERE id = @id;";
                 comando.Connection = conexao;
 
@@ -50,6 +53,7 @@ namespace Gcon.Website.Repositorio
                 comando.Parameters.AddWithValue("id_votacao", Pergunta.id_votacao);
                 comando.Parameters.AddWithValue("pergunta", Pergunta.pergunta);
                 comando.Parameters.AddWithValue("tipo", Pergunta.tipo);
+                comando.Parameters.AddWithValue("resposta", Pergunta.resposta);
 
                 comando.ExecuteNonQuery();
 
@@ -95,6 +99,8 @@ namespace Gcon.Website.Repositorio
                         Pergunta.id_votacao = Guid.Parse(String.Format("{0}", SqlData["id_votacao"]));
                         Pergunta.pergunta = String.Format("{0}", SqlData["pergunta"]);
                         Pergunta.tipo = String.Format("{0}", SqlData["tipo"]);
+                        Pergunta.resposta = new List<string>();
+                        Pergunta.resposta.AddRange((string[])SqlData["resposta"]);
                     }
                 }
 

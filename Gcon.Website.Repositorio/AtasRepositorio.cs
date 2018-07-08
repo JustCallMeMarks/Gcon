@@ -36,7 +36,7 @@ namespace Gcon.Website.Repositorio
             }
         }
 
-        public void Alterar(Atas Atas)
+        public bool Alterar(Atas Atas)
         {
               using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
               {
@@ -59,7 +59,7 @@ namespace Gcon.Website.Repositorio
                   comando.Parameters.AddWithValue("id_pessoa", Atas.id_pessoa);
                   comando.Parameters.AddWithValue("id_condominio", Atas.id_condominio);
 
-                  comando.ExecuteNonQuery();
+                  return comando.ExecuteNonQuery()>0;
               }
         }
 
