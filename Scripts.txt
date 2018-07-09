@@ -63,10 +63,10 @@ alter table public."mural"
 create table public."reunioes"
 (
     "id" character varying(36) not null,
-    "data" date not null,
+    "data" timestamp(4) without time zone NOT NULL,
     "titulo" character varying(255) not null,
     "id_pessoa" character varying(36) not null,
-	"id_condominio" character varying(36) not null,
+    "id_condominio" character varying(36) not null,
     "data_atz" date not null,
     primary key ("id")
 )
@@ -122,6 +122,7 @@ create table public."perguntas"
     "id_votacao" character varying(36) not null,
     "pergunta" character varying(255) not null,
     "tipo" character varying(255) not null,
+    "resposta" character varying(255)[],
     primary key ("id")
 )
 with (
@@ -188,8 +189,8 @@ alter table public."reunioes"
 
     
 alter table public."votacoes"
-    add constraint "votacoes_pessoas_fkey" foreign key ("id_pessoa")
-    references public."votacoes" ("id") match simple
+    add constraint votacoes_pessoas_fkey FOREIGN KEY (id_pessoa)
+    references public.pessoas (id) MATCH SIMPLE
     on update no action
     on delete no action;
     
