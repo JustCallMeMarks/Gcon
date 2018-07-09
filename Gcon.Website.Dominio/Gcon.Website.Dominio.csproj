@@ -45,6 +45,7 @@
     <Compile Include="Entidade\Mural\Mural.cs" />
     <Compile Include="Entidade\Pergunta\Pergunta.cs" />
     <Compile Include="Entidade\Pessoa\Pessoa.cs" />
+    <Compile Include="Entidade\Resultado\Resultado.cs" />
     <Compile Include="Entidade\Reunioes\Reunioes.cs" />
     <Compile Include="Entidade\Votacoes\Votacoes.cs" />
     <Compile Include="Entidade\Votos\Votos.cs" />

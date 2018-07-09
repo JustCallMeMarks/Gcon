@@ -1,4 +1,6 @@
 ﻿using Gcon.Website.Aplicacao;
+using Gcon.Website.Dominio.Entidade.Pergunta;
+using Gcon.Website.Dominio.Entidade.Resultado;
 using Gcon.Website.Models;
 using Gcon.Website.Repositorio;
 using System;
@@ -25,6 +27,20 @@ namespace Gcon.Website.Controllers
             object Permisao = Session["Permission"];
             ViewBag.Tipo = Permisao.ToString();
             return View();
+        }
+
+        public ActionResult Selecionar(Guid id)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
+            VotacaoAplicacao votacaoAplicacao = new VotacaoAplicacao(votacoesRepositorio);
+            ViewBag.Votacao = votacaoAplicacao.getVotacoes(id);
+            ViewBag.Perguntas = votacaoAplicacao.getPerguntas(id);
+
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
+            Index();
+            return View("Index");
         }
 
         [FiltroAcesso(Tipo = "ADM")]
@@ -73,6 +89,57 @@ namespace Gcon.Website.Controllers
             object Permisao = Session["Permission"];
             ViewBag.Tipo = Permisao.ToString();
             return View("NovaVotacao");
+        }
+
+        public ActionResult Votar(List<Votos> Votos)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            VotosRepositorio votosRepositorio = new VotosRepositorio(str);
+            VotosAplicacao votosAplicacao = new VotosAplicacao(votosRepositorio);
+
+            foreach (Votos voto in Votos)
+            {
+                Dominio.Entidade.Votos.Votos Voto = new Dominio.Entidade.Votos.Votos
+                {
+                    id_pergunta = voto.id_pergunta,
+                    id_pessoa = (Guid)Session["usuario"],
+                    resposta = voto.resposta
+                };
+                votosAplicacao.Votar(Voto);
+            }
+            Index();
+            return View("Index");
+        }
+
+        [FiltroAcesso(Tipo = "ADM")]
+        public ActionResult Resultado(Guid id)
+        {
+            string str = ConfigurationManager.ConnectionStrings["conexao"].ToString();
+            VotacoesRepositorio votacoesRepositorio = new VotacoesRepositorio(str);
+            VotacaoAplicacao votacaoAplicacao = new VotacaoAplicacao(votacoesRepositorio);
+
+            List<Pergunta> Perguntas = votacaoAplicacao.getPerguntas(id);
+
+            PerguntaRepositorio perguntaRepositorio = new PerguntaRepositorio(str);
+            PerguntaAplicacao perguntaAplicacao = new PerguntaAplicacao(perguntaRepositorio);
+
+            List<Resultado> resultados = new List<Resultado>();
+            foreach (Pergunta pergunta in Perguntas)
+            {
+                List<Resultado> resultadosUma = perguntaAplicacao.ContarVotosPergunta(pergunta.id);
+                foreach(Resultado resultado in resultadosUma)
+                {
+                    resultado.id_pergunta = pergunta.id;
+                }
+                resultados.AddRange(resultadosUma);
+            }
+            ViewBag.Votacao = votacaoAplicacao.getVotacoes(id);
+            ViewBag.VotacoesCondominio = votacaoAplicacao.getVotacoesCondominio((Guid)Session["Condominio"]);
+            ViewBag.Perguntas = Perguntas;
+            ViewBag.Resultado = resultados;
+            object Permisao = Session["Permission"];
+            ViewBag.Tipo = Permisao.ToString();
+            return View("Index");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Gcon.Website.Dominio.Entidade.Pergunta;
+using Gcon.Website.Dominio.Entidade.Resultado;
 using Gcon.Website.Dominio.Interface;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace Gcon.Website.Aplicacao
         public void NovaPergunta(Pergunta pergunta)
         {
             this.Perguntas.Inserir(pergunta);
+        }
+
+        public List<Resultado> ContarVotosPergunta(Guid id)
+        {
+            return this.Perguntas.ContarVotosPergunta(id);
         }
     }
 }

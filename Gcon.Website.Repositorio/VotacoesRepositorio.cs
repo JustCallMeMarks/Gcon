@@ -137,6 +137,8 @@ namespace Gcon.Website.Repositorio
                         Pergunta.id_votacao = Guid.Parse(String.Format("{0}", SqlData["id_votacao"]));
                         Pergunta.pergunta = String.Format("{0}", SqlData["pergunta"]);
                         Pergunta.tipo = String.Format("{0}", SqlData["tipo"]);
+                        Pergunta.resposta = new List<string>();
+                        Pergunta.resposta.AddRange((string[])SqlData["resposta"]);
 
                         Perguntas.Add(Pergunta);
                     }

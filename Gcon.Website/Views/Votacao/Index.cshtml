@@ -25,9 +25,11 @@
                 </button>
             </div>
             <div id="crdBdAvisosGerais" class="card-body">
-
-                O vídeo fornece uma maneira poderosa de ajudá-lo a provar seu argumento. Ao clicar em Vídeo Online, você pode colar o código de inserção do vídeo que deseja adicionar. Você também pode digitar uma palavra-chave para pesquisar online o vídeo mais adequado ao seu documento. Para dar ao documento uma aparência profissional, o Word fornece designs de cabeçalho, rodapé, folha de rosto e caixa de texto que se complementam entre si. Por exemplo, você pode adicionar uma folha de rosto, um cabeçalho e uma barra lateral correspondentes. Clique em Inserir e escolha os elementos desejados nas diferentes g
-
+                @if (ViewBag.Votacao != null)
+                {
+                     <p>@ViewBag.Votacao.descricao</p>
+                     <p>A votação se encerra no dia @ViewBag.Votacao.data</p><br />
+                }
             </div>
         </div>
         <br />
@@ -37,16 +39,19 @@
                     <asp:Label class="text-white">Votação Abertas:</asp:Label>
                 </div>
                 <div id="crdBdProximasReunioes" class="card-body">
-
-                    <p>
                         @foreach (var votacao in ViewBag.VotacoesCondominio)
                         {
-                            <a href="#">@votacao.titulo</a><br />
+                            if (ViewBag.Tipo != "ADM")
+                            {
+                                <a href="~/Votacao/Selecionar/@votacao.id">@votacao.titulo</a><br />
+                            }
+                            else
+                            {
+                                <a href="~/Votacao/Resultado/@votacao.id">@votacao.titulo</a><br />
+                            }
                             @votacao.descricao 
                             <p>A votação se encerra no dia @votacao.data</p><br />
                         }
-                    </p>
-
                 </div>
             </div>
             <br />
@@ -61,18 +66,147 @@
             </div>
             <div id="crdBdProximasReunioes" class="card-body">
 
-                <p>
+                <form action="@Url.Action("Votar","Votacao")">
+                    @if (ViewBag.Votacao != null)
+                    {
+                        var i = 0;
+                        foreach (var pergunta in ViewBag.Perguntas)
+                        {
+                            <div id="crdProximasReunioes" class="card">
+                                <div id="crdHdProximasReunioes" class="card-header bg-dark">
+                                    <asp:Label class="text-white">@pergunta.pergunta</asp:Label>
+                                    <input type="text" value="@pergunta.id" name="votos[@i].id_pergunta" hidden/>
+                                </div>
+                                <div id="Perguntas0" class="card-body">
+                                    @if (pergunta.tipo == "CheckBox")
+                                    {
+                                        foreach (var resposta in pergunta.resposta)
+                                        {
+                                            <input type="radio" name="votos[@i].resposta" value="@resposta">@resposta   
+                                            if (ViewBag.Resultado != null)
+                                            {
+                                                foreach (var resultado in ViewBag.Resultado)
+                                                {
+                                                    if (resultado.resposta == resposta && resultado.id_pergunta == pergunta.id)
+                                                    {
+                                                        <span>  -  Votos: @resultado.votos</span>
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            <br/>
+                                        }
+                                    }
+                                    else if (pergunta.tipo == "ComboBox")
+                                    {
+                                        if (ViewBag.Tipo != "ADM")
+                                        {
+                                             <select class="form-control-md input-md" name="votos[@i].resposta">
+                                              @foreach (var resposta in pergunta.resposta)
+                                              {
+                                                <option value="@resposta" >@resposta</option>
+                                              }
+                                              </select>
+                                        }
+                                        else
+                                        {
+                                            <ul>
+                                             @foreach (var resposta in pergunta.resposta)
+                                             {
+                                                <li>@resposta
+                                                @if (ViewBag.Resultado != null)
+                                                {
+                                                    foreach (var resultado in ViewBag.Resultado)
+                                                    {
+                                                        if (resultado.resposta == resposta && resultado.id_pergunta == pergunta.id)
+                                                        {
+                                                            <span>  -  Votos: @resultado.votos</span>
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                </li>
+                                             }
+                                             </ul>
+                                        }
 
-                    O vídeo fornece uma maneira poderosa de ajudá-lo a provar seu argumento. Ao clicar em Vídeo Online, você pode colar o código de inserção do vídeo que deseja adicionar. Você também pode digitar uma palavra-chave para pesquisar online o vídeo mais adequado ao seu documento. Para dar ao documento uma aparência profissional, o Word fornece designs de cabeçalho, rodapé, folha de rosto e caixa de texto que se complementam entre si. Por exemplo, você pode adicionar uma folha de rosto, um cabeçalho e uma barra lateral correspondentes.
-                    Clique em Inserir e escolha os elementos desejados nas diferentes galerias. Temas e estilos também ajudam a manter seu documento coordenado. Quando você clica em Design e escolhe um novo tema, as imagens, gráficos e elementos gráficos SmartArt são alterados para corresponder ao novo tema. Quando você aplica estilos, os títulos são alterados para coincidir com o novo tema. Economize tempo no Word com novos botões que são mostrados no local em que você precisa deles.
-                    Para alterar a maneira como uma imagem se ajusta ao seu documento, clique nela e um botão de opções de layout será exibido ao lado. Ao trabalhar em uma tabela, clique no local onde deseja adicionar uma linha ou uma coluna e clique no sinal de adição. A leitura também é mais fácil no novo modo de exibição de Leitura. Você pode recolher partes do documento e colocar o foco no texto desejado. Se for preciso interromper a leitura antes de chegar ao fim dela, o Word lembrará em que ponto você parou - até mesmo em outro dispositivo.
-                    O vídeo fornece uma maneira poderosa de ajudá-lo a provar seu argumento. Ao clicar em Vídeo Online, você pode colar o código de inserção do vídeo que deseja adicionar. Você também pode digitar uma palavra-chave para pesquisar online o vídeo mais adequado ao seu documento. Para dar ao documento uma aparência profissional, o Word fornece designs de cabeçalho, rodapé, folha de rosto e caixa de texto que se complementam entre si. Por exemplo, você pode adicionar uma folha de rosto, um cabeçalho e uma barra lateral correspondentes.
-
-
-
-
-                </p>
-
+                                    }
+                                    else if (pergunta.tipo == "TextArea")
+                                    {
+                                        if (ViewBag.Tipo != "ADM")
+                                        {
+                                            <textarea class="form-control" name="votos[@i].resposta"></textarea>
+                                        }
+                                        else
+                                        {
+                                            <ul>
+                                                @if (ViewBag.Resultado != null)
+                                                {
+                                                    foreach (var resultado in ViewBag.Resultado)
+                                                    {
+                                                        if (resultado.id_pergunta == pergunta.id)
+                                                        {
+                                                            <li>@resultado.resposta</li>
+                                                        }
+                                                    }
+                                                }
+                                             </ul>
+                                        }
+                                    }
+                                    else if (pergunta.tipo == "Data")
+                                    {
+                                        if (ViewBag.Tipo != "ADM")
+                                        {
+                                            <input type="date" class="form-control" name="votos[@i].resposta"/>
+                                        }
+                                        else
+                                        {
+                                            <ul>
+                                                @if (ViewBag.Resultado != null)
+                                                {
+                                                    foreach (var resultado in ViewBag.Resultado)
+                                                    {
+                                                        if (resultado.id_pergunta == pergunta.id)
+                                                        {
+                                                            <li>@resultado.resposta  - Votos: @resultado.votos</li>
+                                                        }
+                                                    }
+                                                }
+                                             </ul>
+                                        }
+                                    }
+                                    else if (pergunta.tipo == "Hora")
+                                    {
+                                        if (ViewBag.Tipo != "ADM")
+                                        {
+                                            <input type="time" class="form-control" name="votos[@i].resposta"/>
+                                        }
+                                        else
+                                        {
+                                            <ul>
+                                                @if (ViewBag.Resultado != null)
+                                                {
+                                                    foreach (var resultado in ViewBag.Resultado)
+                                                    {
+                                                        if (resultado.id_pergunta == pergunta.id)
+                                                        {
+                                                            <li>@resultado.resposta  - Votos: @resultado.votos</li>
+                                                        }
+                                                    }
+                                                }
+                                             </ul>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            i++;
+                        }
+                        if (ViewBag.Tipo != "ADM")
+                        {
+                            <input type="submit" value="Salvar"/>
+                        }
+                    }
+                </form>
             </div>
         </div>
         <br />

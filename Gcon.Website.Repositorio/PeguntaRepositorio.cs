@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gcon.Website.Dominio.Entidade.Pergunta;
+using Gcon.Website.Dominio.Entidade.Resultado;
 using Gcon.Website.Dominio.Interface;
 using Npgsql;
 
@@ -105,6 +106,39 @@ namespace Gcon.Website.Repositorio
                 }
 
                 return Pergunta;
+            }
+        }
+
+        public List<Resultado> ContarVotosPergunta(Guid id)
+        {
+            using (NpgsqlConnection conexao = new NpgsqlConnection(this.connectionString))
+            {
+                conexao.Open();
+                NpgsqlCommand comando = new NpgsqlCommand();
+                comando.CommandText = "SELECT   resposta," +
+                                      "COUNT(resposta) AS votos " +
+                                      "FROM votos " +
+                                      "WHERE votos.id_pergunta = @id " +
+                                      "GROUP BY resposta " +
+                                      "ORDER BY COUNT(resposta) DESC;";
+                comando.Connection = conexao;
+
+                comando.Parameters.AddWithValue("id", id.ToString());
+
+                List<Resultado> resultados = new List<Resultado>();
+
+                using (NpgsqlDataReader SqlData = comando.ExecuteReader())
+                {
+                    while (SqlData.Read())
+                    {
+                        Resultado resultado = new Resultado();
+                        resultado.resposta = String.Format("{0}", SqlData["resposta"]);
+                        resultado.votos = (Int32)(Int64) SqlData["votos"];
+                        resultados.Add(resultado);
+                    }
+                }
+
+                return resultados;
             }
         }
     }
